@@ -1,0 +1,277 @@
+<div class="panel panel-default">
+    <div class="panel-heading">  
+        Edit Contract
+        <a href="<?php echo $this->url('index').'admin/contract/';?>" class="btn btn-success btn-xs pull-right"><i class="fa fa-undo" aria-hidden="true"></i>Back</a>
+    </div>
+    <div class="panel-body">   
+        
+        <form action="<?php echo $this->url('index').'admin/contract/'.$id.'?task=edit';?>" enctype="multipart/form-data" name="contract" id="contract" method="post">
+        	<div class="box-body">
+        	    <?php  
+        	    //print_r($ar_status);  
+        	    if(!empty($result)){
+        	    ?>
+        	    <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                    <strong>Success!</strong> Contract successfuly. 
+                </div>
+        	    <?php
+        	    }
+        	    ?> 
+        	    <div class="form-group">    
+                    <label for="request">Request</label>  
+          			<select id="request" name="contract[request]" class="form-control">  
+          			    <option value="1" <?=($detail['request']==1)?'selected':'';?>>Selling</option> 
+          			    <option value="0" <?=($detail['request']==0)?'selected':'';?>>Buying</option> 
+          			</select>       
+        		</div> 
+        	    <div class="form-group">  
+          			<label for="project_name">Project Name</label>    
+          			<input type="text" class="form-control" id="project_name" name="contract[project_name]" placeholder="Project Name" value="<?=(!empty($detail['project_name']))?$detail['project_name']:'';?>"> 
+        		</div> 
+        		
+        		<div class="form-group">
+          			<label for="total_price">Price</label>   
+          			<input type="number" class="form-control" id="total_price" name="contract[total_price]" placeholder="Price" value="<?=(!empty($detail['total_price']))?$detail['total_price']:'';?>"> 
+        		</div>
+        		
+        		<div class="form-group">
+          			<label for="start_date">Start Date</label>   
+          			<input type="text" class="form-control" id="start_date" name="contract[start_date]" placeholder="Start Date" value="<?=(!empty($detail['start_date']))?$detail['start_date']:'';?>" readonly> 
+        		</div>
+        		
+        		<div class="form-group">
+          			<label for="end_date">End Date</label>   
+          			<input type="text" class="form-control" id="end_date" name="contract[end_date]" placeholder="End Date" value="<?=(!empty($detail['end_date']))?$detail['end_date']:'';?>" readonly> 
+        		</div>
+        		
+        		<div class="form-group"> 
+          			<label for="pic">file 1</label>    
+          			<input type="file" id="pic" name="pic">  
+          			<?php
+          			if(!empty($detail['contract_img'])){  
+          			?>
+          			<div style="display:block;margin-top:10px;"><a class="btn btn-primary btn-xs" href="<?=$urlFile;?>/contract/<?=$detail['contract_img'];?>" target="_blank" download="<?=$detail['contract_img'];?>"><i class="fa fa-download" aria-hidden="true"></i>  Download</a></div>
+        		    <?php
+          			} 
+        		    ?>
+        		</div> 
+        		<?php 
+        		for($i=2; $i<=9; $i++){ 
+        		?>  
+        		<div class="form-group">  
+          			<label for="pic">file <?=$i;?></label>    
+          			<input type="file" id="pic" name="pic<?=$i;?>">  
+          			<?php
+          			if(!empty($detail['contract_img'.$i])){   
+          			?>
+          			<div style="display:block;margin-top:10px;"><a class="btn btn-primary btn-xs" href="<?=$urlFile;?>/contract/<?=$detail['contract_img'.$i];?>" target="_blank" download="<?=$detail['contract_img'.$i];?>"><i class="fa fa-download" aria-hidden="true"></i>  Download</a></div>
+        		    <?php
+          			} 
+        		    ?>
+        		</div>
+        		<?php
+        		}
+        		?>
+        		
+        		<div class="form-group">  
+          			<label for="note">Note</label> 
+          			<textarea name="contract[note]" class="form-control summernote" id="note" rows="5"><?=(!empty($detail['note']))?$detail['note']:'';?></textarea>
+          		</div> 
+        		
+        		<div class="form-group"> 
+          			<label for="contract_number">Contract number</label>    
+          			<input type="text" class="form-control" id="contract_number" name="contract[contract_number]" placeholder="Contract number" value="<?=(!empty($detail['contract_number']))?$detail['contract_number']:'';?>"> 
+        		</div> 
+        		
+        		<div class="form-group">  
+          			<label for="buyer_name">Buyer name</label>    
+          			<input type="text" class="form-control" id="buyer_name" name="contract[buyer_name]" placeholder="Buyer name" value="<?=(!empty($detail['buyer_name']))?$detail['buyer_name']:'';?>"> 
+        		</div>
+        		 
+        		<div class="form-group">  
+          			<label for="buyer_email">Buyer email</label>    
+          			<input type="text" class="form-control" id="buyer_email" name="contract[buyer_email]" placeholder="Buyer email" value="<?=(!empty($detail['buyer_email']))?$detail['buyer_email']:'';?>"> 
+        		</div>
+        		
+        		<div class="form-group">  
+          			<label for="buyer_number">Buyer phone number</label>    
+          			<input type="text" class="form-control" id="buyer_number" name="contract[buyer_number]" placeholder="Buyer phone number" value="<?=(!empty($detail['buyer_number']))?$detail['buyer_number']:'';?>"> 
+        		</div>
+        		
+        		<div class="form-group">  
+          			<label for="seller_name">Seller name</label>    
+          			<input type="text" class="form-control" id="seller_name" name="contract[seller_name]" placeholder="Seller name" value="<?=(!empty($detail['seller_name']))?$detail['seller_name']:'';?>"> 
+        		</div>
+        		 
+        		<div class="form-group">  
+          			<label for="seller_email">Seller email</label>    
+          			<input type="text" class="form-control" id="seller_email" name="contract[seller_email]" placeholder="Seller email" value="<?=(!empty($detail['seller_email']))?$detail['seller_email']:'';?>"> 
+        		</div>
+        		
+        		<div class="form-group">  
+          			<label for="seller_number">Seller phone number</label>    
+          			<input type="text" class="form-control" id="seller_number" name="contract[seller_number]" placeholder="Seller phone number" value="<?=(!empty($detail['seller_number']))?$detail['seller_number']:'';?>"> 
+        		</div>
+        		<?php
+        		if(0){ 
+        		?>
+        		<div class="form-group">     
+                    <label for="who_pay_fee">Who pay fee</label>   
+          			<select id="who_pay_fee" name="contract[who_pay_fee]" class="form-control">   
+          			    <option value="2" <?=($detail['who_pay_fee']==2)?'selected':'';?>>50% 50%</option> 
+          			    <option value="1" <?=($detail['who_pay_fee']==1)?'selected':'';?>>Selling</option>
+          			    <option value="0" <?=($detail['who_pay_fee']==0)?'selected':'';?>>Buying</option> 
+          			</select>      
+        		</div>  
+        		 
+                <div class="form-group">    
+                    <label for="active">Status</label><br>   
+                    <?php    
+                    //0=pending, 1=accepted(supplier accepted), 2=start, 3=done, 4=looking for supplier, 5=paid, 6=waiting for money
+                    ?>
+          			<select id="status" name="contract[status]" class="form-control">     
+          			    <?php
+          			    if(!empty($ar_status)){ 
+          			        foreach($ar_status as $key=>$value){    
+          			    ?>
+          			    <option value="<?=$key?>" <?=($detail['status']==$key)?'selected':'';?>><?=$value;?></option> 
+          			    <?php
+          			        } 
+          			    }
+          			    ?>
+          			</select>      
+        		</div> 
+        		<?php
+        		} 
+        		?>
+        		
+      		</div><!-- /.box-body -->  
+            <hr />  
+      		<div class="box-footer">
+        		<button type="submit" class="btn btn-primary">Submit</button>
+      		</div>
+    	</form> 
+    </div> 
+</div>
+<script type="text/javascript">   
+ 
+/************* datepicker rank *****************/
+var date;
+$(function() { 
+      $('#start_date').datepicker({ 
+            minDate: 0,   
+            changeMonth: true,
+            changeYear: true,
+            format: 'yyyy-mm-dd',
+            onSelect: function(dateStr) {     
+                  date = $(this).datepicker('getDate');
+                  if (date) {
+                        date.setDate(date.getDate() + 1);
+                  }     
+                  //console.log(date); 
+                  $('#end_date').datepicker('option', 'minDate', date);
+            }
+      }); 
+      $('#end_date').datepicker({ 
+            minDate: 0,  
+            changeMonth: true,
+            changeYear: true, 
+            format: 'yyyy-mm-dd',   
+            onSelect: function (selectedDate) { 
+                  date = $('#start_date').datepicker('getDate');  
+                  if (date) {     
+                        date.setDate(date.getDate());      
+                  }  
+                  //console.log(date); 
+                  $('#start_date').datepicker('option', 'minDate', date || 0);
+                  //$("#form-supplier").valid();  
+            }
+      });
+});
+
+
+/************* add method validate *****************/
+
+$.validator.addMethod("greaterThan", 
+function(value, element, params) {
+    if (!/Invalid|NaN/.test(new Date(value))) {
+        return new Date(value) > new Date($(params).val());
+    }   
+    return new Date(value) > new Date($(params).val());   
+},'Must be greater than {0}.');    
+
+$.validator.addMethod("sirealRegex", function(value, element) {
+    return this.optional(element) || /^[a-z0-9\-]+$/i.test(value);
+}, 'Sireal number format not valid');   
+ 
+$.validator.addMethod("phoneNumber", function (phone_number, element) {
+        phone_number = phone_number.replace(/\s+/g, "");  
+        return true;//this.optional(element) || phone_number.length > 9 && phone_number.match(/^(\+?1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{5}$/);  
+}, "Please enter a valid phone number");       
+
+
+
+/************* validate form supplier*****************/
+/*
+$("#contract").validate({    
+    rules: { 
+        'contract[total_price]':"required", 
+        'contract[start_date]':{
+            required:true
+        }, 
+        'contract[end_date]':{ 
+            required:true,
+            greaterThan: "#start_date"              
+        },
+        'contract[serial_number]':{
+            required: true, 
+            sirealRegex: true,
+        },
+        'contract[contract_email]': { 
+          required: true,
+          email: true  
+        },
+        'contract[contract_name]':"required", 
+        'contract[contract_company]':"required",
+        'contract[contract_phone]':{
+            required: true, 
+            phoneNumber: true, 
+        }, 
+    },
+    messages: {
+        'contract[contract_name]':'Please enter full name.',
+        'contract[total_price]':'Please enter price.',  
+        'contract[contract_company]':'Please enter company name.', 
+        'contract[start_date]':'Please enter work start date.', 
+        'contract[end_date]':  
+        { 
+            required:'Please enter work end date.', 
+            greaterThan:'Work start date and end date should be proper.'
+        },
+        'contract[contract_phone]': { 
+            required: 'You must enter a sireal number.',   
+            sirealRegex: 'Sireal number format not valid.'
+        }, 
+        'contract[contract_email]': {   
+          required: 'We need your email address to contact you.',
+          email: 'Your email address must be in the format of name@domain.com'
+        },    
+    }, 
+    onfocusout: false,
+    invalidHandler: function(form, validator) {
+        var errors = validator.numberOfInvalids();
+        if (errors) {                    
+            validator.errorList[0].element.focus(); 
+        }
+    }, 
+    submitHandler: function(form) {
+      form.submit();
+    }  
+});
+ 
+$('#contract_phone').keyup(function(){ 
+    $(this).valid();    
+});
+*/
+</script> 

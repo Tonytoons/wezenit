@@ -1,0 +1,38 @@
+<div id="wrapper">
+	<?php include_once('navigation.phtml');?>  
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12"> 
+                <?php
+                if($task=='company'){
+                ?>
+                    <h1 class="page-header">Company info</h1> 
+                <?php
+                }else{
+                ?>
+                    <h1 class="page-header">Users</h1>
+                <?php
+                }
+                ?>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>    
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12"> 
+               <?php
+               if($task=='add'){    
+                   include_once('users-add.phtml'); 
+               }elseif($task=='edit'){
+                   include_once('users-edit.phtml');
+               }elseif($task=='company'){ 
+                   include_once('users-company.phtml');
+               }else{
+                   include_once('users-list.phtml');
+               } 
+               ?>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+	</div>
+</div>

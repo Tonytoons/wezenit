@@ -1,0 +1,241 @@
+<?php 
+//echo $task;  
+if(!empty($uid)){   
+?>
+<div id="app">  
+    <?php  
+    include("header.phtml");
+    ?>
+    <div class="content">     
+        <section class="register" id="register">
+            <div class="container"> 
+            	<div class="row">
+            		
+            	   <?php
+            	   if($userProfile->type=='supplier'){ 
+            	   ?>	
+            		
+            	   <div class="col-md-6">  
+            			<div class="panel panel-info">    
+            				<div class="panel-heading">
+            					<h3 class="panel-title"><i class="fa fa-file-text-o" aria-hidden="true"></i> <?=$this->translate('Contract info');?></h3>   
+            				</div>
+            				<div class="panel-body"> 
+                                <div class="form-group new-form-group">
+									<label class="col-md-6 control-label" for="attachfile"><?php echo $this->translate('Contract file'); ?></label>
+									<div class="col-md-6"> 
+										<a href="<?=$contract->img;?>" download><?php echo $this->translate('Download File'); ?></a>    
+									</div>
+								</div>
+								<div class="form-group new-form-group">
+									<label class="col-md-6 control-label" for="price"><?php echo $this->translate('Total price (tax included)'); ?></label>
+									<div class="col-md-6"> 
+										<p><?=number_format($contract->total_price,2);?></p> 
+									</div> 
+								</div>  
+								<div class="form-group new-form-group">  
+									<label class="col-md-6 control-label" for="start_date"><?php echo $this->translate('Start date'); ?>
+</label>  
+									<div class="col-md-6">  
+										<p><?=date("m/d/Y", strtotime($contract->start_date));?></p> 
+									</div>
+								</div>   
+								<div class="form-group new-form-group"> 
+									<label class="col-md-6 control-label" for="end_date"><?php echo $this->translate('End date'); ?> 
+</label> 
+									<div class="col-md-6">  
+										<p><?=date("m/d/Y", strtotime($contract->end_date));?></p>
+									</div> 
+								</div> 
+								  
+                                <div class="form-group new-form-group">
+									<label class="col-md-6 control-label" for="sireal_number"><?php echo $this->translate('Sireal Number'); ?></label>  
+									<div class="col-md-6"> 
+										<p><?=!empty($contract->serial_number)?$contract->serial_number:'-';?></p>  
+									</div>
+								</div>
+                                <div class="form-group new-form-group">
+									<label class="col-md-6 control-label" for="full_name"><?php echo $this->translate('First & Last Name'); ?></label>
+									<div class="col-md-6"> 
+										<p><?=!empty($contract->contract_name)?$contract->contract_name:'-';?></p>  
+									</div>
+								</div>
+								<div class="form-group new-form-group">
+									<label class="col-md-6 control-label" for="company_name"><?php echo $this->translate('Company Name'); ?></label>
+									<div class="col-md-6"> 
+										<p><?=!empty($contract->contract_company)?$contract->contract_company:'-';?></p> 
+									</div>
+								</div>
+								<div class="form-group new-form-group">
+									<label class="col-md-6 control-label" for="company_address"><?php echo $this->translate('Company Address'); ?></label> 
+									<div class="col-md-6"> 
+									    <p><?=!empty($contract->company_address)?$contract->company_address:'-';?></p> 
+									</div>
+								</div>
+								<div class="form-group new-form-group">
+									<label class="col-md-6 control-label" for="mobile_number"><?php echo $this->translate('Mobile Phone Number'); ?></label>
+									<div class="col-md-6"> 
+										<p><?=!empty($contract->contract_phone)?$contract->contract_phone:'-';?></p> 
+									</div>
+								</div>
+								<div class="form-group new-form-group">
+									<label class="col-md-6 control-label" for="landline_number"><?php echo $this->translate('Landline Phone Number'); ?></label>
+									<div class="col-md-6"> 
+										<p><?=!empty($contract->contract_landline_phone)?$contract->contract_landline_phone:'-';?></p>
+									</div>
+								</div>
+								<div class="form-group new-form-group">   
+									<label class="col-md-6 control-label" for="email"><?php echo $this->translate('Email'); ?></label>    
+									<div class="col-md-6">  
+										<p><?=!empty($contract->contract_email)?$contract->contract_email:'-';?></p>   
+									</div>
+								</div>
+								
+								<div class="form-group new-form-group">   
+									<label class="col-md-6 control-label" for="status"><?php echo $this->translate('Status'); ?></label>    
+									<div class="col-md-6">  
+									    <?php   
+									    //0=pending, 1=accepted, 2=start, 3=done 
+        								//$ar_status = array('Pending','Accepted','Start','Done');   
+        								?>  
+										<p id="txt-status" data-status="<?=$ar_status[($contract->status+1)];?>"><?=$ar_status[$contract->status];?></p>      
+									</div>
+								</div>
+								<div id="confirm-result"></div>  
+                                <?php   
+                                //print_r([$uid,$contract->user_id]);
+                                if($contract->status==0 && $contract->user_id != $uid && $userProfile->type=='supplier'){            
+                                ?> 
+                                <div id="confirm-box">   
+                                    <input type="hidden" id="contract" name="contract" value="<?=$contract->id;?>"/>  
+                                    <hr>
+                                    <a href="javasclipt:void(0);" onclick="confirmContract();"  class="btn btn-lg btn-success btn-block btn-forgot btn-loader"><i class="fa fa-check-circle-o" aria-hidden="true"></i> <?=$this->translate('Comfirm'); ?></a>
+        					    </div>
+        					    <?php  
+                                }
+        					    ?>
+        					    
+            				</div>
+            			</div> 
+            		</div>
+            		
+            		<div class="col-md-6">  
+            			<div class="panel panel-info">    
+            				<div class="panel-heading">
+            					<h3 class="panel-title"><i class="fa fa-file-text-o" aria-hidden="true"></i> <?=$this->translate('Company info'); ?></h3>    
+            				</div>
+            				<div class="panel-body">
+            					<div class="form-group new-form-group"> 
+      								<label class="col-md-4 control-label" for="company_name"><?php echo $this->translate('Company Name'); ?></label> 
+      								<div class="col-md-6">
+      								    <p><?=$userProfile->company_name;?></p>
+      								</div>  
+      							</div>
+      							
+      							<div class="form-group new-form-group">
+									<label class="col-md-4 control-label" for="company_address"><?php echo $this->translate('Company Address'); ?></label>  
+									<div class="col-md-6">
+									    <p><?=$userProfile->company_address;?></p> 
+									</div>
+								</div>
+								<div class="form-group new-form-group">
+									<label class="col-md-4 control-label" for="company_mobile_number"><?php echo $this->translate('Mobile Phone Number'); ?></label> 
+									<div class="col-md-6"> 
+									    <p><?=$userProfile->company_mobile_phone;?></p>
+									</div>
+								</div>
+								<div class="form-group new-form-group"> 
+									<label class="col-md-4 control-label" for="company_landline_number"><?php echo $this->translate('Landline Phone Number'); ?></label> 
+									<div class="col-md-6"> 
+										<p><?=$userProfile->company_phone;?></p>
+									</div>
+								</div>
+								<div class="form-group new-form-group">    
+									<label class="col-md-4 control-label" for="company_email_supplier"><?php echo $this->translate('Company Email'); ?></label>        
+									<div class="col-md-6">
+									    <p><?=$userProfile->company_email;?></p> 
+									</div>
+								</div>	
+            				</div>
+            			</div>
+            		</div> 
+            		
+            		<?php
+            	    }else{
+            		?>
+            		
+            		<div class="col-md-6 col-md-offset-3">   
+            			<div class="panel panel-info">    
+            				<div class="panel-heading">
+            					<h3 class="panel-title"><i class="fa fa-file-text-o" aria-hidden="true"></i> <?=$this->translate('Company info'); ?></h3>    
+            				</div>
+            				<div class="panel-body"> 
+            					<div id="result-company"></div>
+            					
+            					<form class="form-horizontal" id="form-company" name="form-profile" action="" method="post">  
+              						<fieldset>   
+              							<div class="form-group">
+              								<label class="col-md-4 control-label" for="company_name"><?php echo $this->translate('Company Name'); ?></label> 
+              								<div class="col-md-6">
+              									<input id="company_name" name="company_name" type="text" value="<?=$contract->contract_company;?>" placeholder="<?=$this->translate('Company Name'); ?>" class="form-control input-md">
+              								</div> 
+              							</div>
+              							
+              							<div class="form-group">
+        									<label class="col-md-4 control-label" for="company_address"><?php echo $this->translate('Company Address'); ?></label>  
+        									<div class="col-md-6"> 
+        									    <textarea id="company_address" name="company_address" placeholder="<?php echo $this->translate('Company Address'); ?>" rows="3" class="form-control input-md"><?=$contract->company_address;?></textarea>
+        									</div>
+        								</div>
+        								<div class="form-group">
+        									<label class="col-md-4 control-label" for="company_mobile_number"><?php echo $this->translate('Mobile Phone Number'); ?></label> 
+        									<div class="col-md-6"> 
+        										<input id="company_mobile_number" name="company_mobile_number" type="text" value="<?=$contract->contract_phone;?>" placeholder="<?php echo $this->translate('Mobile Phone Number'); ?>" class="form-control input-md">
+        									</div> 
+        								</div>
+        								<div class="form-group">
+        									<label class="col-md-4 control-label" for="company_landline_number"><?php echo $this->translate('Landline Phone Number'); ?></label> 
+        									<div class="col-md-6"> 
+        										<input id="company_landline_number" name="company_landline_number" type="text" value="<?=$contract->contract_landline_phone;?>" placeholder="<?php echo $this->translate('Landline Phone Number'); ?>" class="form-control input-md">
+        									</div>
+        								</div>
+        								<div class="form-group">   
+        									<label class="col-md-4 control-label" for="company_email_supplier"><?php echo $this->translate('Company Email'); ?></label>        
+        									<div class="col-md-6"> 
+        										<input id="company_email_supplier" name="company_email_supplier" type="email" value="<?=$contract->contract_email;?>"  placeholder="<?php echo $this->translate('Company Email'); ?>" class="form-control input-md">
+        									</div>
+        								</div>   
+              							
+              							<div class="form-group"> 
+              								<label class="col-md-4 control-label" ></label>     
+              								<div class="col-md-6">     
+              									<button type="submit" onclick="editCompanyInfo();" class="btn btn-success btn-loader"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?=$this->translate('Save'); ?></button> 
+              								</div> 
+              							</div>
+              							
+              						</fieldset>
+              					</form>
+            				</div>
+            			</div>
+            		</div>
+            		
+            		<?php
+            	    }
+            		?>
+            		
+            	</div>
+            </div> 
+        </section> 
+        <!-- end regis -->  
+    </div>
+    <?php 
+    include("footer.phtml"); 
+    ?> 
+</div>
+<?php
+}else if(empty($uid) && $task=='register'){  
+	include("register.phtml");            
+}else{    
+    include("login.phtml");      
+}  
+?>

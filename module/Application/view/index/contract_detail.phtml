@@ -1,0 +1,176 @@
+
+<div id="app">  
+  <?php  
+  include("header.phtml");    
+  ?> 
+  <div class="content">   
+    <div class="container">   
+    	<div class="row"> 
+    		 
+    	    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">   
+                <div id="wid-id-0">
+                    <!-- widget div-->  
+                    <div role="content"> 
+                        <!-- widget content -->
+                    	<?php       
+                    	if($uid==$contract->user_id || $uid==$contract->user_id){      
+                    	?>
+                        
+                    	<?php	
+                    	}
+                        ?>
+                        <div class="row">  
+                        	<div class="col-md-12">
+                        		
+                        		<div class="contract-headerbar">    
+                        			<h3><strong>Contract information</strong></h3> 
+                        		</div>
+                        		<div class="contract-detail">   
+                        			   
+                        			<div class="row">
+                        				<div class="col-md-6"> 
+                        					<h4><strong>Company information</strong></h4>
+                        					<hr>
+                        					
+                        					<div class="form-group">  
+                                                <label><?php echo $this->translate('SIREN'); ?></label>  
+                                                <p id="detail-sireal_number"><?=!empty($contract->serial_number)?$contract->serial_number:'-';?></p>   
+                                            </div>
+                                            <div class="form-group"> 
+                                                <label for="billing_company_name"><?php echo $this->translate('Company Name'); ?></label> 
+                                                <p id="detail-company_name"><?=!empty($contract->contract_company)?$contract->contract_company:'-';?></p> 
+                                            </div>
+                                            <div class="form-group">    
+                                                <label for="billing_full_name"><?php echo $this->translate('First & Last Name'); ?></label> 
+                                                <p id="detail-name"><?=!empty($contract->contract_name)?$contract->contract_name:'-';?></p>  
+                                            </div>  
+                                            <div class="form-group"> 
+                                                <label for="billing_company_email"><?php echo $this->translate('Email Supplier'); ?></label>   
+                                                <p id="detail-company_email"><?=!empty($contract->contract_email)?$contract->contract_email:'-';?></p>  
+                                            </div>
+                                            <div class="form-group">  
+                                                <label for="billing_mobile_number"><?php echo $this->translate('Mobile Phone Number'); ?></label> 
+                                                <p id="detail-company_mobile_phone"><?=!empty($contract->contract_phone)?$contract->contract_phone:'-';?></p> 
+            								</div>  
+				                            <div class="form-group">    
+                                                <label for="billing_company_phone"><?php echo $this->translate('Landline Phone Number'); ?></label>  
+                                                <p id="detail-company_phone"><?=!empty($contract->contract_landline_phone)?$contract->contract_landline_phone:'-';?></p> 
+            								</div>    
+            								<div class="form-group">  
+                                                <label for="billing_company_address"><?php echo $this->translate('Company Address'); ?></label>
+                                                <p id="detail-company_address"><?=!empty($contract->company_address)?$contract->company_address:'-';?></p>    
+                                            </div>
+                                            <div class="form-group">  
+                                                <label for="status"><?php echo $this->translate('Status'); ?></label>
+                                                <p id="detail-status"><?=$ar_status[$contract->status];?></p>       
+                                            </div> 
+                        				</div>  
+                        				<div class="col-md-6"> 
+                        					<h4><strong>Customer information</strong></h4>  
+                        					<hr>
+                        					
+                        					<div class="form-group">    
+                                                <label for="customer_name"><?php echo $this->translate('Full Name'); ?></label> 
+                                                <p id="customer_name"><?=!empty($userProfile->name)?$userProfile->name:'-';?></p> 
+                                            </div>
+                                            <div class="form-group">     
+                                                <label for="customer_email"><?php echo $this->translate('Email'); ?></label>  
+                                                <p id="customer_email"><?=!empty($userProfile->email)?$userProfile->email:'-';?></p>  
+                                            </div>
+                                            
+                                            <div class="form-group">    
+                                                <label for="customer_phone"><?php echo $this->translate('Phone number'); ?></label>  
+                                                <p id="customer_phone"><?=!empty($userProfile->phone)?$userProfile->phone:'-';?></p>  
+                                            </div>
+                                            
+                                            <div class="form-group">     
+                                                <label for="customer_address"><?php echo $this->translate('Address'); ?></label>  
+                                                <p id="customer_address"><?=!empty($userProfile->address)?$userProfile->address:'-';?></p>  
+                                            </div> 
+                                            
+                                            <?php
+                        					if(!empty($userProfile->company_name)){ 
+                        					?>
+                        					<div class="form-group">  
+                                                <label for="customer_company_name"><?php echo $this->translate('Company Name'); ?></label> 
+                                                <p id="customer_company_name"><?=!empty($userProfile->company_name)?$userProfile->company_name:'-';?></p> 
+                                            </div>
+                                            <?php
+                        					}
+                        					if(!empty($userProfile->company_email)){
+                        					?>                                            <div class="form-group"> 
+                                                <label for="customer_company_email"><?php echo $this->translate('Company Email'); ?></label>   
+                                                <p id="customer_company_email"><?=!empty($userProfile->company_email)?$userProfile->company_email:'-';?></p> 
+                                            </div>
+                                            <?php
+                        					}
+                        					if(!empty($userProfile->company_mobile_phone)){
+                        					?> 
+                                            <div class="form-group">  
+                                                <label for="customer_mobile_number"><?php echo $this->translate('Company Mobile Phone Number'); ?></label> 
+                                                <p id="customer_company_mobile_phone"><?=!empty($userProfile->company_mobile_phone)?$userProfile->company_mobile_phone:'-';?></p> 
+            								</div> 
+            								<?php
+                        					}
+                        					if(!empty($userProfile->company_phone)){
+                        					?> 
+				                            <div class="form-group">     
+                                                <label for="customer_company_phone"><?php echo $this->translate('Company Landline Phone Number'); ?></label>  
+                                                <p id="customer_company_phone"><?=!empty($userProfile->company_phone)?$userProfile->company_phone:'-';?></p> 
+            								</div> 
+            								<?php
+                        					}
+                        					if(!empty($userProfile->company_address)){
+                        					?> 
+            								<div class="form-group">    
+                                                <label for="customer_company_address"><?php echo $this->translate('Company Address'); ?></label> 
+                                                <p id="customer_company_address"><?=!empty($userProfile->company_address)?$userProfile->company_address:'-';?></p>   
+                                            </div>
+                                            <?php
+                        					}   
+                                            ?>
+                        				</div> 
+                        			</div>
+                        		</div> 
+                        		<div class="contract-headerbar">  
+                        			<h3><strong>Project details</strong></h3>
+                        		</div> 
+                        		<table class="table table-bordered table-responsive">  
+                                  <thead>  
+                                    <tr> 
+                                      <th align="center">Project name</th>  
+                                      <th align="center">Start date</th> 
+                                      <th align="center">End date</th>  
+                                      <th align="right">Price</th>
+                                    </tr>
+                                  </thead>   
+                                  
+                                  <tbody> 
+                                    <tr> 
+                                      <td id="detail-end-date"><?=$contract->project_name;?></td>  
+                                      <td id="detail-projectname"><?=date("m/d/Y", strtotime($contract->start_date));?></td> 
+                                      <td id="detail-start-date"><?=date("m/d/Y", strtotime($contract->end_date));?></td>
+                                      <td id="detail-sub-price"><?=number_format($contract->total_price,2);?></td> 
+                                    </tr> 
+                                    <tr>   
+                                      <td colspan="3"><b>Total</b></td>   
+                                      <td id="detail-total-price"><?=number_format($contract->total_price,2);?></td>  
+                                    </tr>
+                                  </tbody>
+                                </table>
+                        	</div>
+                        </div> 
+                        
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>	
+        </div>
+    </div>
+  </div> 
+  <?php 
+  include("footer.phtml");
+  ?> 
+</div>

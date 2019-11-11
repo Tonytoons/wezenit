@@ -1,0 +1,103 @@
+<div class="panel panel-default">
+    <div class="panel-heading">  
+        Pay the supplier    
+    </div>    
+    <!-- /.panel-heading --> 
+    <div class="panel-body">
+        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTable"> 
+            <thead>  
+                <tr> 
+                    <th>#</th>   
+                    <th>Project name</th>
+                    <th>Start date</th>  
+                    <th>End date</th>
+                    <th>Contract number</th>
+                    <th>Buyer name</th>
+                    <th>Seller name</th> 
+                    <th>Price</th>  
+                    <th>Create Date</th>
+                    <th>Status</th> 
+                    <th>Action</th>  
+                </tr>
+            </thead>
+            <tbody> 
+            </tbody>
+        </table>
+    </div>  
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel --> 
+<script type="text/javascript">
+var table;  
+$(function(){    
+    table = $('#dataTable').DataTable( {    
+        ajax: basePath+'admin/payrefund/?task=list&rd='+makeid(),  
+        iDisplayLength: 50, 
+        "bSort": false, 
+        "serverSide": true,
+        "processing": true, 
+        aLengthMenu: [ 
+            [50, 100, 300, 500], 
+            [50, 100, 300, 500]  
+        ],  
+        columns: [ 
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                   var pageNo = table.page.info(); 
+                   //console.log(((iRow+1)+pageNo.start)); 
+                   $(nTd).html(((iRow+1)+pageNo.start));    
+                },  
+            }, 
+            { "data": "project_name" },
+            { "data": "start_date" },
+            { "data": "end_date" },
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    var name = '-';
+                    if(oData.contract_number){
+                        name = oData.contract_number;
+                    } 
+                    $(nTd).html(name);    
+                }
+            },
+            { "data": "buyer_name" }, 
+            { "data": "seller_name" },
+            { "data": "price" },  
+            { "data": "added_date" },  
+            { "data": "text_status" }, 
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {        
+                    var html = '-';   
+                    if(oData.status!=7)html = ' <button class="btn btn-info btn-xs" onclick="payment_refund('+oData.id+',this);"><i class="fa fa-money"></i>  Refund</button> <br/><br/>';
+                    $(nTd).html(html);      
+                },
+            }, 
+        ], 
+        createdRow : function( row, data, index ) {   
+            //$(row).attr('data-id', data.pkbook);
+        } 
+    }); 
+});
+
+function payment_refund(id, ths){   
+    
+    if(confirm("Are you sure you want to refund.")){ 
+        btn_loader = $(ths);      
+        $(btn_loader).buttonLoader('start');   
+        var url = basePath+'admin/payrefund/?contract_id='+id+'&task=refund&rd='+makeid();  
+        //console.log(url);
+        //return false;   
+        $.get(url,function(rs){  
+            if(rs.Status=='SUCCEEDED'){     
+                table.ajax.reload( null, false );   
+            }     
+            alert(rs.Message);  
+            $(btn_loader).buttonLoader('stop'); 
+        },'json'); 
+    } 
+    
+}
+
+
+
+</script>

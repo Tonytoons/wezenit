@@ -1,0 +1,26 @@
+<div id="wrapper">
+	<?php include_once('navigation.phtml');?>  
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12"> 
+                <h1 class="page-header"><?=!empty($title)?$title:'';?></h1> 
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>    
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">  
+               <?php
+               if($task=='add'){   
+                   include_once('contract-add.phtml');  
+               }elseif($task=='edit'){
+                   include_once('contract-edit.phtml');   
+               }else{ 
+                   include_once($action.'-list.phtml');
+               }  
+               ?>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+	</div>
+</div>

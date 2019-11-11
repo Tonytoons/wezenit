@@ -1,0 +1,441 @@
+
+<section class="pb_section" id="profile">
+    <div class="container-full">  
+        <div class="row">  
+          <div class="col-sm-12 col-md-2 col-lg-2 mb-3"> 
+            <?php
+            include 'menu-profile.phtml';
+            include 'country.phtml'; 
+            ?>  
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10">
+            <div class="row"> 
+              <div class="col mb-5">
+                <legend class="title color-sky mb-4">
+      						<?=$this->translate('General Profile'); ?> 
+      					</legend> 
+      					<form class="form-horizontal" id="form-profile" name="form-profile" action="" method="post">  
+      						<fieldset> 
+      							<!-- Text input-->
+      							<div class="form-group"> 
+      								<label class="control-label" for="profile-name"><?=$this->translate('First name'); ?></label>
+      									<input id="profile-name" name="profile-name" type="text" placeholder="<?=$this->translate('First name'); ?>" value="<?=$userProfile->name;?>" class="form-control input-md">
+      							</div>
+      							
+      							<div class="form-group"> 
+      								<label class="control-label" for="profile-lname"><?=$this->translate('Last name'); ?></label>
+      									<input id="profile-lname" name="profile-lname" type="text" placeholder="<?=$this->translate('Last name'); ?>" value="<?=$userProfile->lastname;?>" class="form-control input-md">
+      							</div>
+      
+      							<div class="form-group">
+      								<label class="control-label" for="profile-email"><?=$this->translate('Email Address'); ?></label>
+      								<input id="profile-email" name="profile-email"  type="text" placeholder="<?=$this->translate('Email Address'); ?>" class="form-control input-md" value="<?=$userProfile->email;?>" disabled readonly>
+                    </div>
+      
+      							<!-- Text input-->
+      							<div class="form-group">
+      								<label class="control-label" for="Date Of Birth"><?=$this->translate('Date Of Birth'); ?></label> 
+      								<input id="profile-birthday" name="profile-birthday" type="text" value="<?=date("m/d/Y",strtotime($userProfile->birth_day));?>" placeholder="<?=$this->translate('Date Of Birth'); ?>" class="form-control input-md" readonly> 
+      							</div> 
+       
+      							<!-- Multiple Radios (inline) -->
+      							<div class="form-group">
+      								<label class="control-label" for="Gender"><?=$this->translate('Gender'); ?></label>
+      								<select id="profile-gender" name="profile-gender" class="form-control input-md"> 
+      										<option value="1" <?=$userProfile->gender==1?'selected':'';?>><?=$this->translate('Male'); ?></option>
+      										<option value="2" <?=$userProfile->gender==2?'selected':'';?>><?=$this->translate('Female'); ?></option> 
+      										<option value="0" <?=$userProfile->gender==0?'selected':'';?>><?=$this->translate('Other'); ?></option>
+      									</select>
+      						  </div>
+      
+      							<!-- Text input-->
+      							<div class="form-group">
+      								<label class="control-label" for="Phone number "><?=$this->translate('Phone number'); ?> </label>
+      								<input id="profile-phone" name="profile-phone" type="text" value="<?=$userProfile->phone;?>" placeholder="<?=$this->translate('Phone number'); ?>" class="form-control input-md">
+      							</div>  
+      
+      							<div class="form-group">
+      								<label class="control-label" for="profile-address"><?=$this->translate('Address'); ?></label>
+      								<textarea id="profile-address" name="profile-address" rows="2" class="form-control input-md"><?=$userProfile->address;?></textarea>
+      							</div>
+      							 
+      							<div class="form-group">
+                    	<label for="profile-city" ><?php echo $this->translate('City'); ?></label>
+                    	<input autocomplete="off" class="form-control" id="profile-city" name="profile-city" placeholder="<?php echo $this->translate('City'); ?>" type="text" value="<?=$userProfile->city;?>">
+                    </div>  
+                            
+                    <div class="form-group">
+                    	<label for="profile-region"><?php echo $this->translate('Region'); ?></label> 
+                    	<input autocomplete="off" class="form-control" id="profile-region" name="profile-region" placeholder="<?php echo $this->translate('Region'); ?>" type="text" value="<?=$userProfile->region;?>">
+                    </div>
+                            
+                    <div class="form-group">
+                    	<label for="profile-postcode" ><?php echo $this->translate('Postal code'); ?></label> 
+                    	<input autocomplete="off" class="form-control" id="profile-postcode" name="profile-postcode" placeholder="<?php echo $this->translate('Postal code'); ?>" type="text" value="<?=$userProfile->postal_code;?>">
+                    </div> 
+      							  
+      							<div class="form-group"> 
+                    	<label  class="control-label" for="Nationality"><?php echo $this->translate('Nationality'); ?></label>
+                  		<select class="col-xl-12 col-md-12 form-control" id="Nationality" name="Nationality">
+                        <?php
+                    		  foreach($country as $key=>$val){   
+                    		    if($val=='FR' && $userProfile->company_country==''){ 
+                    		?>
+                            <option value="<?=$val;?>" selected><?=$val;?></option>
+                          <?php
+                    		    }else{ 
+                    		  ?>
+                    		    <option value="<?=$val;?>" <?=($userProfile->company_country==$val)?'selected':'';?>><?=$val;?></option>
+                    		  <?php
+                    		    }
+                    		  }  
+                          ?> 
+                      </select>
+                    </div>
+                      
+      							<div class="form-group"> 
+                    	<label  class="control-label" for="CountryUser"><?php echo $this->translate('Country of residence'); ?></label>
+                  		<select class="col-xl-12 col-md-12 form-control" id="CountryUser" name="CountryUser">
+                  		  <?php
+                    		  foreach($country as $key=>$val){   
+                    		    if($val=='FR' && $userProfile->company_country==''){ 
+                    		?>
+                            <option value="<?=$val;?>" selected><?=$val;?></option>
+                          <?php
+                    		    }else{ 
+                    		  ?>
+                    		    <option value="<?=$val;?>" <?=($userProfile->company_country==$val)?'selected':'';?>><?=$val;?></option>
+                    		  <?php
+                    		    }
+                    		  } 
+                          ?>
+                      </select>
+                    </div>
+      
+      							<div class="form-group">  
+      									<button type="button" onclick="editProfile();" class="btn btn-primary btn-loader"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?=$this->translate('Save'); ?></button> 
+      							</div> 
+      						</fieldset> 
+      					</form> 
+              </div>
+              <div class="col mb-5">
+              	<legend class="title color-sky mb-4">  
+      						<?=$this->translate('Company info'); ?>
+      					</legend> 
+                <form class="form-horizontal" id="form-company" name="form-profile" action="" method="post">  
+      						<fieldset>   
+      							<div class="form-group">
+      								<label class="control-label" for="company_name"><?php echo $this->translate('Company Name'); ?></label> 
+      								<input id="company_name" name="company_name" type="text" value="<?=$userProfile->company_name;?>" placeholder="<?=$this->translate('Company Name'); ?>" class="form-control input-md">
+      							</div> 
+      							<div class="form-group">     
+                        <label for="company_id"><?=$this->translate('ID number of the company'); ?></label>        
+                        <input id="company_id" name="company_id" type="text" value="<?=!empty($userProfile->company_id)?$userProfile->company_id:'';?>" placeholder="<?=$this->translate('ID number of the company'); ?>" class="form-control input-lg">
+                    </div>  
+      							<div class="form-group">
+    									<label class="control-label" for="company_address"><?php echo $this->translate('Company Address'); ?></label>  
+    									<textarea id="company_address" name="company_address" placeholder="<?php echo $this->translate('Company Address'); ?>" rows="3" class="form-control input-md"><?=$userProfile->company_address;?></textarea>
+    							  </div>
+    							  <div class="form-group">
+                    	<label for="profile-city" ><?php echo $this->translate('City'); ?></label>
+                    	<input autocomplete="off" class="form-control" id="company_city" name="company_city" placeholder="<?php echo $this->translate('City'); ?>" type="text" value="<?=$userProfile->company_city;?>">
+                    </div>  
+                            
+                    <div class="form-group">
+                    	<label for="profile-region"><?php echo $this->translate('Region'); ?></label> 
+                    	<input autocomplete="off" class="form-control" id="company_region" name="company_region" placeholder="<?php echo $this->translate('Region'); ?>" type="text" value="<?=$userProfile->company_region;?>">
+                    </div>
+                             
+                    <div class="form-group">
+                    	<label for="profile-postcode" ><?php echo $this->translate('Postal code'); ?></label> 
+                    	<input autocomplete="off" class="form-control" id="company_postcode" name="company_postcode" placeholder="<?php echo $this->translate('Postal code'); ?>" type="text" value="<?=$userProfile->company_postal_code;?>">
+                    </div>
+      							<div class="form-group"> 
+                    	<label  class="control-label" for="CountryUser"><?php echo $this->translate('Country of incorporation'); ?></label>
+                  		<select class="col-xl-12 col-md-12 form-control" id="company_country" name="company_country">
+                  		  <?php 
+                    		  foreach($country as $key=>$val){   
+                    		    if($val=='FR' && $userProfile->company_country==''){ 
+                    		?>
+                            <option value="<?=$val;?>" selected><?=$val;?></option>
+                          <?php
+                    		    }else{ 
+                    		  ?>
+                    		    <option value="<?=$val;?>" <?=($userProfile->company_country==$val)?'selected':'';?>><?=$val;?></option>
+                    		  <?php
+                    		    }
+                    		  } 
+                          ?>
+                      </select>
+                    </div>
+    								<div class="form-group">
+    									<label class="control-label" for="company_mobile_number"><?php echo $this->translate('Mobile Phone Number'); ?></label> 
+    									<input id="company_mobile_number" name="company_mobile_number" type="text" value="<?=$userProfile->company_mobile_phone;?>" placeholder="<?php echo $this->translate('Mobile Phone Number'); ?>" class="form-control input-md">
+    								</div>
+    								<div class="form-group">
+    									<label class="control-label" for="company_landline_number"><?php echo $this->translate('Landline Phone Number'); ?></label> 
+    									<input id="company_landline_number" name="company_landline_number" type="text" value="<?=$userProfile->company_phone;?>" placeholder="<?php echo $this->translate('Landline Phone Number'); ?>" class="form-control input-md">
+    								</div>
+    								<div class="form-group">   
+    									<label class="control-label" for="company_email_supplier"><?php echo $this->translate('Company Email'); ?></label>        
+    									<input id="company_email_supplier" name="company_email_supplier" type="email" value="<?=$userProfile->company_email;?>"  placeholder="<?php echo $this->translate('Company Email'); ?>" class="form-control input-md">
+    								</div>
+    								
+                    
+      							<div class="form-group">  
+      								<button type="button" onclick="editCompanyInfo();" class="btn btn-primary btn-loader"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?=$this->translate('Save'); ?></button> 
+      							</div>
+      						</fieldset>
+      					</form>
+              </div> 
+            </div>
+            <div class="row mb-5"> 
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <legend class="title color-sky mb-4">  
+      						<?=$this->translate('Bank info'); ?> 
+      					</legend>  
+      					<form class="form-horizontal" id="form-bank" name="form-bank" action="" method="post">
+      					  <input type="hidden" name="mangopay_id" id="mangopay_id" value="<?=$userProfile->mangopay_id;?>">
+                	<div class="row form-group">
+                		<label class="col-md-4 text-right">
+                			Type<span class="required">*</span>
+                		</label>
+                		<div class="col-md-8">
+                			<select class="form-control"  id="Type" name="Type">
+                			  <option value="IBAN">IBAN</option>
+                        <option value="US">US</option>
+                        <option value="CA">CA</option>
+                        <option value="GB">GB</option>
+                        <option value="OTHER">OTHER</option>
+                      </select>
+                    </div> 
+                  </div> 
+                      
+                	<div class="row form-group">
+                		<label class="col-md-4 text-right">
+                			<?php echo $this->translate('Owner name'); ?><span class="required">*</span>
+                		</label>
+                		<div class="col-md-8">
+                			<input autocomplete="off" class="form-control" id="OwnerName" name="OwnerName" placeholder="<?php echo $this->translate('Owner name'); ?>" value="<?=$userProfile->name;?>">
+                		</div>
+                	</div>
+                	
+                	<div class="mangopay-widget"> 
+                  
+                    <div class="row form-group" id="input-AccountNumber" style="display:none;">
+                      <label class="col-md-4 text-right">
+                    		<?php echo $this->translate('Account number'); ?><span class="required">*</span>
+                    	</label> 
+                    	<div class="col-md-8"> 
+                    		<input autocomplete="off" class="form-control" id="AccountNumber" name="AccountNumber" placeholder="<?php echo $this->translate('Account number'); ?>" type="text" value="">
+                      </div>
+                    </div>
+                    
+                    <div class="row form-group" id="input-ABA" style="display:none;">
+                      <label class="col-md-4 text-right">
+                    		ABA<span class="required">*</span>
+                    	</label>
+                    	<div class="col-md-8"> 
+                    		<input autocomplete="off" class="form-control" id="ABA" name="ABA" placeholder="ABA" type="text" value="">
+                      </div>
+                    </div>
+                    
+                    <div class="row form-group" id="input-DepositAccountType" style="display:none;"> 
+                      <label class="col-md-4 text-right">
+                    		<?php echo $this->translate('Deposit account type'); ?><span class="required">*</span>
+                    	</label>
+                    	<div class="col-md-8"> 
+                    		<select class="form-control" id="DepositAccountType" name="DepositAccountType">
+                    		  <option value="CHECKING" selected><?php echo $this->translate('CHECKING'); ?></option> 
+                          <option value="SAVINGS"><?php echo $this->translate('SAVINGS'); ?></option>
+                        </select> 
+                      </div>
+                    </div>
+                    
+                    <div class="row form-group" id="input-SortCode" style="display:none;">
+                      <label class="col-md-4 text-right">
+                    		<?php echo $this->translate('Sort code'); ?><span class="required">*</span>
+                    	</label>
+                    	<div class="col-md-8"> 
+                    		<input autocomplete="off" class="form-control" id="SortCode" name="SortCode" placeholder="Sort code" type="text" value="">
+                      </div>
+                    </div>
+                    
+                    <div class="row form-group" id="input-BranchCode" style="display:none;">
+                      <label class="col-md-4 text-right">
+                    		<?php echo $this->translate('Branch code'); ?><span class="required">*</span>
+                    	</label>
+                    	<div class="col-md-8"> 
+                    		<input autocomplete="off" class="form-control" id="BranchCode" name="BranchCode" placeholder="<?php echo $this->translate('Branch code'); ?>" type="text" value="">
+                      </div>
+                    </div> 
+                        
+                    <div class="row form-group" id="input-BankName" style="display:none;">
+                      <label class="col-md-4 text-right">
+                    		<?php echo $this->translate('Bank name'); ?><span class="required">*</span>
+                    	</label>
+                    	<div class="col-md-8"> 
+                    		<input autocomplete="off" class="form-control" id="BankName" name="BankName" placeholder="<?php echo $this->translate('Bank name'); ?>" type="text" value="">
+                      </div>
+                    </div>
+                    
+                    <div class="row form-group" id="input-InstitutionNumber" style="display:none;">
+                      <label class="col-md-4 text-right">
+                    		<?php echo $this->translate('Institution number'); ?><span class="required">*</span>
+                    	</label>
+                    	<div class="col-md-8"> 
+                    		<input autocomplete="off" class="form-control" id="InstitutionNumber" name="InstitutionNumber" placeholder="<?php echo $this->translate('Institution number'); ?>" type="text" value="">
+                      </div>
+                    </div>
+                    
+                    <div class="row form-group" id="input-IBAN">
+                      <label class="col-md-4 text-right">
+                    		IBAN<span class="required">*</span>
+                    	</label>
+                    	<div class="col-md-8"> 
+                    		<input autocomplete="off" class="form-control" id="IBAN" name="IBAN" placeholder="IBAN" type="text" value="">
+                      </div>
+                    </div> 
+                    <div class="row form-group" id="input-BIC"> 
+                    	<label class="col-md-4 text-right">
+                    		BIC<span class="required">*</span>
+                    	</label>
+                    	<div class="col-md-8">
+                    		<input autocomplete="off" class="form-control" id="BIC" name="BIC" placeholder="BIC" type="text" value="">
+                      </div>
+                    </div>
+                  </div>
+                	
+                  <div class="form-group row">
+                  	<label class="col-md-4 text-right"><?php echo $this->translate('Address'); ?></label> 
+                  	<div class="col-md-8">	
+                  		<input autocomplete="off" class="form-control" id="Address" name="Address" placeholder="<?php echo $this->translate('Address'); ?>" type="text" value="">
+                    </div>
+                  </div> 
+                  
+                  <div class="form-group row">
+                  	<label class="col-md-4 text-right"><?php echo $this->translate('City'); ?></label>
+                  	<div class="col-md-8">		
+                  		<input autocomplete="off" class="form-control" id="City" name="City" placeholder="<?php echo $this->translate('City'); ?>" type="text" value="">
+                    </div>
+                  </div>
+                          
+                  <div class="form-group row">
+                  	<label class="col-md-4 text-right"><?php echo $this->translate('Region'); ?></label>
+                  	<div class="col-md-8">		
+                  		<input autocomplete="off" class="form-control" id="Region" name="Region" placeholder="<?php echo $this->translate('Region'); ?>" type="text" value="">
+                    </div>
+                  </div>
+                          
+                  <div class="form-group row">
+                  	<label class="col-md-4 text-right"><?php echo $this->translate('Postal code'); ?></label>
+                  	<div class="col-md-8">		
+                  		<input autocomplete="off" class="form-control" id="PostalCode" name="PostalCode" placeholder="<?php echo $this->translate('Postal code'); ?>" type="text" value="">
+                    </div>
+                  </div>
+                           
+                  <div class="form-group row"> 
+                  	<label class="col-md-4 text-right"><?php echo $this->translate('Country'); ?></label>
+                  	<div class="col-md-8">		
+                  		<select class="col-xl-12 col-md-12 form-control" id="Country" name="Country">
+                        <?php
+                  		  foreach($country as $key=>$val){ 
+                  		  ?>
+                          <option value="<?=$val;?>"  <?=($val=='FR')?'selected':'';?>><?=$val;?></option> 
+                        <?php
+                  		  }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                   
+                   
+                  <div class="row">
+                    <div class="col-12">
+                      <button type="button" onclick="addBank();" class="btn btn-primary btn-loader float-righ"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?php echo $this->translate('Save'); ?></button> 
+                    </div>
+                  </div>
+                </form>
+              </div> 
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <legend class="title color-sky mb-3">  
+      						<?=$this->translate('Bank List'); ?> 
+      					</legend> 
+      					<table class="table table-responsive" id="dataTable">
+                    <thead>   
+                        <th>#</th>
+                        <th><?=$this->translate('Type'); ?></th> 
+                        <th><?=$this->translate('Owner Name'); ?></th>
+                        <th><?=$this->translate('Account Number'); ?></th>
+                        <th><?=$this->translate('Country'); ?></th> 
+                        <th><?=$this->translate('Action'); ?></th> 
+                    </thead> 
+                    <tbody id="bank-list">    
+                        
+                    </tbody>
+                </table>
+              </div>
+            </div>
+            <hr />
+            <div class="row mb-5">
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <legend class="title color-sky mb-4">  
+      						<?=$this->translate('KYC documents upload'); ?> 
+      					</legend> 
+      					<form class="form-horizontal" id="form-kyc" name="form-kyc" action="" method="post">
+      					  <input type="hidden" name="mangopay_id" id="mangopay_id" value="<?=$userProfile->mangopay_id;?>">
+                	<div class="row form-group">
+                		<label class="col-md-4 text-right">
+                			Type<span class="required">*</span>
+                		</label>
+                		<div class="col-md-8"> 
+                			<select class="form-control"  id="KYCType" name="KYCType">
+                			  <option value="IDENTITY_PROOF">Identity proof</option>
+                			  <option value="REGISTRATION_PROOF">Registration proof</option>
+                			  <option value="ARTICLES_OF_ASSOCIATION">Articles of association</option>
+                			  <option value="SHAREHOLDER_DECLARATION">Shareholder declaration</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row form-group" id="input-BankName">
+                    <label class="col-md-4 text-right">
+                  		<?php echo $this->translate('File'); ?><span class="required">*</span>
+                  	</label>
+                  	<div class="col-md-8">    
+                  	  <input type="file" name="kycfile" class="filestyle input-file" id="kycfile" accept="image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">  
+                  	</div> 
+                  </div>
+                	<div class="row">
+                    <div class="col-12">
+                      <button type="button" onclick="kycUpload();" class="btn btn-primary btn-loader float-righ"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?php echo $this->translate('Save'); ?></button> 
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12 mb-5">
+                <legend class="title color-sky mb-4">  
+      						<?=$this->translate('List KYC Documents'); ?> 
+      					</legend> 
+      					<table class="table table-responsive" id="dataTableKYc">
+                    <thead>    
+                        <th>#</th> 
+                        <th><?=$this->translate('Id'); ?></th>
+                        <th><?=$this->translate('Type'); ?></th> 
+                        <th><?=$this->translate('Status'); ?></th>
+                        <th><?=$this->translate('Date Time'); ?></th>
+                    </thead>  
+                    <tbody id="KYC-list">     
+                        
+                    </tbody>
+                </table>
+      				
+      				</div>
+      				
+            </div>
+            
+          </div>
+       </div>  
+    </div>  
+</section>   

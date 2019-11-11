@@ -1,0 +1,147 @@
+<div id="wrapper">
+	<?php include_once('navigation.phtml');?>  
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12"> 
+                <h1 class="page-header">Setting</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>    
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-md-12"> 
+                <div class="panel panel-default">
+                    <div class="panel-heading">  
+                        Setting Site 
+                    </div>
+                    <div class="panel-body"> 
+                        <?php
+                        //print_r($language);  
+                        ?>
+                        <form role="form" action="<?php echo $this->url('index');?>admin/setting/<?=$id;?>?langID=<?=$langID?>" enctype="multipart/form-data" name="settingform" id="settingform" method="post">
+                        	<div class="col-md-6"> 
+                      	        <input type="hidden" name="id" id="id" value="<?=$id;?>">    
+                      	        <div class="form-group">
+                                    <label for="language">Language :</label> 
+                                    <select class="form-control" id="language" name="language" onchange="changelang(this);"> 
+                          			    <?php
+                          			    foreach($language as $key=>$value ) {    
+                          			    ?>
+                                        <option value="<?=$key;?>" <?=($key==$langID)?'selected':'';?>><?=$value['label'];?></option>
+                                        <?php
+                          			    }  
+                                        ?>
+                          			</select>  
+                      			</div>
+                      			<div class="form-group"> 
+                          			<label for="exampleInputFile">Logo</label>  
+                          			<input type="file" id="pic" name="pic" onchange="imagePreview(this,'img-preview',300)">
+                          			
+                          			<div id="img-preview">
+                          			    <?php
+                              			if(!empty($setting['logo'])){ 
+                              			?>
+                              			<br>
+                          			    <img src="<?php echo $urlFile;?>/setting/<?=$setting['logo'];?>" class="img-responsive" style="max-width:200px;"> 
+                          			    <?php 
+                              			}
+                              			?>
+                          			</div>
+                        		</div> 
+                        		<div class="form-group">
+                          			<label for="name">Name</label>
+                          			<input type="text" class="form-control" id="name" name="setting[name]" placeholder="Name" value="<?=!empty($setting['name'])?$setting['name']:'';?>">
+                        		</div> 
+                        		<div class="form-group">   
+                          			<label for="address">Address</label>
+                          			<textarea class="form-control" id="address"  name="setting[address]" rows="3"><?=!empty($setting['address'])?$setting['address']:'';?></textarea> 
+                        		</div> 
+                        		<div class="form-group">
+                          			<label for="youtobe">Youtobe</label>
+                          			<input type="text" class="form-control" id="youtobe" name="setting[youtobe]" placeholder="Youtobe" value="<?=!empty($setting['youtobe'])?$setting['youtobe']:'';?>">
+                        		</div> 
+                        		<div class="form-group">
+                          			<label for="fax">Fax</label>
+                          			<input type="text" class="form-control" id="fax" name="setting[fax]" placeholder="Fax" value="<?=!empty($setting['fax'])?$setting['fax']:'';?>">
+                        		</div> 
+                        		<div class="form-group">
+                          			<label for="email">Email</label>
+                          			<input type="text" class="form-control" id="email" name="setting[email]" placeholder="Email" value="<?=!empty($setting['email'])?$setting['email']:'';?>">
+                        		</div> 
+                        		<div class="form-group">
+                          			<label for="phone">Phone Number</label>
+                          			<input type="text" class="form-control" id="phone" name="setting[phone]" placeholder="Phone Number" value="<?=!empty($setting['phone'])?$setting['phone']:'';?>">
+                        		</div>
+                        		<div class="form-group">
+                          			<label for="copyright">Copy Right</label>
+                          			<input type="text" class="form-control" id="copyright" name="setting[copyright]" placeholder="Copy Right" value="<?=!empty($setting['copyright'])?$setting['copyright']:'';?>">
+                        		</div>
+                        		
+                        		<div class="form-group">   
+                          			<label for="google_analytic">Google Analytic</label> 
+                          			<textarea class="form-control" id="google_analytic"  name="setting[google_analytic]" rows="6"><?=!empty($setting['google_analytic'])?$setting['google_analytic']:'';?></textarea> 
+                        		</div> 
+                      		</div>
+                      		<div class="col-md-6">
+                      		    <div class="form-group">   
+                          			<label for="description_short">Description Short</label> 
+                          			<textarea class="form-control" id="description_short"  name="setting[description_short]" rows="7"><?=!empty($setting['description_short'])?$setting['description_short']:'';?></textarea> 
+                        		</div>
+                        		<div class="form-group">   
+                          			<label for="facebook">Facebook Link</label> 
+                          			<textarea class="form-control" id="facebook"  name="setting[facebook]" rows="3"><?=!empty($setting['facebook'])?$setting['facebook']:'';?></textarea> 
+                        		</div>
+                        		<div class="form-group">   
+                          			<label for="twitter">Twitter Link</label> 
+                          			<textarea class="form-control" id="twitter"  name="setting[twitter]" rows="3"><?=!empty($setting['twitter'])?$setting['twitter']:'';?></textarea> 
+                        		</div>
+                        		<div class="form-group">   
+                          			<label for="instagram">Instagram Link</label> 
+                          			<textarea class="form-control" id="instagram"  name="setting[instagram]" rows="3"><?=!empty($setting['instagram'])?$setting['instagram']:'';?></textarea> 
+                        		</div> 
+                        		<div class="form-group">   
+                          			<label for="captcha_secret_key">Captcha Secret Key</label> 
+                          			<textarea class="form-control" id="captcha_secret_key"  name="setting[captcha_secret_key]" rows="2"><?=!empty($setting['captcha_secret_key'])?$setting['captcha_secret_key']:'';?></textarea> 
+                        		</div>
+                        		<div class="form-group">   
+                          			<label for="captcha_site_key">Captcha Site Key</label> 
+                          			<textarea class="form-control" id="captcha_site_key"  name="setting[captcha_site_key]" rows="2"><?=!empty($setting['captcha_site_key'])?$setting['captcha_site_key']:'';?></textarea> 
+                        		</div> 
+                        		<div class="form-group">
+                          			<label for="latitude">Latitude</label>
+                          			<input type="text" class="form-control" id="latitude" name="setting[latitude]" placeholder="Latitude" value="<?=!empty($setting['latitude'])?$setting['latitude']:'';?>"> 
+                        		</div>
+                        		<div class="form-group">
+                          			<label for="longitude">Longitude</label> 
+                          			<input type="text" class="form-control" id="longitude" name="setting[longitude]" placeholder="Longitude" value="<?=!empty($setting['longitude'])?$setting['longitude']:'';?>">
+                        		</div>
+                      		</div>
+                      		<div class="col-md-12"> 
+                          		<div class="box-footer">
+                            		<button type="submit" class="btn btn-primary">Submit</button> 
+                          		</div>
+                      		</div> 
+                    	</form> 
+                    </div> 
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<script type="text/javascript">  
+$(function() {
+  $("form[name='settingform']").validate({ 
+    rules: {  
+     'setting[name]': "required",
+     //'pic': "required", 
+    },
+    messages: {   
+      'blog[name]': "Please enter site name",
+      //'pic': "Please enter image blog" 
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>

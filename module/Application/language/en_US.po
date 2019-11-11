@@ -1,0 +1,1480 @@
+msgid "Site name"
+msgstr "Zenovly"
+  
+msgid "phonenumberbelow"
+msgstr "or call us at +33 44 23 23 23"
+
+msgid "Site Title" 
+msgstr "Your renovation made easy"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Recents"
+msgstr "Recents"
+
+msgid "Contact Us"
+msgstr "Contact Us"
+
+msgid "Profile"
+msgstr "Profile"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Log Out"
+msgstr "Log Out"
+ 
+msgid "Register"
+msgstr "Register"
+
+msgid "Login Title"
+msgstr "Login With this great website"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Remember Me"
+msgstr "Remember Me"
+
+msgid "OR"
+msgstr "OR"
+
+msgid "Login With Facebook"
+msgstr "Login With Facebook"
+
+msgid "Register Title" 
+msgstr "Register With Site"
+  
+msgid "Name (Full name)"
+msgstr "Name (Full name)"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "New Password"
+msgstr "New Password"
+
+msgid "General Profile"
+msgstr "General Profile"
+
+msgid "Email Address"
+msgstr "Email Address"
+
+msgid "Date Of Birth"
+msgstr "Date Of Birth"
+
+msgid "Gender"
+msgstr "Gender"
+
+msgid "Phone number"
+msgstr "Phone number"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Male"
+msgstr "Male"
+
+msgid "Female"
+msgstr "Female"
+
+msgid "Other"
+msgstr "Other"
+
+msgid "Save"
+msgstr "Save"
+ 
+msgid "Old Password"
+msgstr "Old Password"
+
+msgid "Change password"
+msgstr "Change password"
+
+msgid "New Photo" 
+msgstr "New Photo"
+
+msgid "Upload Photo"
+msgstr "Upload Photo"  
+
+msgid "Cancal"
+msgstr "Cancal"
+
+msgid "Step 1 : Do you have a renovation project ?"
+msgstr "Step 1 : Do you have a renovation project ?"
+
+msgid "I do have a renovation project"
+msgstr "I do have a renovation project"
+
+msgid "I do not have a renovation project"
+msgstr "I do not have a renovation project"
+
+msgid "Save and continue"
+msgstr "Save and continue"
+
+msgid "Step 2 : Do you have a signed contract already ?"
+msgstr "Step 2 : Do you have a signed contract already ?"
+
+msgid "I have have a signed contract already"
+msgstr "I have have a signed contract already"
+
+msgid "I don’t have a signed contract yet"
+msgstr "I don’t have a signed contract yet"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Step 3 : Give us more details about the contract."
+msgstr "Step 3 : Give us more details about the contract."
+
+msgid "1. Upload a picture of the contract (can be an image file or a PDF file)"
+msgstr "1. Upload a picture of the contract (can be an image file or a PDF file)"
+
+msgid "2. Tell us what is the total price (tax included)"
+msgstr "2. Tell us what is the total price (tax included)"
+
+msgid "3. Give us the start date of the renovation work"
+msgstr "3. Give us the start date of the renovation work"
+
+msgid "4. Give us the end date of the renovation work"
+msgstr "4. Give us the end date of the renovation work"
+
+msgid "Information about the supplier"
+msgstr "Information about the supplier"
+
+msgid "First & Last Name"
+msgstr "First & Last Name"
+
+msgid "Company Name"
+msgstr "Company Name"
+
+msgid "Company Address"
+msgstr "Company Address"
+
+msgid "Mobile Phone Number"
+msgstr "Mobile Phone Number"
+
+msgid "Landline Phone Number"
+msgstr "Landline Phone Number"
+
+msgid "Sireal Number"
+msgstr "Sireal Number"
+
+msgid "Stap 4 : This is your contract."
+msgstr "Stap 4 : This is your contract."
+
+msgid "I have read and understand the Privacy Policy"
+msgstr "I have read and understand the Privacy Policy."
+
+msgid "Accept"
+msgstr "Accept"
+
+msgid "Stap 5 : Complete"
+msgstr "Stap 5 : Complete"
+
+msgid "You have successfully completed."
+msgstr "You have successfully completed."
+
+msgid "Success!"
+msgstr "Success!"
+
+#: home page
+
+msgid "Stay Zen during your renovation"
+msgstr "Stay Zen during your renovation"
+
+msgid "Subscribe"
+msgstr "Subscribe"
+
+msgid "Subscribe Now"
+msgstr "Subscribe Now"
+
+msgid "Our partners"
+msgstr "Our partners"
+
+msgid "Contact Us"
+msgstr "Contact Us"
+
+msgid "Email Us"
+msgstr "Email Us"
+
+msgid "Your Name"
+msgstr "Your Name"
+
+msgid "Your Email"
+msgstr "Your Email"
+
+msgid "Subject"
+msgstr "Subject"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Visit Us"
+msgstr "Visit Us" 
+
+msgid "Company address contact"
+msgstr "xxxx 9, xxx, xxxxx"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Email"
+msgstr "Email"
+ 
+msgid "© Zenovly - All rights reserved"
+msgstr "© Zenovly - All rights reserved"
+
+
+#: login
+
+msgid "Login via"
+msgstr "Login via"
+ 
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "or"  
+msgstr "or"
+
+msgid "Forget the password ?"
+msgstr "Forget the password ?"
+
+msgid "Sign in"
+msgstr "Sign in"
+
+msgid "New here ?"
+msgstr "New here ?" 
+
+msgid "Join Us"
+msgstr "Join Us"
+
+
+#: form supplier page  
+
+msgid "Price (tax included)"
+msgstr "Price (tax included)"
+
+msgid "Start date"
+msgstr "Start date"  
+
+msgid "End date"
+msgstr "End date"  
+
+#: home page 
+
+msgid "Features Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.."
+msgstr "Features Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.."
+
+msgid "Vos travaux sans soucis 1"
+msgstr "Vos travaux sans soucis"
+
+msgid "Vos travaux sans soucis 2"
+msgstr "Vos travaux sans soucis"
+
+msgid "Vos travaux sans soucis 3"
+msgstr "Vos travaux sans soucis"
+
+msgid "Vos travaux sans soucis 4"
+msgstr "Vos travaux sans soucis"
+
+msgid "Vos 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+
+msgid "Vos 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+
+msgid "Vos 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+
+msgid "Vos 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+
+msgid "Subscribe Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+msgstr "Subscribe Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+
+msgid "Portfolio Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.."
+msgstr "Portfolio Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.." 
+
+
+msgid "Our partners Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+msgstr "Our partners Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula felis euismod semper."
+
+msgid "Contact Us Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.."
+msgstr "Contact Us Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.."
+
+msgid "xxx"
+msgstr "xxx"
+
+
+
+
+
+
+
+
+
+#: text file js lang   
+
+msgid "Oops! Something went wrong." 
+msgstr "Oops! Something went wrong."
+
+msgid "Please confirm the privacy policy."
+msgstr "Please confirm the privacy policy."
+
+msgid "Sireal number must contain only letters, numbers, or dashes."
+msgstr "Sireal number must contain only letters, numbers, or dashes."
+
+msgid "Please enter a valid phone number"
+msgstr "Please enter a valid phone number"
+
+msgid "Please enter full name"
+msgstr "Please enter full name"
+
+msgid "Please enter a value with a valid mimetype (pdf,jpg,jpeg,png,gif)."
+msgstr "Please enter a value with a valid mimetype (pdf,jpg,jpeg,png,gif)."
+
+msgid "Please enter price."
+msgstr "Please enter price."
+
+msgid "Please enter company name."
+msgstr "Please enter company name."
+
+msgid "Please enter work start date."
+msgstr "Please enter work start date."
+
+msgid "Please enter work end date."
+msgstr "Please enter work end date."
+
+msgid "Work start date and end date should be proper."
+msgstr "Work start date and end date should be proper."
+
+msgid "You must enter a sireal number"
+msgstr "You must enter a sireal number"
+
+msgid "sireal number format not valid"
+msgstr "Sireal number format not valid"
+
+msgid "We need your email address to contact you."
+msgstr "We need your email address to contact you."
+
+msgid "Your email address must be in the format of name@domain.com"
+msgstr "Your email address must be in the format of name@domain.com"
+
+msgid "Press ok to logout!"
+msgstr "Press ok to logout!"
+
+msgid "Please enter a valid email address."
+msgstr "Please enter a valid email address."
+
+msgid "Your password must be at least 5 characters long."
+msgstr "Your password must be at least 5 characters long."
+
+msgid "Please login first !."
+msgstr "Please login first !."
+
+msgid "Password does not match the confirm password"
+msgstr "Password does not match the confirm password"
+
+msgid "You have been successfully registered. please you login."
+msgstr "You have been successfully registered. please you login."
+
+msgid "Edit profile successfuly"
+msgstr "Edit profile successfuly"
+
+msgid "Your new password must be at least 5 characters long."
+msgstr "Your new password must be at least 5 characters long."
+
+msgid "New password successfuly"
+msgstr "New password successfuly" 
+
+#: 21-04-2017
+
+msgid "Upload profile photo successfully"
+msgstr "Upload profile photo successfully"
+ 
+msgid "I agree to the Terms of Service."
+msgstr "I agree to the Terms of Service."
+
+msgid "Confirm contract successfully."
+msgstr "Confirm contract successfully."
+
+msgid "Comfirm"
+msgstr "Comfirm"
+
+msgid "Contract info"
+msgstr "Contract info"
+
+msgid "Contract file"
+msgstr "Contract file"
+
+msgid "Download File"
+msgstr "Download File"
+
+msgid "Total price (tax included)"
+msgstr "Total price (tax included)"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Pending"
+msgstr "Pending"
+
+msgid "Accepted"
+msgstr "Accepted"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Done"
+msgstr "Done" 
+
+msgid "You do not have permission to view contract details."
+msgstr "You do not have permission to view contract details."
+
+#: 22-04-2017  
+
+msgid "Please enter subject."
+msgstr "Please enter subject."
+
+msgid "Please enter message." 
+msgstr "Please enter message."
+ 
+msgid "Your message has been sent. Thank you!"
+msgstr "Your message has been sent. Thank you!"
+
+
+#: 25-05-2017
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Hot"
+msgstr "Hot"
+
+msgid "View"
+msgstr "View"
+
+msgid "Views"
+msgstr "Views"
+
+msgid "Read more"
+msgstr "Read more"
+
+msgid "Fan Page"
+msgstr "Fan Page"
+
+msgid "Tell your friends"
+msgstr "Tell your friends"
+
+
+#: 26-04-2017
+ 
+msgid "Company Email" 
+msgstr "Company Email" 
+
+msgid "Connected Facebook"
+msgstr "Connected Facebook" 
+
+msgid "Connect With Facebook"
+msgstr "Connect With Facebook"
+
+msgid "Connect Facebook Successfuly."
+msgstr "Connect Facebook Successfuly."
+
+ 
+#: 27-04-2017
+
+msgid "Supplier Contract"  
+msgstr "Supplier Contract"
+
+msgid "View"  
+msgstr "View"
+
+msgid "Consumer Contract"  
+msgstr "Consumer Contract"
+
+msgid "Not Supplier Contract !"  
+msgstr "Not Supplier Contract !"
+
+msgid "Not Consumer Contract !"  
+msgstr "Not Consumer Contract !"
+ 
+#: 04-05-2017
+
+msgid "A trusted 3rd party for your renovation projects"
+msgstr "Votre tiers de confiance pour vos rénovations"
+
+#: 2018-10-12 alert messages
+
+msgid "Sorry, we can't process this time please try again later!"   
+msgstr "Sorry, we can't process this time please try again later!"
+
+msgid "Are you sure to log out."   
+msgstr "Are you sure to log out."
+
+msgid "Yes, I am sure!"   
+msgstr "Yes, I am sure!"
+
+msgid "No, cancel it!"   
+msgstr "No, cancel it!"
+
+msgid "Please enter email!"   
+msgstr "Please enter email!"
+
+msgid "The password is the wrong length 6-15"   
+msgstr "The password is the wrong length 6-15"
+
+msgid "You didn't enter a password."   
+msgstr "You didn't enter a password."
+
+msgid "The password is the wrong length."   
+msgstr "The password is the wrong length."
+
+msgid "The password contains illegal characters."   
+msgstr "The password contains illegal characters."
+
+msgid "The password must contain at least one numeral."   
+msgstr "The password must contain at least one numeral."
+
+msgid "Please enter name!"   
+msgstr "Please enter name!"
+
+msgid "Password and confirm password are not the same."   
+msgstr "Password and confirm password are not the same."
+
+msgid "Add Tracking Code"   
+msgstr "Add Tracking Code"
+
+msgid "Enter your tracking code"   
+msgstr "Enter your tracking code"
+
+msgid "Tracking code saved successfully."   
+msgstr "Tracking code saved successfully."
+
+msgid "Enter your tracking code."   
+msgstr "Enter your tracking code."
+
+msgid "Please confirm the privacy policy."   
+msgstr "Please confirm the privacy policy."
+
+msgid "Send to Api payment."   
+msgstr "Send to Api payment."
+
+msgid "Plase enter keyword."   
+msgstr "Plase enter keyword."
+
+msgid "Please enter email!"   
+msgstr "Please enter email!"
+
+msgid "Please enter phone number !"   
+msgstr "Please enter phone number !"
+
+msgid "Edit profile successfuly."   
+msgstr "Edit profile successfuly."
+
+msgid "Please enter company name!"   
+msgstr "Please enter company name!"
+
+msgid "Please enter company address!"   
+msgstr "Please enter company address!"
+
+msgid "Please enter mobile phone !"   
+msgstr "Please enter mobile phone !"
+
+msgid "Please enter email supplier!"   
+msgstr "Please enter email supplier!"
+
+msgid "Edit successfuly"   
+msgstr "Edit successfuly"
+
+msgid "Please enter ibank account!"   
+msgstr "Please enter ibank account!"
+
+msgid "Please enter bank account name!"   
+msgstr "Please enter bank account name!"
+
+msgid "Please enter bic code!"   
+msgstr "Please enter bic code!"
+
+msgid "Please enter bank address!"   
+msgstr "Please enter bank address!"
+
+msgid "Add bank successfuly."   
+msgstr "Add bank successfuly."
+
+msgid "The old password is the wrong length 6-15"   
+msgstr "The old password is the wrong length 6-15"
+
+msgid "The new password is the wrong length 6-15"   
+msgstr "The new password is the wrong length 6-15"
+
+msgid "Now password does not match the confirm password."   
+msgstr "Now password does not match the confirm password."
+
+msgid "Loadding"   
+msgstr "Loading...."
+  
+msgid "Detial"   
+msgstr "Detial"
+
+msgid "I didn\'t get item"   
+msgstr "I didn\'t get item"
+
+msgid "Done"   
+msgstr "Done"
+
+msgid "Please check your email fromat!"   
+msgstr "Please check your email fromat!"
+
+msgid "Registration was successful."   
+msgstr "Registration was successful."
+
+msgid "Sorry! This account already exit."   
+msgstr "Sorry! This account already exit."
+
+msgid "Changed password was successful."   
+msgstr "Changed password was successful."
+
+msgid "Sorry! We were not able to change your password."   
+msgstr "Sorry! We were not able to change your password."
+
+msgid "Contract successful"   
+msgstr "Contract successful"
+
+msgid "Please check user id"   
+msgstr "Please check user id"
+
+msgid "Please check supplier id"   
+msgstr "Please check supplier id"
+
+msgid "Sorry! seem you don't have any contract right now."   
+msgstr "Sorry! seem you don't have any contract right now."
+
+msgid "Added successfully"   
+msgstr "Added successfully"
+
+msgid "Payout successfully"   
+msgstr "Payout successfully"
+
+msgid "Email sent successfully."   
+msgstr "Email sent successfully."
+
+msgid "Sorry! we couldn't process, because some supplier already accepted this contract."   
+msgstr "Sorry! we couldn't process, because some supplier already accepted this contract."
+
+msgid "No this email in the system, please check your email!"   
+msgstr "No this email in the system, please check your email!"
+
+msgid "Your new password has been sent to your email."   
+msgstr "Your new password has been sent to your email."
+
+msgid "Sorry! we couldn't process, because contract already accepted."   
+msgstr "Sorry! we couldn't process, because contract already accepted."
+ 
+msgid "Please enter country of incorporation."   
+msgstr "Please enter country of incorporation."
+ 
+msgid "Please enter ID number of the company."   
+msgstr "Please enter ID number of the company."
+
+msgid "Please enter account number!"   
+msgstr "Please enter account number!"
+
+msgid "Please enter sort code!"   
+msgstr "Please enter sort code!"
+
+msgid "Please enter account number!"   
+msgstr "Please enter account number!"
+
+msgid "Please enter deposit account type!"   
+msgstr "Please enter deposit account type!"
+
+msgid "Please enter branch code!"   
+msgstr "Please enter branch code!"
+
+msgid "Please enter bank name!"   
+msgstr "Please enter bank name!"
+
+msgid "Please enter institution number!"   
+msgstr "Please enter institution number!"
+
+msgid "Please enter owner name!"   
+msgstr "Please enter owner name!"
+
+msgid "Please enter type!"   
+msgstr "Please enter type!"
+
+msgid "Please enter project name."   
+msgstr "Please enter project name."
+
+msgid "Please enter price"   
+msgstr "Please enter price"
+
+msgid "Please enter detail."   
+msgstr "Please enter detail."
+
+msgid "Please enter message !"   
+msgstr "Please enter message !"
+
+msgid "Changed your picture was successful."   
+msgstr "Changed your picture was successful."
+
+msgid "Sorry! We were not able to upload your picture."   
+msgstr "Sorry! We were not able to upload your picture."
+
+msgid "Upload maximum 9 file."   
+msgstr "Upload maximum 9 file."
+
+#: All home page and header footer
+
+msgid "What is wezenit"   
+msgstr "What is WE<span>ZEN</span>IT?"
+   
+msgid "Contact us"    
+msgstr "Contact us" 
+
+msgid "Secure a transaction"   
+msgstr "Secure a transaction"
+
+msgid "Register"   
+msgstr "Register"
+
+msgid "Login"   
+msgstr "Login"
+
+msgid "With Wezenit, buy and sell with trust"   
+msgstr "With WE<span class="color-sky txt-zen txt-bold">ZEN</span>IT, buy and sell with trust"
+ 
+msgid "We are a trust provider for all your transactions"   
+msgstr "We are a trust provider for all your transactions"
+ 
+msgid "Secure my transaction"    
+msgstr "Secure my transaction" 
+
+msgid "With Wezenit,"   
+msgstr "With WE<span class="color-sky txt-zen">ZEN</span>IT,"
+
+msgid "you can buy and sell everywhere and be safe."   
+msgstr " you can buy and sell everywhere and be safe."
+
+msgid "Wezenit intro3"   
+msgstr ""
+      
+msgid "Wezenit information"   
+msgstr "Wezenit is by your side to secure any transactions. There is no risk to not be paid by a customer or no risk of a service not being done from a supplier. We eliminate all the risks you take when securing a transaction."
+
+msgid "A transaction in 4 simple steps."   
+msgstr "A transaction in 4 simple steps."
+
+msgid "The buyer and the seller confirm the transaction detail and sign a contract online"   
+msgstr "The buyer and the seller confirm the transaction detail and sign a contract online"
+
+msgid "The buyer transfer the amount to be paid to wezenit"   
+msgstr "The buyer transfer the amount to be paid to wezenit"
+
+msgid "The buyer receive the product or the service"   
+msgstr "The buyer receive the product or the service"
+
+msgid "Wezenit transfer the money to the seller"   
+msgstr "Wezenit transfer the money to the seller"
+
+msgid "How do we secure all transactions ?"   
+msgstr "How do we secure all transactions ?"
+
+msgid "With Wezenit, you can buy and sell any items or services worldwide and stay safe. We are a third party provide where we act as an escrow for all transaction types."   
+msgstr "With Wezenit, you can buy and sell any items or services worldwide and stay safe. We are a third party provide where we act as an escrow for all transaction types."
+
+msgid "What kind of transactions do we secure?"   
+msgstr "What kind of transactions do we secure?"
+
+msgid "Services."   
+msgstr "Services."
+
+msgid "Your electronic devices."   
+msgstr "Your electronic devices."
+
+msgid "You second hand furnitures."   
+msgstr "You second hand furnitures."
+
+msgid "We secure all transactions."   
+msgstr "We secure all transactions."
+
+msgid "We secure your services."   
+msgstr "We secure your services."
+
+msgid "We secure your purchases of electronic equipment."   
+msgstr "We secure your purchases of electronic equipment."
+
+msgid "We secure your purchases of furniture / sporting goods."   
+msgstr "We secure your purchases of furniture / sporting goods."
+
+msgid "Wezenit your trusted provider for all your transactions."   
+msgstr "Wezenit your trusted provider for all your transactions."
+
+msgid "Ready to stay Zen ?"   
+msgstr "Ready to stay Zen ?"
+
+msgid "No risk of not being paid or no risk of paying for a service that is not delivered properly."   
+msgstr "No risk of not being paid or no risk of paying for a service that is not delivered properly."
+
+msgid "I secure a transaction for"   
+msgstr "I secure a transaction for"
+
+msgid "a service"   
+msgstr "a service"
+
+msgid "a product"   
+msgstr "a product"
+ 
+msgid "a service and product"   
+msgstr "a service and product"
+
+msgid "that"   
+msgstr "that"
+
+msgid "I buy"   
+msgstr "I buy"
+
+msgid "I sell"   
+msgstr "I sell"
+
+msgid "for"   
+msgstr "for"
+
+msgid "price in EUR."   
+msgstr "price in EUR."
+
+msgid "Secure my transaction"   
+msgstr "Secure my transaction"
+
+msgid "Wezenit works with"   
+msgstr "WE<span class="color-sky txt-zen txt-bold">ZEN</span>IT works with"
+
+msgid "No need to meet the individual in person, you can secure your transaction online."   
+msgstr "No need to meet the individual in person, you can secure your transaction online."
+
+msgid "Secure all transactions online with Wezenit."   
+msgstr "Secure all transactions online with Wezenit."
+
+msgid "And many more."   
+msgstr "And many more."
+
+msgid "Our team"   
+msgstr "Our team"
+
+msgid "FAQ"   
+msgstr "FAQ"
+
+msgid "Terms & conditions"   
+msgstr "Terms & conditions"
+
+msgid "Contact-us"   
+msgstr "Contact-us"
+
+msgid "Follow-us"   
+msgstr "Follow-us"
+
+#: All page
+
+msgid "E-mail"   
+msgstr "E-mail"
+
+msgid "Password"   
+msgstr "Password"
+
+msgid "Forgot Password?"   
+msgstr "Forgot Password?"
+
+msgid "Sign in with Facebook"   
+msgstr "Sign in with Facebook"
+
+msgid "button login"   
+msgstr "Login"
+
+msgid "button register"   
+msgstr "Register"
+ 
+msgid "Name"   
+msgstr "Name"
+
+msgid "Confirm Password"   
+msgstr "Confirm Password"
+
+msgid "What are you selling"   
+msgstr "What are you selling"
+
+msgid "Project name"   
+msgstr "Project name"
+
+msgid "The price of the transaction (in EUR)"   
+msgstr "Le prix de la transaction (en EUR)"
+
+msgid "Your transaction begins on:"   
+msgstr "Your transaction begins on:"
+
+msgid "Your transaction ends on:"   
+msgstr "Your transaction ends on:"
+
+msgid "Date of shipment of the product"   
+msgstr "Date of shipment of the product"
+
+msgid "Date of receipt of the product"   
+msgstr "Date of receipt of the product"
+
+msgid "Start date"   
+msgstr "Start date"
+  
+msgid "End date"   
+msgstr "End date"
+ 
+msgid "Contract file"   
+msgstr "Contract file"
+
+msgid "Details: Note"   
+msgstr "Details: Note"
+
+msgid "Are you doing this transaction with your company?"   
+msgstr "Are you doing this transaction with your company?"
+
+msgid "Yes"   
+msgstr "Yes"
+
+msgid "No"   
+msgstr "No"
+
+msgid "Company name"   
+msgstr "Company name"
+
+msgid "Country of incorporation"   
+msgstr "Country of incorporation"
+
+msgid "ID number of the company"   
+msgstr "ID number of the company"
+
+msgid "Company Address"   
+msgstr "Company Address"
+
+msgid "Next"   
+msgstr "Next"
+
+msgid "Buyer information"   
+msgstr "Buyer information"
+
+msgid "Seller information"   
+msgstr "Seller information"
+
+msgid "Buyer"   
+msgstr "Buyer"
+
+msgid "Seller"   
+msgstr "Seller"
+
+msgid "New Buyer"   
+msgstr "New Buyer"
+
+msgid "New Seller"   
+msgstr "New Seller"
+
+msgid "Phone number"   
+msgstr "Phone number"
+
+msgid "Above name"   
+msgstr "Above name"
+
+msgid "Personal"   
+msgstr "Personal"
+
+msgid "Business"   
+msgstr "Business"
+
+msgid "Name of the buyer"   
+msgstr "Name of the buyer"
+
+msgid "Name of the seller"   
+msgstr "Name of the seller"
+
+msgid "Position"   
+msgstr "Position"
+
+msgid "Company name"   
+msgstr "Company name"
+
+msgid "Company Address"   
+msgstr "Company Address"
+ 
+msgid "Company website"   
+msgstr "Company website"
+
+msgid "Who will pay the Wezenit fee ?"   
+msgstr "Who will pay the Wezenit fee ?"
+
+msgid "Previous"   
+msgstr "Previous"
+
+msgid "Project details"   
+msgstr "Project details"
+
+msgid "for:"   
+msgstr "for:"
+
+msgid "Fee"   
+msgstr "Fee"
+
+msgid "Price"   
+msgstr "Price"
+
+msgid "Total"   
+msgstr "Total"
+
+msgid "Company information"   
+msgstr "Company information"
+
+msgid "Billing information"   
+msgstr "Billing information"
+
+msgid "Full Name"   
+msgstr "Full Name"
+
+msgid "Your note"   
+msgstr "Your note"
+
+msgid "Legal notices and conditions of use"   
+msgstr "Legal notices and conditions of use"
+
+msgid "I have read and Understand the privacy policy"   
+msgstr "I have read and Understand the privacy policy."
+
+msgid "Done"   
+msgstr "Done"
+
+msgid "Send E-Mail"   
+msgstr "Send E-Mail"
+
+msgid "Subject"   
+msgstr "Subject"
+
+msgid "Message"   
+msgstr "Message"
+ 
+msgid "Dear"   
+msgstr "Dear"
+
+msgid "Send"   
+msgstr "Send"
+
+msgid "You've signed the contract, an email was sent to the "Buyer/Seller""   
+msgstr "You've signed the contract, an email was sent to the "Buyer/Seller""
+
+msgid "Bravo ! Your request has been sent"   
+msgstr "Bravo ! Your request has been sent"
+
+msgid "Your request has been sent"   
+msgstr "Your request has been sent"
+ 
+msgid "You will receive a notification when your buyer will validat and pay the agreed price"   
+msgstr "We will notify you as soon as your buyer has validated the contract and transferred the agreed price to Wezenit."
+
+msgid "Manage my profile"   
+msgstr "Manage my profile"
+
+msgid "Dashboard"   
+msgstr "Dashboard"
+
+msgid "Consumer Contract"   
+msgstr "Consumer Contract"
+
+msgid "Supplier Contract"   
+msgstr "Supplier Contract"
+
+msgid "Upload Image"   
+msgstr "Upload Image"
+
+msgid "Profile"   
+msgstr "Profile"
+
+msgid "New Password"   
+msgstr "New Password"
+
+msgid "Seller list"   
+msgstr "Seller list"
+
+msgid "Buyer list"   
+msgstr "Buyer list"
+
+msgid "Log Out"   
+msgstr "Logout"
+
+msgid "Name (Full name)"   
+msgstr "Name (Full name)"
+
+msgid "E-mail Address"   
+msgstr "E-mail Address"
+
+msgid "Date Of Birth"   
+msgstr "Date Of Birth"
+
+msgid "Gender"   
+msgstr "Gender"
+
+msgid "Male"   
+msgstr "Male"
+
+msgid "Female"   
+msgstr "Female"
+
+msgid "Other"   
+msgstr "Other"
+
+msgid "Address"   
+msgstr "Address"
+
+msgid "Mobile Phone Number"   
+msgstr "Mobile Phone Number"
+
+msgid "Landline Phone Number"   
+msgstr "Landline Phone Number"
+
+msgid "Company Email"   
+msgstr "Company Email"
+
+msgid "Save"   
+msgstr "Save"
+
+msgid "General Profile"   
+msgstr "General Profile"
+
+msgid "Company info"   
+msgstr "Company info"
+
+msgid "Info Bank"   
+msgstr "Bank info"
+
+msgid "Bank info"   
+msgstr "Bank info"
+
+msgid "Type"   
+msgstr "Type"
+
+msgid "Owner name"   
+msgstr "Owner name"
+
+msgid "City"   
+msgstr "City"
+
+msgid "Region"   
+msgstr "Region"
+
+msgid "Postal code"   
+msgstr "Postal code"
+
+msgid "Country"   
+msgstr "Country"
+
+msgid "Account number"   
+msgstr "Account number"
+
+msgid "Deposit account types"   
+msgstr "Deposit account types"
+
+msgid "CHECKING"   
+msgstr "CHECKING"
+
+msgid "SAVINGS"   
+msgstr "SAVINGS"
+
+msgid "Branch code"   
+msgstr "Branch code"
+
+msgid "Bank name"   
+msgstr "Bank name"
+
+msgid "Institution number"   
+msgstr "Institution number"
+
+msgid "Sort code"   
+msgstr "Sort code"
+
+msgid "New Password"   
+msgstr "New Password"
+
+msgid "Old Password"   
+msgstr "Old Password"
+
+msgid "New Password"   
+msgstr "New Password"
+
+msgid "Seller Contract"   
+msgstr "Seller Contract"
+
+msgid "Status"   
+msgstr "Status"
+
+msgid "All"   
+msgstr "All"
+
+msgid "Pending"   
+msgstr "Pending"
+
+msgid "Canceled"   
+msgstr "Canceled"
+
+msgid "Start"   
+msgstr "Start"
+
+msgid "Done"   
+msgstr "Done"
+
+msgid "Paid"   
+msgstr "Paid"
+
+msgid "Waiting for money"   
+msgstr "Waiting for money"
+
+msgid "Refund"   
+msgstr "Refund"
+
+msgid "Finished"   
+msgstr "Finished"
+
+msgid "Project"   
+msgstr "Project"
+
+msgid "Price"   
+msgstr "Price"
+
+msgid "Action"   
+msgstr "Action"
+
+msgid "Contract Buyer"   
+msgstr "Contract Buyer"
+
+msgid "Transfer price"   
+msgstr "Transfer price"
+
+msgid "Pay price"   
+msgstr "Pay price"
+
+msgid "Buyer information"   
+msgstr "Buyer information"
+
+msgid "Seller information"   
+msgstr "Seller information"
+
+msgid "Payment"   
+msgstr "Payment"
+
+msgid "Credit Card"   
+msgstr "Credit Card"
+
+msgid "Direct Debit"   
+msgstr "Direct Debit"
+
+msgid "Enter your tracking code."   
+msgstr "Enter your tracking code."
+
+msgid "Hot"   
+msgstr "Hot"
+
+msgid "Fan Page"   
+msgstr "Fan Page"
+
+msgid "Read more"   
+msgstr "Read more"
+
+msgid "Questions ? Contact Us"   
+msgstr "Questions ? Contact Us"
+
+msgid "We respond within 24 hours"   
+msgstr "We respond within 24 hours"
+
+msgid "Your name"   
+msgstr "Your name"
+
+msgid "Your email"   
+msgstr "Your email"
+
+msgid "Your message"   
+msgstr "Your message"
+
+msgid "Contact Us"   
+msgstr "Contact Us"
+
+msgid "With Wezenit, you can buy and sell anything anywhere, with confidence"   
+msgstr "With Wezenit, you can buy and sell anything anywhere, with confidence"
+
+msgid "Wezenit is at your side and provides the confidence necessary for all your transactions."   
+msgstr "Wezenit is at your side and provides the confidence necessary for all your transactions. With Wezenit finished the risks of non-payment to a seller / provider and the risks of non implementation or disappearance of his payment for a buyer / client. No more lengthy and costly procedures for not even a refund. With Wezenit, no reason not to start because there is no risk."
+
+msgid "A Zen transaction in 4 steps"   
+msgstr "A Zen transaction in 4 steps"
+
+msgid "Our team"   
+msgstr "Our team" 
+ 
+msgid "A reactive team at your service"   
+msgstr "A reactive team at your service"
+
+msgid "We secure your services"   
+msgstr "We secure your services"
+
+msgid "We secure your electronics purchases."   
+msgstr "We secure your electronics purchases."
+
+msgid "We secure your furniture shopping / sporting goods"   
+msgstr "We secure your furniture shopping / sporting goods"
+
+msgid "Wezenit your trusted supplier for all your transactions."   
+msgstr "Wezenit your trusted supplier for all your transactions."
+ 
+msgid "file"   
+msgstr "File"
+
+msgid "Add file"   
+msgstr "Add file"
+
+msgid "The seller is"   
+msgstr "The seller is"
+
+msgid "The buyer is"   
+msgstr "The buyer is"
+    
+msgid "a Company"   
+msgstr "a Company"
+ 
+msgid "a An individual"   
+msgstr "a An individual"
+ 
+msgid "They are talking about it"   
+msgstr "They are talking about it"
+
+msgid "Please scroll down through the terms & conditions in order to accept"   
+msgstr "Please scroll down through the terms & conditions in order to accept."
+
+msgid "My Wallets"   
+msgstr "My Wallets"
+
+msgid "Bank List"   
+msgstr "Bank List"
+
+msgid "Type"   
+msgstr "Type"
+
+msgid "Owner Name"   
+msgstr "Owner Name"
+
+msgid "Account Number"   
+msgstr "Account Number"
+
+msgid "Country"   
+msgstr "Country"
+
+msgid "Status"   
+msgstr "Status"
+
+msgid "Add Bank Account"   
+msgstr "Add Bank Account"
+
+msgid "Amount"   
+msgstr "Amount"
+
+msgid "Bank Account"   
+msgstr "Bank Account"
+
+msgid "The PayOut"   
+msgstr "The PayOut"
+
+msgid "My Profile"   
+msgstr "My Profile"
+
+msgid "My Wallets"   
+msgstr "My Wallets"
+
+msgid "First name"   
+msgstr "First name"
+
+msgid "Last name"   
+msgstr "Last name"
+
+msgid "KYC documents upload"   
+msgstr "KYC documents upload"
+
+msgid "Identity proof"   
+msgstr "Identity proof"
+
+msgid "Registration proof"   
+msgstr "Registration proof"
+
+msgid "Articles of association"   
+msgstr "Articles of association"
+
+msgid "Shareholder declaration"   
+msgstr "Shareholder declaration"
+
+msgid "List KYC Documents"   
+msgstr "List KYC Documents"
+
+msgid "Date Time"   
+msgstr "Date Time"
+
+msgid "Id"   
+msgstr "Id"
+
+msgid "Status"   
+msgstr "Status"
+
+msgid "Confirm New Password"   
+msgstr "Confirm New Password"
+
+msgid "In progress"   
+msgstr "In progress"
+
+msgid "Buyer Contract"   
+msgstr "Buyer Contract"
+
+msgid "Amount to be transferred"   
+msgstr "Amount to be transferred"
+
+msgid "Nationality"   
+msgstr "Nationality"
+
+msgid "Country of residence"   
+msgstr "Country of residence"
+
+msgid "Logout"   
+msgstr "Logout"
+
+msgid "Payout List"   
+msgstr "Payout List"
+
+msgid "Create Date"   
+msgstr "Create Date"
+
+msgid "Last Update"   
+msgstr "Last Update"
+
+msgid "Result"   
+msgstr "Result"
+
+msgid "xxxxx"   
+msgstr "xxxxx"
+
+msgid "xxxxx"   
+msgstr "xxxxx"
+
+msgid "xxxxx"   
+msgstr "xxxxx"
+
+msgid "xxxxx"   
+msgstr "xxxxx"
+
+msgid "xxxxx"   
+msgstr "xxxxx"
+
+

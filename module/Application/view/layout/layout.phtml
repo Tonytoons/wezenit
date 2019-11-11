@@ -1,0 +1,240 @@
+<?php 
+    if($this->controller == 'Application\Controller\Api')
+    {
+?>
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-control" content="public"><!--public-NO-CACHE-private-->
+    	<META HTTP-EQUIV="EXPIRES" CONTENT="<?php echo gmdate("D, d M Y H:i:s", time() + (60*60)) . " GMT"; ?>">
+        <meta http-equiv="cleartype" content="on">
+        <meta name="MobileOptimized" content="768">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no, shrink-to-fit=no">
+        <link rel="shortcut icon" href="<?php echo $this->url('index'); ?>img/favicon/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="<?php echo $this->url('index'); ?>img/favicon/favicon.ico" type="image/x-icon">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $this->url('index'); ?>img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="<?php echo $this->url('index'); ?>img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $this->url('index'); ?>img/favicon/favicon-16x16.png">
+        <title>API V1</title>
+    </head>
+    <body> 
+        <?php echo $this->content; ?> 
+    </body>
+</html>
+<?php
+    }
+    else if($this->controller == 'Application\Controller\Admin')
+    {
+?>
+<!DOCTYPE html>
+<html> 
+    <head>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no">
+        <link rel="shortcut icon" href="<?php echo $this->url('index'); ?>img/favicon/favicon.ico" type="image/x-icon">
+        <link href="<?php echo $this->url('index'); ?>2018/assets/images/favicon.ico" rel="icon">
+         
+        <title>Wezenit Beta</title>          
+        <!-- Bootstrap Core CSS -->
+        <link href="<?php echo $this->url('index') . 'sb-admin/vendor/bootstrap/css/bootstrap.min.css'; ?>" rel="stylesheet">
+        <link href="<?php echo $this->url('index') . 'css/bootstrap-theme.min.css'; ?>" rel="stylesheet">
+    
+        <!-- MetisMenu CSS -->
+        <link href="<?php echo $this->url('index') . 'sb-admin/vendor/metisMenu/metisMenu.min.css'; ?>" rel="stylesheet">
+     
+        <!-- Custom CSS -->
+        <link href="<?php echo $this->url('index') . 'sb-admin/dist/css/sb-admin-2.css'; ?>" rel="stylesheet">
+    
+        <!-- Morris Charts CSS --> 
+        <link href="<?php echo $this->url('index') . 'sb-admin/vendor/morrisjs/morris.css'; ?>" rel="stylesheet">
+    
+        <!-- Custom Fonts -->
+        <link href="<?php echo $this->url('index') . 'sb-admin/vendor/font-awesome/css/font-awesome.min.css'; ?>" rel="stylesheet" type="text/css">
+        
+        <!-- jQuery -->
+        <script src="<?php echo $this->url('index') . 'sb-admin/vendor/jquery/jquery.min.js'; ?>"></script>
+         
+        <!------- summernote ---->
+        <link href="<?php echo $this->url('index') . 'plugins/summernote/summernote.css'; ?>" rel="stylesheet" type="text/css">
+        <script src="<?php echo $this->url('index') . 'plugins/summernote/summernote.js'; ?>"></script>
+         
+        <!------- dropzone ----> 
+        <link href="<?php echo $this->url('index') . 'plugins/dropzone/dist/min/dropzone.min.css'; ?>" rel="stylesheet" type="text/css">
+        <script src="<?php echo $this->url('index') . 'plugins/dropzone/dist/min/dropzone.min.js'; ?>"></script>
+          
+           
+        <!-----------------   DataTable   -------------------> 
+        <link href="<?php echo $this->url('index') . 'plugins/datatables/media/css/rowReorder.dataTables.min.css?2017-03-07-1'; ?>" rel="stylesheet">
+        <link href="<?php echo $this->url('index') . 'plugins/datatables/media/css/dataTables.bootstrap.css?2017-03-07-1'; ?>" rel="stylesheet">
+        <script src="<?php echo $this->url('index') . 'plugins/datatables/media/js/jquery.dataTables.js?2017-03-07-1'; ?>"></script>
+        <script src="<?php echo $this->url('index') . 'plugins/datatables/media/js/dataTables.rowReorder.min.js?2017-03-07-1'; ?>"></script>     
+        <script src="<?php echo $this->url('index') . 'plugins/datatables/media/js/dataTables.bootstrap.js?2017-03-07-1'; ?>"></script> 
+    
+        <script src="<?php echo $this->url('index') . 'plugins/bootstrap-checkbox/dist/js/bootstrap-checkbox.min.js?2017-03-07-1'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->url('index') . 'plugins/jquery-validation/dist/jquery.validate.js?2017-03-07-1'; ?>"></script> 
+        <script type="text/javascript" src="<?php echo $this->url('index') . 'js/additional-methods.min.js'; ?>" defer></script>  
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->url('index') . 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css'; ?>" />      
+        <script type="text/javascript">
+            var basePath = '<?php echo $this->url('index'); ?>';
+            var action = '<?php echo $action;?>';
+        </script> 
+    </head>      
+    <body>  
+    	    
+    	 <?php echo $this->content; ?>
+ 
+        <!-- Bootstrap Core JavaScript -->
+        <script src="<?php echo $this->url('index') . 'sb-admin/vendor/bootstrap/js/bootstrap.min.js'; ?>"></script>
+    
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="<?php echo $this->url('index') . 'sb-admin/vendor/metisMenu/metisMenu.min.js'; ?>"></script>
+        <?php
+        if($action=='index'){ 
+        ?>
+        <!-- Morris Charts JavaScript -->
+        <script src="<?php echo $this->url('index') . 'sb-admin/vendor/raphael/raphael.min.js'; ?>"></script>
+        <script src="<?php echo $this->url('index') . 'sb-admin/vendor/morrisjs/morris.min.js'; ?>"></script>
+        <script src="<?php echo $this->url('index') . 'sb-admin/data/morris-data.js'; ?>"></script>
+        <?php
+        }
+        ?>  
+        <script type="text/javascript" src="<?php echo $this->url('index') . 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'; ?>"></script> 
+        <!-- Custom Theme JavaScript -->
+        <script src="<?php echo $this->url('index') . 'sb-admin/dist/js/sb-admin-2.js'; ?>"></script>
+        <script src="<?php echo $this->url('index') . 'js/admin-js.js'; ?>"></script> 
+        <script src="<?php echo $this->url('index') . 'js/pace.min.js'; ?>"></script>
+    </body> 
+</html>
+
+<?php
+    } 
+    else
+    { 
+?>
+    <?php echo $this->doctype();?> 
+    <html lang="en">
+        <head>   
+            <?php     
+            //echo !empty($this->myTitle)?$this->headTitle($this->myTitle):$this->headTitle($this->translate('Site name')); 
+            
+            if ($this->headTitle() == 'SET') {  
+                echo $this->headTitle();  
+            } else {   
+                echo $this->headTitle('');        
+            }
+            echo $this->headMeta();   
+            ?>
+            
+            <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-8">
+            <meta http-equiv="Cache-control" content="public"> 
+        	<META HTTP-EQUIV="EXPIRES" CONTENT="<?php echo gmdate("D, d M Y H:i:s", time() + (60*60)) . " GMT"; ?>">
+            <meta http-equiv="cleartype" content="on">
+            <meta name="MobileOptimized" content="768">
+            <meta name="HandheldFriendly" content="True">
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no">
+            
+            <link href="<?php echo $this->url('index'); ?>2018/assets/images/favicon.ico" rel="icon">
+            <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600|Montserrat:200,300,400, 600, 700" rel="stylesheet">
+         
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>2018/assets/css/bootstrap/bootstrap.css">
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>2018/assets/fonts/ionicons/css/ionicons.min.css">
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>2018/assets/css/magnific-popup.css">
+        
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>2018/assets/fonts/fontawesome/css/font-awesome.min.css">
+            
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>2018/assets/css/style.css">
+            
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>plugins/jquery-ui-1.12.1/jquery-ui.min.css"> 
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>plugins/croppie/croppie.css">  
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>plugins/sweetalert/dist/sweetalert2.min.css">  
+            
+            
+            <?php  
+            if($action=='profile' || $action=='dashboard' || $action=='newpassword' || $action=='seller' || $action=='buyer'  || $action=='supplier' || $action=='consumer' || $action=='mywallets'){ 
+            ?>  
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>2018/assets/css/profile-menu.css?v=<?=time();?>">
+            <?php 
+            }
+            ?>
+            <link rel="stylesheet" href="<?php echo $this->url('index'); ?>2018/assets/css/custom-2018-11-02-1.css?v=<?=time();?>">  
+            
+            
+            <meta name="theme-color" content="#5d2a73"> 
+            <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo $this->url('index'); ?>img/favicon/android-icon-192x192.png">
+            <meta name="msapplication-TileColor" content="#5d2a73">
+            <meta name="msapplication-TileImage" content="<?php echo $this->url('index'); ?>img/favicon/ms-icon-144x144.png">
+            <meta name="msapplication-navbutton-color" content="#5d2a73">
+            
+            <script src="<?php echo $this->url('index'); ?>2018/assets/js/jquery.min.js"></script> 
+            <script src="<?=$this->url('index');?>plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script> 
+            <script src="<?php echo $this->url('index'); ?>2018/assets/js/popper.min.js"></script>
+            <script src="<?php echo $this->url('index'); ?>2018/assets/js/bootstrap.min.js"></script>
+            
+            <script src="<?php echo $this->url('index'); ?>plugins/sweetalert/dist/sweetalert2.min.js"></script>  
+            <script type="text/javascript" src="<?php echo $this->url('index') . 'plugins/croppie/croppie.min.js'; ?>"></script>
+            <script type="text/javascript" src="<?php echo $this->url('index'); ?>2018/assets/js/bootstrap-filestyle.min.js"></script>
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128668637-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'UA-128668637-1');
+            </script> 
+        </head>  
+        <body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+            <div id="fb-root"></div>    
+            
+        	<?php echo $this->content; ?> 
+            
+            
+            
+            <?php
+            if($action=='projectform'){        
+            ?> 
+            <script src="<?php echo $this->url('index'); ?>2018/assets/js/project_form.js?v=<?=time();?>"></script>
+            <?php
+            } 
+            ?>
+            
+            <?php 
+            if($action=='profile' || $action=='dashboard' || $action=='newpassword' || $action=='seller' || $action=='buyer' || $action=='supplier' || $action=='consumer' || $action=='mywallets'){   
+            ?>    
+            <script type="text/javascript" src="<?=$this->url('index');?>plugins/twbs-pagination/jquery.twbsPagination.min.js"></script>  
+            <script src="<?php echo $this->url('index'); ?>2018/assets/js/account.js?v=<?=time();?>"></script>
+            <?php  
+            } 
+            ?>
+            
+            <script>
+                window.fbAsyncInit = function() {
+                    FB.init({
+                        appId            : '613964879000475', 
+                        autoLogAppEvents : true,
+                        xfbml            : true,
+                        version          : 'v3.1'
+                    });   
+                    FB.AppEvents.logPageView(); 
+                }; 
+            
+                (function(d, s, id){
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) {return;}
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/sdk.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>    
+             
+            <script src="<?php echo $this->url('index'); ?>2018/assets/js/main-2019-01-03-1.js?v=<?=time();?>"></script>
+            
+        </body>  
+    </html>
+        
+<?php   
+    echo $this->inlineScript();       
+    }
+?>

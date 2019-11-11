@@ -1,0 +1,277 @@
+<style>
+    .col-md-6.test {
+    margin-top: 100px;
+}
+
+.overlay {
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    background-color: #45164c;
+    position: relative;
+    /* width: 100%; */
+    /* height: 100%; */
+    display: block;
+    padding: 30px 0px 0px 0px;
+    height: 100vh;
+    padding-top: 25vh;
+}
+
+zzzz.home-img {
+     width: 100%; 
+    background-image: linear-gradient(180deg, rgba(69, 22, 76, .85), rgba(69, 22, 76, .85)), url(http://wezenit.com/images/legs-window-car-dirt-road-51397.jpg);
+    background-position: 0px 0px, 50% 50%;
+    background-size: auto, cover;
+    background-repeat: repeat, repeat;
+}
+.home-img .overlay{
+    background: none;
+}
+.home-img .navbar-default, .home-img #menu{
+    background: none !important;
+}
+.signup-header {
+    margin: 50px 0 100px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 20px;
+    padding-bottom: 14px;
+}
+
+</style>
+
+<?php include('header.phtml'); ?>
+<!--<div class="fullscreen landing parallax" style="background-image:url('<?//=$this->url('index');?>backyard/images/bg_home.jpg');" data-img-width="2000" data-img-height="1333" data-diff="100">-->
+<div class="home-img" style="background-color: #45164c !important;">
+<?php include('menu.phtml'); ?>
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 test">
+                    <!-- /.main title -->
+                    <h1 class="wow fadeInLeft" style="color:white;">   
+                        <?=$this->translate('Soyez zen, on s’occupe de tout'); ?>
+                    </h1>
+                    <!--test-->
+                    <!-- /.header paragraph -->
+                    <div class="landing-text wow fadeInUp"  style="color:white;">
+                        <p>
+                            
+                            <?=$this->translate('Avec WEZENIT vendez et achetez en toute confiance !'); ?>
+                        </p>
+                    </div>
+                </div>
+                <!-- /.signup form --> 
+                <div class="col-md-6">
+                    <div class="signup-header wow fadeInUp">
+                        <h3 class="form-title text-center"><?=$this->translate('Je sécurise la transaction financière pour'); ?></h3>  
+                        <form class="form-header" action="<?=$this->url('index');?><?=$lang;?>/projectform/" role="form" method="get" id="">  
+                            <div class="row">  
+                                <div class="col-md-4">  
+                                    <div class="form-group">   
+                                        <select id="customer-type" name="type" class="form-control input-lg"> 
+                                            <option value="1"><?=$this->translate("l'achat"); ?></option> 
+                                            <option value="0"><?=$this->translate("la vente"); ?></option>   
+                                        </select> 
+                                    </div> 
+                                </div> 
+                                <div class="col-md-8">
+                                    <div class="form-group"> 
+                                    <input class="form-control input-lg" name="name" id="project-name" type="text" placeholder="description" required>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="row"> 
+                                <div class="col-md-4">  
+                                    <div class="form-group">  
+                                        <input class="form-control input-lg" name="price" id="project-price" type="number" placeholder="Prix en euro." value="" min="20" required>
+                                        <p class="text-remark-price"><?=$this->translate('* Minimum 20 Euro.'); ?></p>
+                                    </div> 
+                                </div> 
+                                <div class="col-md-8"> 
+                                    <div class="form-group">   
+                                        <select id="customer-type" name="zenovly_type" class="form-control input-lg"> 
+                                            <option value="1"><?=$this->translate("un produit"); ?></option>  
+                                            <option value="2"><?=$this->translate("un service"); ?></option>
+                                            <option value="3"><?=$this->translate("un produit et un service"); ?></option>
+                                        </select> 
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="form-group last">
+                                <input type="submit" class="btn btn-warning btn-block btn-lg" value="Je sécurise ma transaction">    
+                            </div>
+                            <!--<p class="privacy text-center"><?=$this->translate('We will not share your email.'); ?> <?=$this->translate('Read our'); ?> <a href="<?=$this->url('index');?><?=$lang;?>/zenovly-privacy-policy/" class="text-remark"><?=$this->translate('privacy policy'); ?></a>.</p>-->
+                        </form> 
+                    </div>				 
+ 
+                </div>
+            </div>
+        </div> 
+    </div> 
+</div>
+<!-- /.feature section -->
+<!--<div id="feature">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center feature-title">-->
+<!--                <h2><?=$this->translate('Recreate your ideas and gain more success'); ?></h2>-->
+<!--                <p><?=$this->translate('Increase your user loyalty by maintaining mutual communication and nurturing your online community.'); ?></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row row-feat">-->
+<!--            <div class="col-md-4 text-center">-->
+                <!-- /.feature image -->
+<!--                <div class="feature-img">-->
+<!--                    <img src="<?=$this->url('index');?>backyard/images/feature-image.jpg" alt="image" class="img-responsive wow fadeInLeft">-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col-md-8">-->
+
+                <!-- /.feature 1 -->
+<!--                <div class="col-sm-6 feat-list">-->
+<!--                    <i class="pe-7s-notebook pe-5x pe-va wow fadeInUp"></i>-->
+<!--                    <div class="inner">-->
+<!--                        <h4><?=$this->translate('Marketing Strategy'); ?></h4>-->
+<!--                        <p><?=$this->translate('Good marketing makes the company look smart. Great marketing makes the customer feel smart.'); ?>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <!-- /.feature 2 -->
+<!--                <div class="col-sm-6 feat-list">-->
+<!--                    <i class="pe-7s-cash pe-5x pe-va wow fadeInUp" data-wow-delay="0.2s"></i>-->
+<!--                    <div class="inner">-->
+<!--                        <h4><?=$this->translate('App Monetization'); ?></h4>-->
+<!--                        <p><?=$this->translate('Content builds relationships. Relationships are built on trust. Trust drives revenue. - Andrew Davis'); ?></p>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <!-- /.feature 3 -->
+<!--                <div class="col-sm-6 feat-list">-->
+<!--                    <i class="pe-7s-cart pe-5x pe-va wow fadeInUp" data-wow-delay="0.4s"></i>-->
+<!--                    <div class="inner">-->
+<!--                        <h4><?=$this->translate('Store Optimization'); ?></h4>-->
+<!--                        <p><?=$this->translate('Never doubt a small group of thoughtful, committed people can change the world. Indeed, it is the only thing that ever has.'); ?></p>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <!-- /.feature 4 -->
+<!--                <div class="col-sm-6 feat-list">-->
+<!--                    <i class="pe-7s-users pe-5x pe-va wow fadeInUp" data-wow-delay="0.6s"></i>-->
+<!--                    <div class="inner">-->
+<!--                        <h4><?=$this->translate('User Management'); ?></h4>-->
+<!--                        <p><?=$this->translate('Instead of using technology to automate processes, think about using technology to enhance human interaction.'); ?></p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!-- /.pricing section -->
+<!--<div id="partner">-->
+<!--    <div class="container">-->
+<!--        <div class="text-center">-->
+            <!-- /.pricing title -->
+<!--            <h2 class="wow fadeInLeft"><?=$this->translate('Partner'); ?></h2>  -->
+<!--            <p class="wow fadeInRight"><?=$this->translate('Restez zen, vous êtes entre de bonnes mains'); ?></p>-->
+<!--        </div>-->
+<!--        <div class="row package-option">-->
+            <!-- /.package 1 -->
+<!--            <div class="col-sm-3">-->
+<!--                <div class="partner-box wow fadeInUp">-->
+<!--                    <div class="partner-heading text-center">  -->
+<!--                        <img src="<?=$this->url('index');?>backyard/images/partner/partner1.png" class="img-partner" />-->
+                        <!-- /.package name -->
+<!--                        <h3><?=$this->translate('Membre de la French Tech'); ?></h3> -->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <!-- /.package 2 -->
+<!--            <div class="col-sm-3">-->
+<!--                <div class="partner-box wow fadeInUp" data-wow-delay="0.2s">-->
+<!--                    <div class="partner-heading text-center">-->
+                        <!-- /.package icon -->
+<!--                        <img src="<?=$this->url('index');?>backyard/images/partner/partner2.png" class="img-partner" />-->
+                        <!-- /.package name -->
+<!--                        <h3><?=$this->translate('Standard'); ?></h3>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <!-- /.package 3 -->
+<!--            <div class="col-sm-3">-->
+<!--                <div class="partner-box wow fadeInUp" data-wow-delay="0.4s">-->
+<!--                    <div class="partner-heading text-center">-->
+                        <!-- /.package icon -->
+<!--                        <img src="<?=$this->url('index');?>backyard/images/partner/partner3.png" class="img-partner" />-->
+                        <!-- /.package name -->
+<!--                        <h3><?=$this->translate('Advance'); ?></h3>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <!-- /.package 4 -->
+<!--            <div class="col-sm-3">-->
+<!--                <div class="partner-box wow fadeInUp" data-wow-delay="0.6s">-->
+<!--                    <div class="partner-heading text-center">-->
+                        <!-- /.package icon -->
+<!--                        <img src="<?=$this->url('index');?>backyard/images/partner/partner4.png" class="img-partner" />-->
+                        <!-- /.package name -->
+<!--                        <h3><?=$this->translate('Ultimate'); ?></h3> -->
+<!--                    </div>-->
+<!--                </div> -->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div> -->
+<!--</div>-->
+<!-- /.contact section -->
+<!--<div id="contact"> -->
+<!--    <div class="contact fullscreen parallax" style="background-image:url('<?=$this->url('index');?>img/cta-banner.jpg');" data-img-width="2000" data-img-height="1334" data-diff="100">-->
+<!--        <div class="overlay">-->
+<!--            <div class="container">-->
+<!--                <div class="row contact-row">-->
+                    <!-- /.address and contact -->
+<!--                    <div class="col-sm-5 contact-left wow fadeInUp"> -->
+<!--                        <h2><span class="highlight"><?=$this->translate('Get'); ?></span> <?=$this->translate('in touch'); ?></h2>-->
+<!--                        <ul class="ul-address">-->
+<!--                            <li><i class="pe-7s-map-marker"></i><?=$this->translate('1600 Amphitheatre Parkway, Mountain View'); ?></br>-->
+<!--                                <?=$this->translate('California 55000'); ?>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <i class="pe-7s-phone"></i>-->
+<!--                                <a href="tel:+1 (123) 456-7890"><?=$this->translate('+1 (123) 456-7890'); ?></a></br>-->
+<!--                                <a href="tel:+2 (123) 456-7890"><?=$this->translate('+2 (123) 456-7890'); ?></a>-->
+<!--                            </li>-->
+<!--                            <li><i class="pe-7s-mail"></i><a href="mailto:info@zenovly.com">info@zenovly.com</a></li>-->
+<!--                            <li><i class="pe-7s-look"></i><a href="<?=$this->url('index');?><?=$lang;?>/">www.zenovly.com</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+                    <!-- /.contact form -->
+<!--                    <div class="col-sm-7 contact-right">-->
+                        <!--<form method="POST" id="contact-form" class="form-horizontal" onSubmit="alert( 'Thank you for your feedback!' );">-->
+<!--                        <form action="" method="post" role="form" id="contact-form" class="contactForm form-horizontal">-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" name="Name" id="contactus-name" class="form-control wow fadeInUp" placeholder="<?=$this->translate('Name'); ?>" required/>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" name="Email" id="contactus-email" class="form-control wow fadeInUp" placeholder="<?=$this->translate('Email'); ?>" required/>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                    <input type="text" class="form-control" name="subject" id="contactus-subject" placeholder="<?=$this->translate('Subject'); ?>" required/>-->
+<!--                                </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <textarea name="Message" rows="20" cols="20" id="contactus-message" class="form-control input-message wow fadeInUp"  placeholder="<?=$this->translate('Message'); ?>" required></textarea>-->
+<!--                            </div>-->
+<!--                            <div id="contact-result"></div>-->
+<!--                            <div class="form-group">-->
+                                <!--<input type="submit" name="submit" onclick="contactUs();" value="Submit" class="btn btn-success wow fadeInUp" />-->
+<!--                                <button type="button" onclick="contactUs();" class="btn btn-send btn-loader"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> <?=$this->translate('Send'); ?></button>-->
+<!--                            </div>-->
+<!--                        </form>		-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<?php
+include('footer.phtml');   
+?>
+

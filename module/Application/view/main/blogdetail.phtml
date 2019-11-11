@@ -1,0 +1,82 @@
+   
+<section class="pb_section" id="blogs">
+    <div class="container"> 
+    	<div class="row">  
+    		<div class="col-md-9">  
+    		  <?php      
+    		  //print_r($blogDetail);   
+    			if(!empty($blogDetail)){        
+    			?> 
+      			<h4 class="title-blog mb-5"><?=$this->translate('Blog'); ?> : <?=$blogDetail->name;?></h4>  
+      			
+      			<div class="row">
+              <div class="col-sm-12 text-center">   
+                <img src="<?=$blogDetail->img;?>" class="img-fluid img-blog" /> 
+              </div> 
+            </div> 
+            
+            <hr class="hr-blog" />
+            
+    			  <div class="row"> 
+              <div class="col-md-12">     
+                 
+                <div class="row">
+                  <div class="col-md-12">
+                    <p></p> 
+                    <p> 
+                        <i class="fa fa-calendar" aria-hidden="true"></i> <?=date("d F Y", strtotime($blogDetail->last_update));?>         
+                      | <i class="fa fa-eye" aria-hidden="true"></i> <?=number_format($blogDetail->view);?> <?=($blogDetail->view<=1)?'View':'Views';?>
+                    </p>
+                  </div>    
+                </div> 
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="blog-detail">
+                      <?=$blogDetail->detail;?> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <?php      
+            if(!empty($blogDetail->gallery)){       
+      			  foreach ($blogDetail->gallery as $items) {         
+      			?>
+              <div class="row gallery-list">   
+                <div class="col-sm-12 text-center">     
+                  <img src="<?=$items;?>" class="img-fluid img-blog" /> 
+                </div>
+              </div>
+            <?php
+      			  } 
+      			} 
+            ?>
+            <br> 
+            <div class="row"> 
+              <div class="col-sm-12"> 
+                <h4><?=$this->translate('Discutez avec nous'); ?></h4>
+                <div id="shareButtonLabel"></div> 
+              </div>
+            </div>
+            <hr> 
+    			<?php 
+    			} 
+    			?>
+    			<div class="row">
+            <div class="col-sm-12 text-center"> 
+              <div class="fb-comments" data-href="<?=$full_url;?>" data-width="100%"  data-numposts="5"></div>   
+            </div>
+          </div>
+    			
+    		</div> 
+    		
+    	  <div class="col-md-3">  
+    		  <?php
+    		  include_once('blog_list.phtml');    
+    		  ?>
+    		</div>
+    		 
+    	</div>
+    </div> 
+</section> 

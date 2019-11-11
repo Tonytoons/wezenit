@@ -1,0 +1,273 @@
+<?php  
+/*
+if($this->action == 'blogdetail') 
+{ 
+    $title=$this->blogDetail->name;  
+    $image = $this->blogDetail->img; 
+}
+else if($this->action == 'login') 
+{
+    $title=$this->translate('Login');
+}
+else if($this->action == 'profile') 
+{
+    $title=$this->translate('Profile');
+}
+else if($this->action == 'dashboard') 
+{
+    $title=$title=$this->translate('Dashboard');
+}
+else if($this->action == 'newpassword') 
+{
+    $title=$this->translate('New Password');
+}
+else if($this->action == 'register')  
+{
+    $title=$this->translate('Register Title');  
+}
+else 
+{
+    $title='Welcome '.$this->translate('Site name');  
+} 
+*/ 
+
+if(!empty($this->SEO['title']))$title=$this->SEO['title'];
+$this->headMeta()->appendName('keywords', !empty($this->SEO['keywords'])?$this->SEO['keywords']:'');
+$this->headMeta()->appendName('description', !empty($this->SEO['description'])?$this->SEO['description']:'');
+$this->headMeta()->setProperty('og:title', !empty($this->SEO['title'])?$this->SEO['title']:''); 
+$this->headMeta()->setProperty('og:description', !empty($this->SEO['description'])?$this->SEO['description']:'');
+$this->headMeta()->setProperty('og:url', !empty($this->SEO['url'])?$this->SEO['url']:$this->full_url);   
+$this->headMeta()->setProperty('og:image', !empty($this->SEO['image'])?$this->SEO['image']:$this->url('index').'img/noimage.png'); 
+$this->headMeta()->setProperty('og:image:type', 'image/jpeg'); 
+$this->headMeta()->setProperty('og:image:width', '400 ');
+$this->headMeta()->setProperty('og:image:height', '300');    
+$this->headMeta()->setProperty('og:site_name', $this->translate('Site name')); 
+$this->headMeta()->setProperty('og:locale', !empty($this->SEO['locale'])?$this->SEO['locale']:'fr_FR');     
+$this->headMeta()->setProperty('og:type', 'website');   
+$this->headMeta()->setProperty('fb:app_id', !empty($this->SEO['fb_app_id'])?$this->SEO['fb_app_id']:'128202497713838');
+$this->headMeta()->appendName('twitter:title', !empty($this->SEO['title'])?$this->SEO['title']:'');  
+$this->headMeta()->appendName('twitter:description', !empty($this->SEO['description'])?$this->SEO['description']:''); 
+$this->headMeta()->appendName('twitter:image:src', !empty($this->SEO['image'])?$this->SEO['image']:$this->url('index').'img/noimage.png'); 
+$this->headMeta()->appendName('twitter:card', 'summary');  
+$this->headMeta()->appendName('twitter:site', $this->translate('Site name'));       
+$this->headMeta()->appendName('twitter:creator', !empty($this->SEO['creator'])?$this->SEO['creator']:'@Zenovly');   
+$this->headMeta()->appendName('twitter:domain', !empty($this->SEO['domain'])?$this->SEO['domain']:'zenovly.com'); 
+$this->headTitle($title); 
+ 
+?>
+<script>
+<?php
+include('lang.phtml');   
+?> 
+var page = 1;
+var lang = '<?php echo $this->lang; ?>';
+var total = 0;
+var id = '<?php echo $this->id; ?>';
+var action = '<?php echo $this->action; ?>';
+var noCache = '<?php echo $this->nocache; ?>';
+var baseURL = '<?php echo $this->url('index'); ?>'; 
+var apiUrl = '<?php echo $this->Api_url; ?>';  
+var uimg = '';  
+</script> 
+<div id="fb-root"></div>  
+<!--loader-->
+<div id="loader" style="display:none;">  
+    <div class="loader-box">
+        <div class='loader'> 
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--dot'></div>
+            <div class='loader--text'></div>
+        </div>    
+    </div>  
+</div>  
+<!-- end loader-->
+
+<!--header-->
+<header class="main-header-<?=$this->action=='index'?'index':'not-index'?>" id="header">    
+    <div class="bg-color">   
+        <!--nav-->
+        <nav class="nav navbar-default navbar-fixed-top <?=$this->action!='index'?'top-nav-not-index':''?>"> 
+            <div class="container"> 
+                <div class="col-md-12">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="fa fa-bars"></span>
+                        </button> 
+                        <a href="<?= $this->url('index').$lang.'/'; ?>" class="navbar-brand"><?=$this->translate('Site name');?></a>  
+                    </div>
+                    <div class="collapse navbar-collapse navbar-right" id="mynavbar">
+                        <ul class="nav navbar-nav">
+                            <?php
+                            if($this->action=='index'){ 
+                            ?>
+                                <li> 
+                                    <a href="#header"><?=$this->translate('Home');?></a>
+                                </li>
+                                
+                                <!--<li>-->
+                                <!--    <a href="#feature"><?=$this->translate('Feature');?></a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                <!--    <a href="#portfolio"><?=$this->translate('Portfolio');?></a>-->
+                                <!--</li>-->
+                                <li>
+                                    <a href="#contact"><?=$this->translate('Contact');?></a>
+                                </li>
+                                <li id="menu-profile">    
+                                    <a href="<?= $this->url('index').$lang.'/profile'; ?>"></a>  
+                                </li> 
+                            <?php
+                            }else{ 
+                            ?>
+                                <li <?php if(0){ ?>class="active" <?php } ?>>   
+                                    <a href="<?= $this->url('index').$lang.'/'; ?>#header"><?=$this->translate('Home');?></a>
+                                </li>
+                                <!--<li>-->
+                                <!--    <a href="<?= $this->url('index').$lang.'/'; ?>#feature"><?=$this->translate('Feature');?></a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                <!--    <a href="<?= $this->url('index').$lang.'/'; ?>#portfolio"><?=$this->translate('Portfolio');?></a>-->
+                                <!--</li>  -->
+                                <!--<li>-->
+                                <!--    <a href="<?= $this->url('index').$lang.'/'; ?>#contact"><?=$this->translate('Contact');?></a> -->
+                                <!--</li>  -->
+                                <li id="menu-profile">    
+                                    <a href="<?= $this->url('index').$lang.'/profile'; ?>"></a>  
+                                </li>
+                            <?php
+                            }   
+                            ?> 
+                            <li>     
+                                <a href="<?= $this->url('index').$lang.'/blog'; ?>"><?=$this->translate('Blog');?></a>    
+                            </li>
+                            <?php 
+                            if($action=='contract'){   
+                            ?>
+                                <li id="user-login">     
+                                    <a href="<?= $this->url('index').$lang.'/contract/'.$eid.'/?task=login'; ?>"><?=$this->translate('Login');?></a>    
+                                </li>   
+                                <li id="user-register">          
+                                    <a href="<?= $this->url('index').$lang.'/contract/'.$eid.'/?task=register'; ?>"><?=$this->translate('Register');?></a>  
+                                </li> 
+                            <?php
+                            }else{  
+                            ?>
+                                <li id="user-login">    
+                                    <a href="<?= $this->url('index').$lang.'/login'; ?>"><?=$this->translate('Login');?></a>    
+                                </li> 
+                                <li id="user-register">        
+                                    <a href="<?= $this->url('index').$lang.'/register'; ?>"><?=$this->translate('Register');?></a>  
+                                </li> 
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if(0){
+                            ?>
+                            <li class="dropdown" id="user-login">  
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->translate('Login');?> <span class="caret"></span></a>
+                    			<ul id="login-dp" class="dropdown-menu">
+                    				<li>
+                    					 <div class="row">
+                    							<div class="col-md-12">
+                    								<?=$this->translate('Login via');?>
+                    								<div class="social-buttons">    
+                    									<button type="button" onclick="loginFB();" class="btn btn-fb"><i class="fa fa-facebook"></i> <?=$this->translate('Facebook');?></button> 
+                    								</div> 
+                                                    <?=$this->translate('or');?>
+                    								 <form class="form" role="form" method="post" action="" accept-charset="UTF-8" id="login-nav">
+                										<div class="form-group">
+                											 <label class="sr-only" for="login-email"><?=$this->translate('Email address');?></label> 
+                											 <input type="email" class="form-control" id="login-email" placeholder="<?=$this->translate('Email address');?>" required>
+                										</div>
+                										<div class="form-group"> 
+                											<label class="sr-only" for="login-password"><?=$this->translate('Password');?></label>  
+                											<input type="password" class="form-control" id="login-password" placeholder="<?=$this->translate('Password');?>" required>
+                                                            <div class="help-block text-right">
+                                                                <a href="#myModal" data-toggle="modal" data-target="#myModal"><?=$this->translate('Forget the password ?');?></a>
+                                                            </div> 
+                										</div>  
+                										<div class="form-group">   
+                											 <button type="button" onclick="userLogin();" class="btn btn-primary btn-block btn-sigin btn-loader"><?=$this->translate('Sign in');?></button> 
+                										</div>
+                										<div id="login-error"></div>  
+                    								 </form>
+                    							</div>
+                    							<div class="bottom text-center"> 
+                    								<?=$this->translate('New here ?');?> <a href="<?= $this->url('index').'fr/register'; ?>"><b><?=$this->translate('Join Us');?></b></a>
+                    							</div>
+                    					 </div>
+                    				</li> 
+                    			</ul>
+                            </li>  
+                            <?php
+                            }
+                            ?>
+                            
+                            <li class="dropdown">  
+                              <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?php echo $this -> url('index'); ?>img/flags/<?=$lang;?>.png" /> <span> <?=strtoupper($lang);?></span> <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <?php
+                                //$url_lang = ''; 
+                                //if($action!='index') $url_lang .= $action;   
+                                //if(!empty($id)) $url_lang .= '/'.$id.'/';   
+                                //if(!empty($act)) $lang .= '?act='.$act;   
+                                ?>   
+                                <li><a href="javascript:void(0);" onclick="switchLang('fr');"><img src="<?php echo $this -> url('index'); ?>img/flags/fr.png" /> <span> FR</span></a></li> 
+                                <li><a href="javascript:void(0);" onclick="switchLang('en');"><img src="<?php echo $this -> url('index'); ?>img/flags/en.png" /> <span> EN</span></a></li> 
+                              </ul> 
+                            </li>
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+        </nav> 
+        <!--/ nav--> 
+        <?php
+        if($this->action=='index'){  
+        ?>
+        <div class="container text-center">
+            <div class="wrapper wow" > 
+                <h2 class="top-title"><?=$this->translate('A trusted 3rd party for your renovation projects');?></h2>
+                <a href="javascript:gotoForm();" id="btn-goto-from" class="btn btn-submit" style="display:inline-block;width:40%"><?=$this->translate('I want to stay zen during my renovation project');?></a>
+               <a href="javascript:gotoFormSup();" id="btn-goto-from" class="btn btn-submit" style="display:inline-block;width:30%"><?=$this->translate('Supplier Form');?></a>
+                <h4 class="sub-title"><?=$this->translate('phonenumberbelow');?></h4>
+               
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+    </div>
+</header>   
+<!--/ header--> 
+<?php
+if(0){
+?>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><?=$this->translate('Forget the password ?');?></h4> 
+      </div>
+      <div class="modal-body"> 
+        <div id="forgot-email-result"></div>  
+        <div class="form-group">   
+			 <label class="control-label" for="login-email"><?=$this->translate('Email address');?></label>   
+			 <input type="email" class="form-control" id="forgot-email" name="forgot-email" placeholder="<?=$this->translate('Email address');?>">
+		</div>
+      </div>
+      <div class="modal-footer">       
+        <button type="button" onclick="forgotpassword();" class="btn btn-primary btn-forgotpassword btn-loader"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> <?=$this->translate('Send'); ?></button>   
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<?php
+}
+?>

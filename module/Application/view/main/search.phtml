@@ -1,0 +1,80 @@
+<section class="pb_section" id="search">
+    <div class="container"> 
+    	<div class="row">  
+    		<div class="col-md-9"> 
+    			<h4 class="title-blog mb-5"><?=$this->translate('Keyword'); ?> : <?=$search;?></h4> 
+    			
+    			<?php  
+    			//echo $dataSearch->total;
+    			if(!empty($dataSearch->total))
+    			{ 
+        			foreach ($dataSearch->items as $key=>$items) {       
+        			?>
+                    <div class="row">
+                        <?php
+                        if(!empty($items->img)){
+                        ?>
+                        <div class="col-md-4">  
+                            <a href="<?=$this->url('index').$lang.'/contractinfo/'.$items->id.'/';?>" class="thumbnail">        
+                                <img src="<?=$items->img;?>" alt="<?=$items->project_name;?>" class="img-fluid">     
+                            </a> 
+                        </div> 
+                        <?php 
+                        }else{ 
+                        ?>
+                         <div class="col-md-4">   
+                            <a href="<?=$this->url('index').$lang.'/contractinfo/'.$items->id.'/';?>" class="thumbnail">        
+                                <img src="<?=$this->url('index').'2018/assets/images/noimage.png';?>" alt="<?=$items->project_name;?>" class="img-fluid">      
+                            </a> 
+                        </div> 
+                        <?php
+                        }
+                        ?>
+                        <div class="col-md-8">   
+                            <div class="row">
+                              <div class="col-md-12">
+                                <a href="<?=$this->url('index').$lang.'/contractinfo/'.$items->id.'/';?>">
+                                  <h4 class="heading color-sky"><?=$items->project_name;?></h4> 
+                                </a> 
+                              </div>
+                            </div> 
+                            <p>Star Date : <?=$items->start_date;?></p> 
+                            <p>End Date : <?=$items->end_date;?></p>
+                            <p>Total Budget  : <?=number_format($items->total_price,2);?></p>  
+                            <p><a class="btn btn-primary" target="_blank" href="<?=$this->url('index').$lang.'/contractinfo/'.$items->id.'/';?>"><?=$this->translate('Read more'); ?></a></p>   
+                        </div>
+                    </div>  
+                    <hr> 
+        			<?php 
+        			} 
+    			}else{ 
+    			?>
+        			<div class="row">
+                        <div class="col-sm-12 text-center"> 
+                            <div class="alert alert-danger alert-dismissible fade show">
+                              <strong><?=$dataSearch->items;?></strong>
+                            </div> 
+                        </div>
+                    </div>
+    			<?php
+    			}
+    			?>
+    			<div class="row">
+                    <div class="col-sm-12 text-center"> 
+                        <?php  
+                        if(!empty($pagination)) print_r($pagination);      
+                        ?>
+                    </div>
+                </div>
+    			
+    			
+    			
+    		</div>
+    		<div class="col-md-3">  
+    		  <?php
+    		  include_once('blog_list.phtml');    
+    		  ?>
+    		</div>
+    	</div>
+    </div> 
+</section>   

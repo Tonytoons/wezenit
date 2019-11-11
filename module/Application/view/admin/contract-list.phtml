@@ -1,0 +1,122 @@
+<div class="panel panel-default">
+    <div class="panel-heading">  
+        Contract List    
+        <a href="<?php echo $this->url('index').'admin/contract/?task=add';?>" style="display:none;" class="btn btn-success btn-xs pull-right"><i class="fa fa-newspaper-o" aria-hidden="true"></i> New</a>
+    </div>   
+    <!-- /.panel-heading --> 
+    <div class="panel-body">
+        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTable"> 
+            <thead> 
+                <tr>  
+                    <th>#</th>  
+                    <th>Project name</th>
+                    <th>Start date</th> 
+                    <th>End date</th>
+                    <th>Contract number</th>
+                    <th>Buyer name</th>
+                    <th>Seller name</th>
+                    <th>Price</th> 
+                    <th>Create date</th>
+                    <th>Status</th>
+                    <th>Tracking</th>
+                    <th>Action</th> 
+                </tr>
+            </thead>
+            <tbody> 
+            </tbody> 
+        </table>
+    </div>  
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel --> 
+<script type="text/javascript">
+$(function(){    
+    table = $('#dataTable').DataTable( { 
+        ajax: basePath+'admin/contract/?task=list&rd='+makeid(),  
+        iDisplayLength: 50, 
+        "bSort": false, 
+        "serverSide": true,
+        "processing": true, 
+        aLengthMenu: [ 
+            [50, 100, 300, 500], 
+            [50, 100, 300, 500]  
+        ],  
+        columns: [ 
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                   var pageNo = table.page.info(); 
+                   //console.log(((iRow+1)+pageNo.start)); 
+                   $(nTd).html(((iRow+1)+pageNo.start));    
+                },  
+            }, 
+            { "data": "project_name" },
+            { "data": "start_date" },
+            { "data": "end_date" },
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    var name = '-';
+                    if(oData.contract_number){
+                        name = oData.contract_number;
+                    } 
+                    $(nTd).html(name);    
+                }
+            },
+            { "data": "buyer_name" },
+            { "data": "seller_name" },
+            { "data": "price" },  
+            { "data": "added_date" },  
+            { "data": "text_status" },
+            { "data": "shipping_tracking_number" },
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {  
+                    var html = '';   
+                    var url_file = '<?=$urlFile;?>/contract/'+sData.contract_img; 
+                    if(sData.contract_img){ 
+                        //html += ' <a class="btn btn-primary btn-xs" href="'+url_file+'" download><i class="fa fa-download" aria-hidden="true"></i>  Download</a> <br/><br/>';  
+                    }
+                    
+                    html += ' <a class="btn btn-primary btn-xs" href="'+basePath+'fr/contractinfo/'+oData.id+'/?from=admin&rd='+makeid()+'" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>  View</a> <br/><br/>';
+                    html += ' <a class="btn btn-info btn-xs" href="'+basePath+'admin/contract/'+oData.id+'?task=edit"><i class="fa fa-edit"></i>  Edit</a> <br/><br/>';
+                    html += ' <a class="btn btn-danger btn-xs" href="'+basePath+'admin/contract/'+oData.id+'?task=del"onclick="return confirm(\'Are you sure you want to delete. !\');" ><i class="fa fa-trash-o"></i>  Delete</a> <br/>';
+                     
+                    if(oData.status=='5' && oData.buyer.mangopay_id!=null && oData.seller.mangopay_bank_id!=null && oData.buyer.mangopay_wallet!=null){      
+                        //html += '<br/><button class="btn btn-success btn-xs" onclick="payoutDone('+oData.id+','+oData.buyer.id+','+oData.buyer.mangopay_id+','+oData.buyer.mangopay_wallet+','+oData.seller.mangopay_bank_id+',this);"><i class="fa fa-credit-card"></i>  Done</button> <br/><br/>';
+                        html += '<br/><button class="btn btn-success btn-xs" onclick="payoutDone('+oData.id+',this);"><i class="fa fa-credit-card"></i>  Done</button> <br/><br/>';  
+                    }  
+                    $(nTd).html(html);           
+                },
+            }, 
+        ], 
+        createdRow : function( row, data, index ) { 
+            //$(row).attr('data-id', data.pkbook);
+        }
+    }); 
+});
+ 
+  
+function payout(cid, uid, mangopay_id, walletId, bankID, ths){  
+    btn_loader = $(ths); 
+    $(btn_loader).buttonLoader('start'); 
+    var url = basePath+'admin/contract/?task=payout&cid='+cid+'&uid='+uid+'&mangopay_id='+mangopay_id+'&walletId='+walletId+'&bankID='+bankID+'&rd='+makeid();
+    $.get(url, function(rs){   
+        if(rs.status==200){    
+            table.ajax.reload( null, false );   
+        } 
+        alert(rs.items);   
+        $(btn_loader).buttonLoader('stop');  
+    },'json');
+} 
+
+function payoutDone(cid, ths){  
+    btn_loader = $(ths); 
+    $(btn_loader).buttonLoader('start');  
+    var url = basePath+'admin/contract/?task=payoutDone&cid='+cid+'&rd='+makeid();
+    $.get(url, function(rs){    
+        if(rs.status==200){     
+            table.ajax.reload( null, false );   
+        } 
+        alert(rs.items);   
+        $(btn_loader).buttonLoader('stop');  
+    },'json');
+} 
+</script>

@@ -1,0 +1,107 @@
+<div class="panel panel-default">
+    <div class="panel-heading">  
+        Contract List    
+        <a href="<?php echo $this->url('index').'admin/contract/?task=add';?>" class="btn btn-success btn-xs pull-right"><i class="fa fa-newspaper-o" aria-hidden="true"></i> New</a>
+    </div>   
+    <!-- /.panel-heading --> 
+    <div class="panel-body">
+        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTable"> 
+            <thead> 
+                <tr> 
+                    <th>#</th>  
+                    <th>Start Date</th> 
+                    <th>End Date</th> 
+                    <th>Serial No.</th> 
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Phone</th> 
+                    <th>Email</th>
+                    <th>Price</th> 
+                    <th>Service Price</th>
+                    <th>Total Price</th> 
+                    <th>Create Date</th>
+                    <th>Status</th>
+                    <th>Action</th> 
+                </tr>
+            </thead>
+            <tbody> 
+            </tbody>
+        </table>
+    </div>  
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel --> 
+<script type="text/javascript">
+$(function(){    
+    table = $('#dataTable').DataTable( {
+        ajax: basePath+'admin/contract/?task=list',  
+        iDisplayLength: 50, 
+        "bSort": false, 
+        "serverSide": true,
+        "processing": true, 
+        aLengthMenu: [ 
+            [50, 100, 300, 500], 
+            [50, 100, 300, 500]  
+        ],  
+        columns: [ 
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                   var pageNo = table.page.info(); 
+                   //console.log(((iRow+1)+pageNo.start)); 
+                   $(nTd).html(((iRow+1)+pageNo.start));    
+                },  
+            }, 
+            { "data": "start_date" },
+            { "data": "end_date" },
+            { "data": "serial_number" },
+            { "data": "contract_name" },
+            { "data": "contract_company" },
+            { "data": "contract_phone" },
+            { "data": "contract_email" },
+            { "data": "price" }, 
+            { "data": "service_price" },
+            { "data": "total_price" }, 
+            { "data": "added_date" },
+            { "data": "text_status" },
+            /*
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) { 
+                    //0=pending, 1=accepted(supplier accepted), 2=start, 3=done, 4=looking for supplier, 5=paid, 6=waiting for money, 7=refund
+                    var status = 'Pending';
+                    if(sData.status==1){
+                        status = 'Accepted'; 
+                    }else if(sData.status==2){ 
+                        status = 'Start'; 
+                    }else if(sData.status==3){
+                        status = 'Done'; 
+                    }else if(sData.status==4){
+                        status = 'Looking for supplier'; 
+                    }else if(sData.status==5){
+                        status = 'Paid';  
+                    }else if(sData.status==6){
+                        status = 'Waiting for money'; 
+                    }else if(sData.status==7){
+                        status = 'Refund'; 
+                    } 
+                    $(nTd).html(status); 
+                }
+            }, */ 
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {  
+                    var html = '';   
+                    var url_file = '<?=$urlFile;?>/contract/'+sData.contract_img; 
+                    if(sData.contract_img){ 
+                        html += ' <a class="btn btn-primary btn-xs" href="'+url_file+'" download><i class="fa fa-download" aria-hidden="true"></i>  Download</a> <br/><br/>'; 
+                    }
+                    html += ' <a class="btn btn-info btn-xs" href="'+basePath+'admin/contract/'+oData.id+'?task=edit"><i class="fa fa-edit"></i>  Edit</a> <br/><br/>';
+                    html += ' <a class="btn btn-danger btn-xs" href="'+basePath+'admin/contract/'+oData.id+'?task=del"onclick="return confirm(\'Are you sure you want to delete. !\');" ><i class="fa fa-trash-o"></i>  Delete</a> <br/>';
+                    $(nTd).html(html);      
+                },
+            }, 
+        ], 
+        createdRow : function( row, data, index ) { 
+            //$(row).attr('data-id', data.pkbook);
+        }
+    }); 
+});
+</script>

@@ -1,0 +1,752 @@
+<style>
+    
+    a {
+    color: #7a1489;
+    font-family: Lato;
+    font-weight: 500;
+    -webkit-transition: all .8s ease;
+    /*transition: all .8s ease;*/
+    padding-left: 10px;
+    font-size: 15px;
+}
+    
+    
+</style>
+<div id="app" class="home-img">    
+<?php  
+  include("header.phtml"); 
+  include('menu.phtml');
+?> 
+    <div class="content">    
+        <!--profile-->
+        <div class="profile" id="profile">  
+        	<?php 
+        	  $page = array('profile','dashboard','newpassword');  
+        	  if(1){     
+        	?>  
+        	<div class="container">  
+        		<div class="row">
+        			<div class="col-md-3">
+        				<div class="profile-sidebar">
+        					<!-- SIDEBAR USERPIC -->
+        					<div class="profile-userpic"  id="profile-img-preview">
+        					    <?php
+        					    if(!empty($userProfile->image)){  
+        					    ?>
+        					    <img src="https://files.renovly.com/users/<?=$userProfile->image;?>" class="img-responsive" id="img-profile" alt="">
+        					    <script type="text/javascript">
+        					        uimg = 'https://files.renovly.com/users/<?=$userProfile->image;?>'; 
+        					    </script>
+        					    <?php
+        					    }else{ 
+        					    ?>
+        					    <script type="text/javascript">
+        					        uimg = 'https://files.renovly.com/setting/avatar.jpg';
+        					    </script>
+        						<img src="https://files.renovly.com/setting/avatar.jpg" class="img-responsive" id="img-profile" alt="">
+        					    <?php
+        					    }
+        					    ?>
+        					    
+        					</div>    
+        					<!-- END SIDEBAR USERPIC -->
+        					<!-- SIDEBAR USER TITLE -->
+        					<div class="profile-usertitle"> 
+        						<div class="profile-usertitle-name" id="usertitle" style="display:none;">  
+        							xxx
+        						</div> 
+        						<div id="imgP-result"></div>  
+        						<div class="profile-userbuttons">  
+        						  <input type="file" id="upload" style="display:none;">    
+        						  <button type="button" id="btn-NewUpload" class="btn btn-success btn-sm" onclick="$('#upload').click();">  
+        								<?=$this->translate('New Photo'); ?> 
+        							</button>  
+        							<button type="button" id="btn-UploadImg"  class="btn btn-success btn-sm btn-loader" onclick="uploadIMG();">   
+        								<?=$this->translate('Upload Photo'); ?> 
+        							</button>
+        							<button type="button" id="btn-CancelImg" class="btn btn-danger btn-sm" onclick="uploadCal();">  
+        								<?=$this->translate('Cancal'); ?>
+        							</button> 
+        						</div>
+        					</div>
+        					<!-- END SIDEBAR USER TITLE -->
+         
+        					<!-- SIDEBAR MENU --> 
+        					<div class="profile-usermenu">  
+        						<ul class="nav">
+        							<li class="<?=$action=='dashboard'?'active':''?>">  
+        								<a href="<?= $this->url('index').$lang.'/'; ?>dashboard/"><i class="fa fa-tachometer" aria-hidden="true"></i> <?=$this->translate('Dashboard'); ?> </a>
+        							</li>
+        							<li class="<?=$action=='profile'?'active':''?>">
+        								<a href="<?= $this->url('index').$lang.'/'; ?>profile/"><i class="fa fa-user" aria-hidden="true"></i> <?=$this->translate('Profile'); ?> </a>
+        							</li> 
+        							<li class="<?=$action=='newpassword'?'active':''?>"> 
+        								<a href="<?= $this->url('index').$lang.'/'; ?>newpassword/"><i class="fa fa-key" aria-hidden="true"></i> <?=$this->translate('New Password'); ?> </a>
+        							</li>
+        							
+        							<li class="<?=$action=='contractlist'?'active':''?>">  
+        								<a href="<?= $this->url('index').$lang.'/'; ?>seller/"><i class="fa fa-address-card-o" aria-hidden="true"></i> <?=$this->translate('Seller list'); ?> </a> 
+        							</li>
+        							
+        							<li class="<?=$action=='historylist'?'active':''?>">  
+        								<a href="<?= $this->url('index').$lang.'/'; ?>buyer/"><i class="fa fa-address-card-o" aria-hidden="true"></i> <?=$this->translate('Buyer list'); ?> </a>  
+        							</li>
+        							
+        							<?php    
+        							if(0){            
+        							?>
+        							<li class="<?=$action=='consumer'?'active':''?>"> 
+        								<a href="<?= $this->url('index').$lang.'/'; ?>consumer/"><i class="fa fa-address-card-o" aria-hidden="true"></i> <?=$this->translate('Consumer Contract'); ?> </a> 
+        							</li>
+        							<?php if($userProfile->type=='supplier'){ ?>
+        							<li class="<?=$action=='supplier'?'active':''?>">  
+        								<a href="<?= $this->url('index').$lang.'/'; ?>supplier/"><i class="fa fa-address-book-o" aria-hidden="true"></i> <?=$this->translate('Supplier Contract'); ?> </a> 
+        							</li>
+        							<?php } }?>
+        							<li>
+        								<a href="javascript:logOut();"> <i class="fa fa-sign-out" aria-hidden="true"></i> <?=$this->translate('Log Out'); ?> </a> 
+        							</li>
+        						</ul>
+        					</div>
+        					<!-- END MENU -->
+        				</div>
+        			</div>
+        			<div class="col-md-9">
+                        <?php
+    					if($this->action=='dashboard'){
+    					?> 
+        				<div class="profile-content" id="dashboardContent">
+        					
+        					<legend>
+        						<?=$this->translate('Dashboard'); ?>
+        					</legend>
+        					
+        					<div class="row">
+        					    
+        					    <?php
+        					    if($userProfile->type=='supplier'){
+        					    ?>
+        						<div class="col-lg-6 col-md-12">
+        							<div class="panel panel-primary">
+        								<div class="panel-heading">
+        									<div class="row">
+        										<div class="col-xs-3">
+        											<i class="fa fa-address-card-o fa-5x"></i>
+        										</div>
+        										<div class="col-xs-9 text-right">
+        											<div class="huge">
+        												<?=number_format($contract->total); ?>
+        											</div>
+        											<div> 
+        												<?=$this->translate('Consumer Contract'); ?>
+        											</div>
+        										</div>
+        									</div> 
+        								</div>
+        								<a href="<?= $this->url('index').$lang.'/'; ?>consumer/">  
+        								<div class="panel-footer">
+        									<span class="pull-left"><?=$this->translate('View'); ?></span>
+        									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+        									<div class="clearfix"></div>
+        								</div> </a>
+        							</div>
+        						</div> 
+        						
+        						<div class="col-lg-6 col-md-12">
+        							<div class="panel panel-green">
+        								<div class="panel-heading">
+        									<div class="row">
+        										<div class="col-xs-3">
+        											<i class="fa fa-address-book-o fa-5x"></i>
+        										</div>
+        										<div class="col-xs-9 text-right">
+        											<div class="huge">
+        												<?=number_format($supplier->total); ?>
+        											</div>
+        											<div>
+        												<?=$this->translate('Supplier Contract'); ?>
+        											</div>
+        										</div>
+        									</div>
+        								</div>
+        								<a href="<?= $this->url('index').$lang.'/'; ?>supplier/"> 
+        								<div class="panel-footer"> 
+        									<span class="pull-left"><?=$this->translate('View'); ?></span> 
+        									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+        									<div class="clearfix"></div>
+        								</div> </a>
+        							</div>
+        						</div>
+        						
+        						<?php 
+        					    }  
+        					    
+        						if(0){
+        						?>
+        						<div class="col-lg-6 col-md-12">
+        							<div class="panel panel-yellow">
+        								<div class="panel-heading">
+        									<div class="row">
+        										<div class="col-xs-3">
+        											<i class="fa fa-shopping-cart fa-5x"></i>
+        										</div>
+        										<div class="col-xs-9 text-right">
+        											<div class="huge">
+        												124
+        											</div>
+        											<div>
+        												New Orders!
+        											</div>
+        										</div>
+        									</div>
+        								</div>
+        								<a href="#">
+        								<div class="panel-footer">
+        									<span class="pull-left">View Details</span>
+        									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+        									<div class="clearfix"></div>
+        								</div> </a>
+        							</div>
+        						</div>
+        						<div class="col-lg-6 col-md-12">
+        							<div class="panel panel-red">
+        								<div class="panel-heading">
+        									<div class="row">
+        										<div class="col-xs-3">
+        											<i class="fa fa-support fa-5x"></i>
+        										</div>
+        										<div class="col-xs-9 text-right">
+        											<div class="huge"> 
+        												13
+        											</div>
+        											<div>
+        												Support Tickets!
+        											</div>
+        										</div>
+        									</div>
+        								</div>
+        								<a href="#">
+        								<div class="panel-footer">
+        									<span class="pull-left">View Details</span>
+        									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+        									<div class="clearfix"></div>
+        								</div> </a>
+        							</div>
+        						</div>
+        						<?php
+        						}  
+        						?>
+        					</div>
+        				</div>
+                        <?php
+        				}
+    					if($this->action=='newpassword'){
+    					?> 
+        				<!--New Pass-->
+        				<div class="profile-content" id="newpassContent">
+        				  
+        					<legend>
+        						<?=$this->translate('New Password'); ?>
+        					</legend>
+        					<div class="row">
+        					    <div id="result"></div>
+        						<form class="form-horizontal" id="form-profile" name="form-newpass" action=""  method="post">
+        							<fieldset>
+                                        
+        								<div class="form-group">
+        									<label class="col-md-3 control-label" for="profile-oldpassword"><?=$this->translate('Old Password'); ?></label>
+        									<div class="col-md-6">
+        										<input id="profile-oldpassword" name="profile-oldpassword" type="password" placeholder="<?=$this->translate('Old Password'); ?>" class="form-control input-md">
+        									</div>
+        								</div>   
+        
+        								<div class="form-group">
+        									<label class="col-md-3 control-label" for="profile-newpass"><?=$this->translate('New Password'); ?></label>
+        									<div class="col-md-6">
+        										<input id="profile-newpass" name="profile-newpass" type="password" placeholder="<?=$this->translate('New Password'); ?>" class="form-control input-md">
+        									</div>
+        								</div> 
+        
+        								<div class="form-group">
+        									<label class="col-md-3 control-label" for="New Password"><?=$this->translate('Confirm Password'); ?></label>
+        									<div class="col-md-6">
+        										<input id="profile-confnewpass" name="profile-confnewpass" type="password" placeholder="<?=$this->translate('Confirm Password'); ?>" class="form-control input-md">
+        									</div>
+        								</div>
+        								<div class="form-group">
+        									<label class="col-md-3 control-label" ></label>  
+        									<div class="col-md-6"> 
+        									    <button type="submit" onclick="newPassword();" class="btn btn-success btn-loader"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?=$this->translate('Change password'); ?></button> 
+        									</div>
+        								</div>   
+           
+        							</fieldset>
+        						</form>
+        					</div>
+        				</div>
+                        <?php
+        	             }
+      					if($this->action=='profile'){   
+      				    ?>
+        				<div class="profile-content" id="profileContent">
+        				  
+        					<legend>
+        						<?=$this->translate('General Profile'); ?>
+        					</legend> 
+        					<div class="row">
+        					    
+            					<div id="result"></div>   
+        					     
+              					<form class="form-horizontal" id="form-profile" name="form-profile" action="" method="post">  
+              						<fieldset> 
+              							<!-- Text input-->
+              							<div class="form-group"> 
+              								<label class="col-md-4 control-label" for="Name (Full name)"><?=$this->translate('Full name'); ?></label>
+              								<div class="col-md-6">
+              									<input id="profile-name" name="profile-name" type="text" placeholder="<?=$this->translate('Full name'); ?>" value="<?=$userProfile->name;?>" class="form-control input-md">
+              								</div>
+              							</div>
+              
+              							<div class="form-group">
+              								<label class="col-md-4 control-label" for="profile-email"><?=$this->translate('Email Address'); ?></label>
+              								<div class="col-md-6">
+              									<input id="profile-email" name="profile-email"  type="text" placeholder="<?=$this->translate('Email Address'); ?>" class="form-control input-md" value="<?=$userProfile->email;?>">
+                                            </div>
+              							</div>
+              
+              							<!-- Text input-->
+              							<div class="form-group">
+              								<label class="col-md-4 control-label" for="Date Of Birth"><?=$this->translate('Date Of Birth'); ?></label>
+              								<div class="col-md-6">
+                                                <input id="profile-birthday" name="profile-birthday" type="text" value="<?=date("m/d/Y",strtotime($userProfile->birth_day));?>" placeholder="<?=$this->translate('Date Of Birth'); ?>" class="form-control input-md" readonly> 
+              								</div>
+              							</div> 
+              
+              							<!-- Multiple Radios (inline) -->
+              							<div class="form-group">
+              								<label class="col-md-4 control-label" for="Gender"><?=$this->translate('Gender'); ?></label>
+              								<div class="col-md-6">
+              									<select id="profile-gender" name="profile-gender" class="form-control input-md"> 
+              										<option value="1" <?=$userProfile->gender==1?'selected':'';?>><?=$this->translate('Male'); ?></option>
+              										<option value="2" <?=$userProfile->gender==2?'selected':'';?>><?=$this->translate('Female'); ?></option> 
+              										<option value="0" <?=$userProfile->gender==0?'selected':'';?>><?=$this->translate('Other'); ?></option>
+              									</select>
+              								</div>
+              							</div>
+              
+              							<!-- Text input-->
+              							<div class="form-group">
+              								<label class="col-md-4 control-label" for="Phone number "><?=$this->translate('Phone number'); ?> </label>
+              								<div class="col-md-6">
+              									<input id="profile-phone" name="profile-phone" type="text" value="<?=$userProfile->phone;?>" placeholder="<?=$this->translate('Phone number'); ?>" class="form-control input-md">
+              								</div>
+              							</div>  
+              
+              							<div class="form-group">
+              								<label class="col-md-4 control-label" for="profile-address"><?=$this->translate('Address'); ?></label>
+              								<div class="col-md-6">
+              									<textarea id="profile-address" name="profile-address" rows="5" class="form-control input-md"><?=$userProfile->address;?></textarea>
+              								</div> 
+              							</div>
+              
+              							<div class="form-group">
+              								<label class="col-md-4 control-label" ></label>    
+              								<div class="col-md-6">    
+              									<button type="submit" onclick="editProfile();" class="btn btn-success btn-loader"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?=$this->translate('Save'); ?></button> 
+              								</div> 
+              							</div> 
+              
+              						</fieldset>
+              					</form>
+              				</div>
+              				<br>
+              				<br>
+              				<legend class="txt-company-info" onclick="$('#company-info').toggle('slow');">  
+        						<?=$this->translate('Company info'); ?>
+        					</legend> 
+        					<?php
+        					$display='';  
+        					if($userProfile->type!='supplier'){     
+        					    $display='display-none';     
+        					} 
+        					?> 
+              				<div class="row <?=$display;?>" id="company-info" data-type="<?=$userProfile->type;?>">      
+            					<div id="result-company"></div> 
+            					<form class="form-horizontal" id="form-company" name="form-profile" action="" method="post">  
+              						<fieldset>   
+              							<div class="form-group">
+              								<label class="col-md-4 control-label" for="company_name"><?php echo $this->translate('Company Name'); ?></label> 
+              								<div class="col-md-6">
+              									<input id="company_name" name="company_name" type="text" value="<?=$userProfile->company_name;?>" placeholder="<?=$this->translate('Company Name'); ?>" class="form-control input-md">
+              								</div> 
+              							</div>
+              							
+              							<div class="form-group">
+        									<label class="col-md-4 control-label" for="company_address"><?php echo $this->translate('Company Address'); ?></label>  
+        									<div class="col-md-6"> 
+        									    <textarea id="company_address" name="company_address" placeholder="<?php echo $this->translate('Company Address'); ?>" rows="3" class="form-control input-md"><?=$userProfile->company_address;?></textarea>
+        									</div>
+        								</div>
+        								<div class="form-group">
+        									<label class="col-md-4 control-label" for="company_mobile_number"><?php echo $this->translate('Mobile Phone Number'); ?></label> 
+        									<div class="col-md-6"> 
+        										<input id="company_mobile_number" name="company_mobile_number" type="text" value="<?=$userProfile->company_mobile_phone;?>" placeholder="<?php echo $this->translate('Mobile Phone Number'); ?>" class="form-control input-md">
+        									</div>
+        								</div>
+        								<div class="form-group">
+        									<label class="col-md-4 control-label" for="company_landline_number"><?php echo $this->translate('Landline Phone Number'); ?></label> 
+        									<div class="col-md-6"> 
+        										<input id="company_landline_number" name="company_landline_number" type="text" value="<?=$userProfile->company_phone;?>" placeholder="<?php echo $this->translate('Landline Phone Number'); ?>" class="form-control input-md">
+        									</div>
+        								</div>
+        								<div class="form-group">   
+        									<label class="col-md-4 control-label" for="company_email_supplier"><?php echo $this->translate('Company Email'); ?></label>        
+        									<div class="col-md-6"> 
+        										<input id="company_email_supplier" name="company_email_supplier" type="email" value="<?=$userProfile->company_email;?>"  placeholder="<?php echo $this->translate('Company Email'); ?>" class="form-control input-md">
+        									</div>
+        								</div>   
+              							
+              							<div class="form-group">  
+              								<label class="col-md-4 control-label" ></label>     
+              								<div class="col-md-6">     
+              									<button type="submit" onclick="editCompanyInfo();" class="btn btn-success btn-loader"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?=$this->translate('Save'); ?></button> 
+              								</div> 
+              							</div>
+              							
+              						</fieldset>
+              					</form>  
+              				</div> 	    
+              				
+              				
+              				<legend>
+        						<?=$this->translate('Bank info'); ?> 
+        					</legend> 
+              				<div class="row">     
+            					<div id="result-bank"></div>    
+            					<form class="form-horizontal" id="form-bank" name="form-bank" action="" method="post">  
+              						<fieldset>       
+              						    <div class="form-group">     
+              						        <input type="hidden" name="mangopay_id" id="mangopay_id" value="<?=$userProfile->mangopay_id;?>" /> 
+        									<label class="col-md-4 control-label" for="iban_account"><?php echo $this->translate('ibank account'); ?></label> 
+        									<div class="col-md-6">  
+        										<input id="iban_account" name="iban_account" type="text" value="" placeholder="<?php echo $this->translate('ibank account'); ?>" class="form-control input-md">
+        									</div>
+        								</div>   
+        								<div class="form-group">
+        									<label class="col-md-4 control-label" for="userbnak_name"><?php echo $this->translate('bank account name'); ?></label> 
+        									<div class="col-md-6">  
+        										<input id="userbnak_name" name="userbnak_name" type="text" value="" placeholder="<?php echo $this->translate('bank account name'); ?>" class="form-control input-md">
+        									</div>
+        								</div> 
+        								<div class="form-group">
+        									<label class="col-md-4 control-label" for="bic_code"><?php echo $this->translate('bic code'); ?></label> 
+        									<div class="col-md-6">  
+        										<input id="bic_code" name="bic_code" type="text" value="" placeholder="<?php echo $this->translate('bic code'); ?>" class="form-control input-md">
+        									</div>
+        								</div>   
+        								<div class="form-group">
+        									<label class="col-md-4 control-label" for="userbank_address"><?php echo $this->translate('Address'); ?></label>  
+        									<div class="col-md-6"> 
+        									    <textarea id="userbank_address" name="userbank_address" placeholder="<?php echo $this->translate('Address'); ?>" rows="3" class="form-control input-md"></textarea>
+        									</div>
+        								</div>
+              							<div class="form-group"> 
+              								<label class="col-md-4 control-label" ></label>    
+              								<div class="col-md-6">    
+              									<button type="submit" onclick="addBank();" class="btn btn-success btn-loader"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?=$this->translate('Save'); ?></button> 
+              								</div> 
+              							</div> 
+              						</fieldset>
+              					</form>
+            					
+              				</div>				    
+              				
+              				<legend>
+        						<?=$this->translate('Connect social network'); ?>
+        					</legend> 
+              				<div class="row"> 
+            					<div id="result-social"></div> 
+            					<form class="form-horizontal" id="form-facebook" name="form-profile" action="" method="post">  
+              						<fieldset> 
+              							<div class="form-group"> 
+              								<label class="col-md-1 control-label" for="facebook"></label>
+              								<div class="col-md-4">
+              								    <?php 
+              								    if(!empty($userProfile->facebook_id)){                  								   
+              								    ?>
+              								    <button class="btn btn-lg btn-facebook disabled"  type="button" id="btn-connect-fb" >   
+                            						<i class="fa fa-facebook" aria-hidden="true"></i> <?=$this->translate('Connected Facebook'); ?>    
+                            					</button> 
+                            					<?php 
+              								    }else{ 
+                            					?>
+                            					<button class="btn btn-lg btn-facebook btn-loader" id="btn-connect-fb" type="button" onclick="connectFB();">
+                            						<i class="fa fa-facebook" aria-hidden="true"></i> <?=$this->translate('Connect With Facebook'); ?>    
+                            					</button>
+                            					<?php
+              								    }  
+                            					?>
+              								</div> 
+              							</div> 
+              						</fieldset>
+              					</form>
+            					
+              				</div>
+              				
+              				
+          				</div>
+              			<?php
+      					}else if($action=='buyer'){    
+    					?>
+        				<div class="profile-content" id="supplierContent">
+        				  
+        					<legend>
+        						<?=$this->translate('Buyer Contract'); ?>
+        					</legend>
+        					<div class="row"> 
+        					    
+        					    <div class="card"> 
+        					           
+                                    <ul class="nav nav-tabs" role="tablist"> 
+                                        <?php
+                                        $status_no = 0;
+                                        foreach($ar_status AS $item){  
+                                            //$status_no!=1 && $status_no!=2 && $status_no!=4
+                                            if($status_no!=4){     
+                                        ?>
+                                        <li role="presentation" class="items<?=$status_no;?> <?php echo ($status_no==0)?'active':''?>"><a href="#items<?=$status_no;?>" onclick="getByStatus('<?=$status_no;?>');" aria-controls="home" role="tab" data-toggle="tab"><?=$item;?></a></li> 
+                                        <?php 
+                                            } 
+                                            $status_no++;    
+                                        }
+                                        ?>
+                                    </ul> 
+                                    
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="all"> 
+                                            <table class="table table-responsive" id="dataTable">
+                                                <thead> 
+                                                    <th>#</th> 
+                                                    <th>Project</th>  
+                                                    <th>Price</th>
+                                                    <th>Start date</th>
+                                                    <th>End date</th> 
+                                                    <th>Action</th> 
+                                                </thead>
+                                                <tbody id="contract-list">   
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-sm-12 text-center">   
+                                        <ul id="pagination" class="pagination-sm"></ul>
+                                    </div>
+                                </div>
+                                
+                                
+                                <?php
+                                if(0){ 
+                                ?>
+        					    <div class="table-responsive"> 
+                                    <table class="table table-responsive" id="dataTable"> 
+                                        <thead> 
+                                            <th>#</th>  
+                                            <th>Project</th> 
+                                            <th>Name</th>
+                                            <th>Price</th> 
+                                            <th>Start date</th> 
+                                            <th>End date</th> 
+                                            <th>Status</th>  
+                                            <th>Action</th> 
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            $no = ($pageStart+1);  
+                                            if($supplier->total>0){ 
+                                                foreach($supplier->items AS $key=>$iems){
+                                            ?>
+                                                <tr> 
+                                                    <td><?=$no;?></td>
+                                                    <td><?=$iems->contract_name;?></td> 
+                                                    <td><?=$iems->contract_company;?></td> 
+                                                    <td><?=number_format($iems->total_price, 2);?></td> 
+                                                    <td><?=date("m/d/Y", strtotime($iems->start_date));?></td>
+                                                    <td><?=date("m/d/Y", strtotime($iems->end_date));?></td>
+                                                    <?php
+                                                    $tag_status = '<span class="label label-warning">'.$ar_status[$iems->status].'</span>'; 
+                                                    if($iems->status==1)$tag_status = '<span class="label label-info">'.$ar_status[$iems->status].'</span>';
+                                                    if($iems->status==2)$tag_status = '<span class="label label-primary">'.$ar_status[$iems->status].'</span>';
+                                                    if($iems->status==3)$tag_status = '<span class="label label-success">'.$ar_status[$iems->status].'</span>';
+                                                    ?>
+                                                    <td><?=$tag_status;?></td>  
+                                                </tr>
+                                            <?php 
+                                                    $no++;  
+                                                }
+                                            }else{
+                                            ?>
+                                                <tr> 
+                                                    <td colspan="7" class="text-center"><?=$this->translate('Not Supplier Contract !'); ?></td> 
+                                                </tr>
+                                            <?php 
+                                            } 
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?php 
+                                } 
+                                ?>
+    					    </div>
+    					    <?php  
+    					    if(0){
+    					    ?>
+    					    <div class="row"> 
+                                <div class="col-sm-12 text-center"> 
+                                    <?php  
+                                    if(!empty($pagination)) print_r($pagination);     
+                                    ?>
+                                </div>
+                            </div>
+                            <?php
+    					    }
+                            ?>
+    					</div> 
+    					<?php
+    					
+      					}else if($action=='seller'){   
+      					    
+    					?>
+        				<div class="profile-content" id="contractContent">
+        				   
+        					<legend>
+        						<?=$this->translate('Seller Contract'); ?>
+        					</legend>
+        					<div class="row"> 
+        					 
+        					    <div class="card"> 
+        					           
+                                    <ul class="nav nav-tabs" role="tablist"> 
+                                        <?php 
+                                        $status_no = 0;
+                                        foreach($ar_status AS $item){ 
+                                            //$status_no!=1 && $status_no!=2 && $status_no!=4 
+                                            if($status_no!=4){    
+                                        ?>
+                                        <li role="presentation" class="items<?=$status_no;?> <?php echo ($status_no==0)?'active':''?>"><a href="#items<?=$status_no;?>" onclick="getByStatus('<?=$status_no;?>');" aria-controls="home" role="tab" data-toggle="tab"><?=$item;?></a></li> 
+                                        <?php 
+                                            }
+                                            $status_no++;    
+                                        }
+                                        ?>
+                                    </ul>
+                                    
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="all"> 
+                                            <table class="table table-responsive" id="dataTable">
+                                                <thead>  
+                                                    <th>#</th> 
+                                                    <th>Project</th>
+                                                    <th>Price</th>
+                                                    <th>Start date</th>
+                                                    <th>End date</th>  
+                                                    <th>Action</th> 
+                                                </thead>
+                                                <tbody id="contract-list">   
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="row"> 
+                                    <div class="col-sm-12 text-center">   
+                                        <ul id="pagination" class="pagination-sm"></ul>
+                                    </div>
+                                </div>
+                                <?php
+                                if(0){
+                                ?>
+        					    <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <th>#</th>
+                                            <th>Name</th>  
+                                            <th>Company</th>
+                                            <th>Price</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Action</th> 
+                                        </thead>
+                                        <tbody>
+                                            <?php  
+                                            $no = ($pageStart+1);  
+                                            if($contract->total>0){
+                                                foreach($contract->items AS $key=>$iems){
+                                            ?>
+                                                <tr> 
+                                                    <td><?=$no;?></td>
+                                                    <td><?=$iems->contract_name;?></td> 
+                                                    <td><?=$iems->contract_company;?></td> 
+                                                    <td><?=number_format($iems->total_price, 2);?></td> 
+                                                    <td><?=date("m/d/Y", strtotime($iems->start_date));?></td>
+                                                    <td><?=date("m/d/Y", strtotime($iems->end_date));?></td> 
+                                                    <?php 
+                                                    $tag_status = '<span class="label label-warning">'.$ar_status[$iems->status].'</span>'; 
+                                                    if($iems->status==1)$tag_status = '<span class="label label-info">'.$ar_status[$iems->status].'</span>';
+                                                    if($iems->status==2)$tag_status = '<span class="label label-primary">'.$ar_status[$iems->status].'</span>';
+                                                    if($iems->status==3)$tag_status = '<span class="label label-success">'.$ar_status[$iems->status].'</span>';
+                                                    ?>
+                                                    <td><?=$tag_status;?></td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-xs" href="javascript:payment_refund(12);"><i class="fa fa-money"></i>  Refund</a>
+                                                    </td>
+                                                </tr>
+                                            <?php 
+                                                    $no++; 
+                                                } 
+                                            }else{
+                                            ?>
+                                                <tr> 
+                                                    <td colspan="7" class="text-center"><?=$this->translate('Not Consumer Contract'); ?></td> 
+                                                </tr>
+                                            <?php
+                                            } 
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?php
+                                }
+                                ?> 
+    					    </div>
+    					    <div class="row"> 
+                                <div class="col-sm-12 text-center"> 
+                                    <?php    
+                                    //if(!empty($pagination)) print_r($pagination);     
+                                    ?>
+                                </div>
+                            </div> 
+    					</div> 
+    					<?php
+      					}
+      					?>
+        			</div>
+        		</div>
+        	</div>
+        	<?php } ?>
+        </div>
+        <!-- end profile --> 
+    </div>
+    <?php     
+    include("footer.phtml");   
+    ?> 
+</div> 
+<script>
+
+</script>

@@ -1,0 +1,155 @@
+<?php include('header.phtml'); ?>
+<!-- /.parallax full screen background image --> 
+<div class="fullscreen landing parallax" style="background-image:url('<?=$this->url('index');?>backyard/images/bg_home.jpg');" data-img-width="2000" data-img-height="1333" data-diff="100">
+    <?php include('menu.phtml'); ?>
+</div>
+
+<div id="content"> 
+    <div class="container"> 
+        <div class="row">   
+        	<div class="col-md-12">      
+                <h4><strong>Project details</strong></h4>      
+                <br>      
+                <input type="hidden" id="contract_id" name="contract_id" value="<?=$contract->id;?>"/> 
+                <input type="hidden" id="buyer_id" name="buyer_id" value="<?=$contract->buyer_id;?>"/> 
+                <input type="hidden" id="seller_id" name="contract_id" value="<?=$contract->seller_id;?>"/>
+                
+                <table class="table table-bordered table-responsive"> 
+                
+                  <thead> 
+                    <tr>  
+                      <th align="center">Project name</th>  
+                      <th align="center">Start date</th> 
+                      <th align="center">End date</th>  
+                      <th align="right" class="align-right">Price</th>
+                    </tr>
+                  </thead>   
+                   
+                  <tbody>   
+                    <tr>
+                      <td id="detail-projectname"><?=!empty($contract->project_name)?$contract->project_name:'-';?></td>
+                      <td id="detail-start-date"><?=!empty($contract->start_date)?date("m/d/Y", strtotime($contract->start_date)):'-';?></td>
+                      <td id="detail-end-date"><?=!empty($contract->end_date)?date("m/d/Y", strtotime($contract->end_date)):'-';?></td>
+                      <td id="detail-sub-price" class="align-right"><?=!empty($contract->total_price)?number_format($contract->total_price,2):'-';?></td> 
+                    </tr> 
+                    <tr>       
+                      <td colspan="3" class="align-right"><b>Transfer price</b></td>       
+                      <td id="detail-total-price" class="align-right"><?=!empty($contract->transfer_price)?number_format($contract->transfer_price,2):'-';?></td>   
+                    </tr>
+                    <tr>    
+                      <td colspan="3" class="align-right"><b>Pay price</b></td>       
+                      <td id="detail-total-price" class="align-right"><?=!empty($contract->pay_price)?number_format($contract->pay_price,2):'-';?></td>  
+                    </tr>
+                  </tbody> 
+                </table> 
+                 
+                <div class="row"> 
+                    <div class="col-md-6">
+                        <h4><strong>Buyer information</strong></h4> 
+                        <br> 
+                        <div class="form-group">  
+                            <label>Name</label> 
+                            <p><?=!empty($contract->buyer_name)?$contract->buyer_name:'-';?></p>   
+                        </div>
+                        <div class="form-group">  
+                            <label>Email</label>  
+                            <p><?=!empty($contract->buyer_email)?$contract->buyer_email:'-';?></p>   
+                        </div>
+                        <div class="form-group">  
+                            <label>Phone Number</label>  
+                            <p><?=!empty($contract->buyer_number)?$contract->buyer_number:'-';?></p>   
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <h4><strong>Seller information</strong></h4>
+                        <br>
+                        <div class="form-group">  
+                            <label>Name</label> 
+                            <p><?=!empty($contract->seller_name)?$contract->seller_name:'-';?></p>   
+                        </div> 
+                        <div class="form-group">  
+                            <label>Email</label>  
+                            <p><?=!empty($contract->seller_email)?$contract->seller_email:'-';?></p>   
+                        </div>
+                        <div class="form-group">  
+                            <label>Phone Number</label>  
+                            <p><?=!empty($contract->seller_number)?$contract->seller_number:'-';?></p>   
+                        </div>
+                    </div>
+                </div> 
+                <?php
+                if(!empty($contract->contract_number) && 0){ 
+                ?>
+                <hr>  
+                <h4><strong>Contract No.</strong></h4>     
+                <p><?=$contract->contract_number;?></p>
+                <?php
+                }  
+                ?>
+                <hr>  
+                <h4><strong>Who will pay the Free</strong></h4>
+                <?php
+                $who_pay_fee = 'Buyer'; 
+                if($contract->who_pay_fee==1){
+                    $who_pay_fee = 'Seller';    
+                }else if($contract->who_pay_fee==2){
+                    $who_pay_fee = ' 50% 50%';      
+                }     
+                ?> 
+                <p><?=$who_pay_fee;?></p>   
+                <hr>   
+                <h4><strong>Detail : Note</strong></h4>    
+                <p><?=!empty($contract->note)?$contract->note:'-';?></p>
+                
+                <h4><strong>Status</strong></h4>        
+                <p><?=$ar_status[$contract->status];?></p> 
+                <?php  
+                if(!empty($contract->shipping_tracking_number)){     
+                ?>
+                <hr>  
+                <h4><strong>Tracking Code.</strong></h4>     
+                <p><?=$contract->shipping_tracking_number;?></p>
+                <?php 
+                }else if($uid==$contract->seller_id){   
+                ?>  
+                <hr>  
+                <h4><strong>Tracking Code.</strong></h4>     
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#trackingcode">
+                  Add Tracking Code 
+                </button>
+                <?php 
+                } 
+                ?>
+            </div>
+        </div> 
+    </div>
+</div>
+<?php
+if($uid==$contract->seller_id){
+?>
+<!-- Modal -->
+<div id="trackingcode" class="modal fade" role="dialog">
+  <div class="modal-dialog">  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Tracking Code</h4>
+      </div>   
+      <div class="modal-body">    
+        <div id="trackingcode-result"></div> 
+        <div class="form-group">      
+            <input id="tracking_code" name="tracking_code" type="text" value=""  placeholder="<?php echo $this->translate('Tracking Code'); ?>" class="form-control input-md">
+        </div> 
+      </div>   
+      <div class="modal-footer">   
+        <button type="button" onclick="trackingcode(<?=$contract->id;?>,<?=$uid;?>);" class="btn btn-info btn-loader">Save</button>     
+      </div>
+    </div>
+
+  </div>
+</div>
+<?php 
+}
+include('footer.phtml');   
+?>

@@ -1,0 +1,99 @@
+<style>
+.pb_letter-spacing-2.btn1:hover {
+  background-color: #2373ba;
+}
+</style>
+
+<script>
+  <?php 
+  include('lang.phtml');   
+  ?>
+	var page = 1;
+	var lang = '<?php echo $this->lang; ?>';
+	var total = 0;
+	var id = '<?php echo $this->id; ?>';
+	var action = '<?php echo $this->action; ?>';
+	var noCache = '<?php echo $this->nocache; ?>';
+	var baseURL = '<?php echo $this->url('index'); ?>';
+	var apiUrl = '<?php echo $this->Api_url; ?>';
+	var user_api = 'username=<?php echo $this->Api_username; ?>'; 
+	var password_api = 'password=<?php echo $this->Api_password; ?>'; 
+	var uimg = '';  
+	var ar_status = []; 
+</script> 
+<div class='progress' id="progress_div">  
+    <div class='bar' id='bar1'></div> 
+    <div class='percent' id='percent1'></div>
+</div>  
+<div class="top-bar"></div>
+
+<nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="pb-navbar">
+  
+  <div class="container-fluid container-mobile">  
+    
+    <a class="navbar-brand d-xl-none d-lg-none mobile-site" href="<?= $this->url('index').$lang.'/?rd='.date("dHis"); ?>">   
+      <img src="<?=$this->url('index');?>2018/assets/images/new-logo.png" alt="WEZENIT" class="light">    
+    </a>
+    <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="ion-navicon"></i></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-md-center " id="probootstrap-navbar">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link  pb_letter-spacing-2" href="<?= $this->url('index').$lang.'/what-is-wezenit/?rd='.date("dHis"); ?>"><?=$this->translate('What is wezenit'); ?></a></li>
+        <li class="nav-item"><a class="nav-link  pb_letter-spacing-2" href="<?= $this->url('index').$lang.'/faq/?rd='.date("dHis"); ?>"><?=$this->translate('FAQ'); ?></a></li>  
+        <li class="nav-item"><a class="nav-link  pb_letter-spacing-2" href="<?= $this->url('index').$lang.'/blog/?rd='.date("dHis"); ?>"><?=$this->translate('Blog'); ?></a></li>
+        <li class="nav-item"><a class="nav-link  pb_letter-spacing-2" href="<?= $this->url('index').$lang.'/contact-us/?rd='.date("dHis"); ?>"><?=$this->translate('Contact us'); ?></a></li>
+        <li class="nav-item logo-center d-xl-block d-lg-block d-md-none d-sm-none d-none">   
+          <a class="nav-link  pb_letter-spacing-2 col-12" href="<?= $this->url('index').$lang.'/?rd='.date("dHis"); ?>">     
+            <img src="<?=$this->url('index');?>2018/assets/images/new-logo.png" alt="WEZENIT" class="light">  
+          </a>
+        </li>
+        <li class="nav-item" id="menu-account"> 
+          <?php 
+          if(empty($uid)){    
+            if($action=='contract'){     
+            ?>
+                <a class="nav-link  pb_letter-spacing-2 menu-inline" href="<?= $this->url('index').$lang.'/contract/'.$eid.'/?task=register&rd='.date("dHis"); ?>"><?=$this->translate('Register'); ?></a>/
+                <a class="nav-link  pb_letter-spacing-2 menu-inline" href="<?= $this->url('index').$lang.'/contract/'.$eid.'/?task=login&rd='.date("dHis"); ?>"><?=$this->translate('Login'); ?></a>
+            <?php
+              }else{     
+            ?>
+                <a class="nav-link  pb_letter-spacing-2 menu-inline" href="<?= $this->url('index').$lang.'/account/?task=register&rd='.date("dHis"); ?>"><?=$this->translate('Register'); ?></a>/
+                <a class="nav-link  pb_letter-spacing-2 menu-inline" href="<?= $this->url('index').$lang.'/account/?task=login&rd='.date("dHis"); ?>"><?=$this->translate('Login'); ?></a>
+            <?php 
+            }  
+          }else{     
+            ?>  
+              <a class="nav-link  pb_letter-spacing-2 menu-inline" href="<?= $this->url('index').$lang.'/profile/?id='.$uid.'&rd='.date("dHis"); ?>"><?=$this->translate('My Profile'); ?></a>/
+              <a class="nav-link  pb_letter-spacing-2 menu-inline" href="javascript:logOut();"><?=$this->translate('Logout'); ?></a>  
+          <?php
+          }  
+          ?>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link pb_letter-spacing-2 menu-inline switchLang lang-fr"  href="javascript:void(0);" onclick="switchLang('fr');"><img src="<?php echo $this -> url('index'); ?>img/flags/flag-france.png?v=1" /></a>
+          <a class="nav-link pb_letter-spacing-2 menu-inline switchLang lang-usa"  href="javascript:void(0);" onclick="switchLang('en');"><img src="<?php echo $this -> url('index'); ?>img/flags/flag-usa.png?v=1"/></a>
+        </li> 
+        <li class="nav-item"> 
+          <?php 
+          if(0){ 
+          if($action=='index'){ 
+          ?>
+          <a class="nav-link  pb_letter-spacing-2 btn1" href="#section-form"><?=$this->translate('Secure a transaction'); ?></a>
+          <?php 
+          }else{  
+          ?>
+          <a class="nav-link  pb_letter-spacing-2 btn1" href="<?= $this->url('index').$lang.'/'; ?>newproject/<?='?rd='.date("dHis"); ?>"><?=$this->translate('Secure a transaction'); ?></a>
+          <?php
+          }} 
+          ?>
+          <a class="nav-link  pb_letter-spacing-2 btn1" href="<?= $this->url('index').$lang.'/'; ?>newproject/<?='?rd='.date("dHis"); ?>"><?=$this->translate('Secure a transaction'); ?></a>
+          
+        </li>
+      </ul> 
+      
+    </div> 
+  </div> 
+</nav>
+<!-- END nav --> 

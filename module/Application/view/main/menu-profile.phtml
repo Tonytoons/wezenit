@@ -1,0 +1,86 @@
+<div class="image-profile">
+    <?php
+    if(!empty($userProfile->image)){ 
+    ?>
+    <img src="<?=$userProfile->image_url;?>" class="img-fluid" id="og-profile">   
+    <?php
+    }else{ 
+    ?>
+    <img src="<?=$this->url('index');?>2018/assets/images/avatar-add.png" class="img-fluid" id="og-profile"> 
+    <?php 
+    }  
+    ?>  
+    <input type="file" name="upimage" id="upimage" accept="image/*" style="display:none;"/>
+      
+</div>  
+<div class="text-center" id="btn-crop-img" style="display:none;">
+  <span class="badge badge-success btn-done"><?php echo $this->translate('Crop'); ?></span>    
+  <span class="badge badge-danger btn-cancel"><?php echo $this->translate('Cancel'); ?></span>
+</div> 
+<aside class="sidebar  text-center">
+  <div id="leftside-navigation" class="nano">
+    <ul class="nano-content">  
+      <li>  
+         
+  			<button type="button" class="btn btn-primary btn-sm btn-block btn-upimage" onclick="$('#upimage').click();"><i class="fa fa-picture-o" aria-hidden="true"></i> <?php echo $this->translate('Upload Image'); ?></button>
+  		</li>
+      <?php
+      if(1 || $userProfile->type=='supplier'){ 
+      ?>
+  		<li class="<?=($action=='dashboard')?'active':'';?>">  
+  			<a href="<?= $this->url('index').$lang.'/dashboard/?rd='.date("YmdHis"); ?>"><i class="fa fa-tachometer" aria-hidden="true"></i> <?php echo $this->translate('Dashboard'); ?> </a>
+  		</li>
+  	  <?php
+      }  
+  	  ?>
+  		<li class="<?=($action=='profile')?'active':'';?>">
+  			<a href="<?= $this->url('index').$lang.'/profile/'; ?>"><i class="fa fa-user" aria-hidden="true"></i> <?php echo $this->translate('Profile'); ?> </a>
+  		</li>
+  		<?php
+  		if(1){          
+  		?>
+  		<li class="<?=($action=='mywallets')?'active':'';?>">
+  			<a href="<?= $this->url('index').$lang.'/mywallets/?rd='.date("YmdHis"); ?>"><i class="fa fa-money" aria-hidden="true"></i> <?php echo $this->translate('My Wallets'); ?> </a>
+  		</li>
+  		<?php
+  		}
+  		?>
+  		<li class="<?=($action=='newpassword')?'active':'';?>"> 
+  			<a href="<?= $this->url('index').$lang.'/newpassword/'; ?>"><i class="fa fa-key" aria-hidden="true"></i> <?php echo $this->translate('New Password'); ?> </a>
+  		</li>
+  		
+  		<li class="<?=($action=='seller')?'active':'';?>">  
+  			<a href="<?= $this->url('index').$lang.'/seller/'; ?>"><i class="fa fa-address-card-o" aria-hidden="true"></i> <?php echo $this->translate('Seller list'); ?> </a> 
+  		</li>
+  		
+  		<li class="<?=($action=='buyer')?'active':'';?>">  
+  			<a href="<?= $this->url('index').$lang.'/buyer/'; ?>"><i class="fa fa-address-card-o" aria-hidden="true"></i> <?php echo $this->translate('Buyer list'); ?> </a>  
+  		</li>
+		<li>
+				<a href="javascript:logOut();"> <i class="fa fa-sign-out" aria-hidden="true"></i> <?php echo $this->translate('Log Out'); ?> </a> 
+		</li>
+  		<?php
+  		if(0){    
+  		?>
+        <li>
+          <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+        </li>
+        <li>
+          <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+        </li>
+        <li class="sub-menu">
+          <a href="javascript:void(0);"><i class="fa fa-table"></i><span>Tables</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+          <ul>
+            <li><a href="tables-basic.html">Basic Tables</a>
+            </li>
+  
+            <li><a href="tables-data.html">Data Tables</a>
+            </li>
+          </ul>
+        </li>
+      <?php 
+		  } 
+      ?>
+    </ul>
+  </div>
+</aside>

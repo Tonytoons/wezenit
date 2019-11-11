@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+    <div class="panel-heading">  
+        Edit Blog
+        <a href="<?php echo $this->url('index').'admin/blog/';?>" class="btn btn-success btn-xs pull-right"><i class="fa fa-undo" aria-hidden="true"></i>Back</a>
+    </div>
+    <div class="panel-body">  
+        
+        <form action="<?php echo $this->url('index').'admin/blog/'.$id.'?task=edit';?>" enctype="multipart/form-data" name="blogform" id="blogform" method="post">
+        	<div class="box-body">
+            	<div class="form-group">
+          			<label for="name">Language</label> 
+          			<select class="form-control" id="lang" name="lang">
+          			    <option value="1">French</option>
+          			    <option value="2">English</option>
+          			</select>
+        		</div> 
+        		<div id="block-fr"> 
+            		<div class="form-group">
+              			<label for="exampleInputEmail1">Title Fr</label>  
+              			<input type="text" class="form-control" id="name" name="blog[name]" placeholder="Name" value="<?=(!empty($detail['name']))?$detail['name']:'';?>">
+            		</div>
+            		
+            		<div class="form-group">
+              			<label for="detail">Detail Short Fr</label>    
+              		    <textarea name="blog[detail_short]" class="form-control" id="detail_short" rows="5"><?=(!empty($detail['detail_short']))?$detail['detail_short']:'';?></textarea>  
+              		</div>
+              		
+            		<div class="form-group">
+              			<label for="detail">Detail Fr</label>   
+              		    <textarea name="blog[detail]" class="form-control summernote" id="detail" rows="5"><?=(!empty($detail['detail']))?$detail['detail']:'';?></textarea>  
+              		</div>
+          		</div>
+          		  
+          		<div id="block-en" style="display:none;"> 
+            		<div class="form-group">
+              			<label for="exampleInputEmail1">Title En</label>  
+              			<input type="text" class="form-control" id="name_en" name="blog[name_en]" placeholder="Name" value="<?=(!empty($detail['name_en']))?$detail['name_en']:'';?>">
+            		</div>
+            		
+            		<div class="form-group">
+              			<label for="detail">Detail Short En</label>    
+              		    <textarea name="blog[detail_short_en]" class="form-control" id="detail_short_en" rows="5"><?=(!empty($detail['detail_short_en']))?$detail['detail_short_en']:'';?></textarea>  
+              		</div>
+              		
+            		<div class="form-group"> 
+              			<label for="detail">Detail En</label>   
+              		    <textarea name="blog[detail_en]" class="form-control summernote" id="detail_en" rows="5"><?=(!empty($detail['detail_en']))?$detail['detail_en']:'';?></textarea>  
+              		</div>
+          		</div>
+          		
+          		<div class="form-group"> 
+          			<label for="pic">Image size:480x480px</label>  
+          			<input type="file" id="pic" name="pic" onchange="imagePreview(this,'img-preview', 100)">
+        			<div id="img-preview">
+        			    <?php
+        			    if(!empty($detail['img'])){   
+        			    ?>
+        			    <br>  
+        			    <img src="<?php echo $urlFile.'/blog/'.$detail['img'];?>" style="max-width:25%;" />  
+        			    <?php
+        			    }  
+        			    ?>
+        			</div>    
+        		</div>
+          		
+                <div class="form-group">   
+                    <label for="active">Status</label><br>
+          			<input type="checkbox" name="active" id="active" value="<?=(!empty($detail['active']))?$detail['active']:'';?>" <?=($detail['active']==1)?'checked':'';?>>       
+        		</div>    
+      		</div><!-- /.box-body --> 
+            <hr />   
+      		<div class="box-footer">
+        		<button type="button" onclick="validateform();" class="btn btn-primary">Submit</button>
+      		</div>
+    	</form> 
+    </div> 
+</div>

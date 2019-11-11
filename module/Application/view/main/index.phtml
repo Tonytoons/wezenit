@@ -1,0 +1,37 @@
+<?php 
+//if(!empty($this->SEO['title']))  
+
+$title=$this->SEO['title']; 
+$this->headMeta()->appendName('keywords', !empty($this->SEO['keywords'])?$this->SEO['keywords']:'');
+$this->headMeta()->appendName('description', !empty($this->SEO['description'])?$this->SEO['description']:'');
+$this->headMeta()->setProperty('og:title', !empty($this->SEO['title'])?$this->SEO['title']:''); 
+$this->headMeta()->setProperty('og:description', !empty($this->SEO['description'])?$this->SEO['description']:'');
+$this->headMeta()->setProperty('og:url', !empty($this->SEO['url'])?$this->SEO['url']:$this->full_url);   
+$this->headMeta()->setProperty('og:image', !empty($this->SEO['image'])?$this->SEO['image']:$this->url('index').'img/favicon/favicon.png');  
+$this->headMeta()->setProperty('og:image:type', 'image/jpeg');  
+$this->headMeta()->setProperty('og:image:width', '400 ');
+$this->headMeta()->setProperty('og:image:height', '300');    
+$this->headMeta()->setProperty('og:site_name', $this->translate('Site name'));   
+$this->headMeta()->setProperty('og:locale', !empty($this->SEO['locale'])?$this->SEO['locale']:'th_TH');      
+$this->headMeta()->setProperty('og:type', 'website');     
+$this->headMeta()->setProperty('fb:app_id', !empty($this->SEO['fb_app_id'])?$this->SEO['fb_app_id']:''); 
+$this->headMeta()->appendName('twitter:title', !empty($this->SEO['title'])?$this->SEO['title']:'');  
+$this->headMeta()->appendName('twitter:description', !empty($this->SEO['description'])?$this->SEO['description']:''); 
+$this->headMeta()->appendName('twitter:image:src', !empty($this->SEO['image'])?$this->SEO['image']:$this->url('index').'img/favicon/favicon.png');  
+$this->headMeta()->appendName('twitter:card', 'summary');  
+$this->headMeta()->appendName('twitter:site', $this->translate('Site name'));       
+$this->headMeta()->appendName('twitter:creator', !empty($this->SEO['creator'])?$this->SEO['creator']:'');   
+$this->headMeta()->appendName('twitter:domain', !empty($this->SEO['domain'])?$this->SEO['domain']:'');
+ 
+if(!empty($title)) $this->headTitle($title);    
+    
+include_once('header.phtml');
+
+if(!empty($content)){ 
+  include_once($content.'.phtml');  
+}else{   
+  include_once('home.phtml');    
+} 
+include_once('footer.phtml'); 
+?>
+

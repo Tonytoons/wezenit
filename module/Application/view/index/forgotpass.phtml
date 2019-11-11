@@ -1,0 +1,35 @@
+<div id="app">  
+    <?php  
+    include("header.phtml"); 
+    ?>  
+    <div class="content">     
+        <section class="fogotpass" id="fogotpass">
+            <div class="container"> 
+            	<div class="row">  
+            		<div class="col-md-4 col-md-offset-4"> 
+            			<div class="panel panel-default">  
+            				<div class="panel-heading">
+            					<h3 class="panel-title"><i class="fa fa-key" aria-hidden="true"></i> <?=$this->translate('Forget the password ?');?></h3>  
+            				</div>
+            				<div class="panel-body">
+            				    <div id="forgot-email-result"></div>  
+                                <div class="form-group">   
+                        			 <label class="control-label" for="login-email"><?=$this->translate('Email address');?></label>   
+                        			 <input type="email" class="form-control" id="forgot-email" name="forgot-email" placeholder="<?=$this->translate('Email address');?>"> 
+                        		</div>
+                        		<hr> 
+                        		<button type="button" onclick="forgotpassword();" class="btn btn-primary btn-block btn-forgotpassword btn-loader"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> <?=$this->translate('Send'); ?></button>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+            </div> 
+        </section> 
+        <!-- end regis -->  
+    </div>
+    
+    <?php 
+    include("footer.phtml");  
+    ?> 
+    
+</div>

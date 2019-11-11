@@ -1,0 +1,40 @@
+<footer class="" id="footer">
+    <div class="container">
+        <div class="row"> 
+            <div class="col-sm-7 footer-copyright">   
+                <?=$this->translate('© Zenovly - All rights reserved'); ?>   
+            </div>
+            <div class="col-sm-5 footer-social">
+                <div class="pull-right hidden-xs hidden-sm">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>   
+     
+<div id="logout-confirm" title="<?=$this->translate('Logout'); ?>" style="display:none;">   
+    <p><?=$this->translate('Press ok to logout!'); ?></p>    
+</div> 
+ 
+<div id="subscribe-form" title="<?=$this->translate('Subscribe'); ?>" style="display:none;">
+  <form id="sub-from" action="https://sendy.lespepitestech.com/subscribe" method="POST" target="_blank" accept-charset="utf-8">  
+    <fieldset>      
+        <div id="subscribe-result"></div>  
+        <div class="form-group">
+          <label for="name">Name</label>     
+          <input type="text" name="name" id="subscribe-name" class="form-control">    
+        </div> 
+        <div class="form-group"> 
+          <label for="email">Email</label> 
+          <input type="text" name="email" id="subscribe-email" class="form-control">
+        </div> 
+        <input type="hidden" name="list" value="rQ4khUTD7UPeMLdTpBVGbA"/>
+        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">   
+    </fieldset>
+  </form> 
+</div>

@@ -1,0 +1,4 @@
+[16-Oct-2017 17:06:53 UTC] PHP Fatal error:  Uncaught Error: Using $this when not in object context in /home/ubuntu/workspace/module/Application/view/admin/login.phtml:19
+Stack trace:
+#0 {main}
+  thrown in /home/ubuntu/workspace/module/Application/view/admin/login.phtml on line 19

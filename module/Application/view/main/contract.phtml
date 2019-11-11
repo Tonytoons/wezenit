@@ -1,0 +1,795 @@
+<?php
+if(empty($uid)){  
+  if($userProfile->status=='Pending'){
+    include('newpassword_form.phtml');
+  }else{ 
+    include('account_form.phtml');
+  }
+}
+else{ 
+//$contract->status = 0; 
+?>
+<section class="pb_section" id="projectform">
+    <div class="container-full">
+    	    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">   
+                <div id="wid-id-0"> 
+                    <!-- widget div-->  
+                    <div role="content"> 
+                        <!-- widget content -->
+                        <div class="widget-body">
+        
+                            <div class="row">  
+                                <div id="bootstrap-wizard-1" class="col-md-12">    
+                                	<?php
+                                	if(0){ 
+                                	?>
+                                    <div class="form-bootstrapWizard" style="display:none;"> 
+                                        <ul class="bootstrapWizard form-wizard contract-info-page"> 
+                                            <li class="process-active active" id="tab-step1" data-target="#step1">  
+                                                <a href="#tab1"  data-toggle="tab" class="active"> <span class="step">1</span> <span class="wizard-title">Login and contact details</span> </a>
+                                            </li>   
+                                            <li <?=($contract->status==6 || $contract->status==5)?'class="process-active active"':''?> data-target="#step2" id="tab-step2" class="">       
+                                                <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="wizard-title disabled">Payment Details</span> </a>  
+                                            </li>      
+                                            <li <?=($contract->status==5)?'class="process-active active"':''?> data-target="#step3" id="tab-step3" class="">    
+                                                <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="wizard-title disabled">Contract complete</span> </a>
+                                            </li>  
+                                        </ul>  
+                                        <div class="clearfix"></div>  
+                                    </div> 
+                                    <?php
+                                	}
+                                    ?>
+                                    
+                                    <div class="tab-content">  
+                                        
+                                        <div class="tab-pane <?=($contract->status==0)?'active':''?>" id="tab1">  
+                                            
+                                            <div class="tab-content-body">    
+                                                <div class="row">
+                                                    <div class="col-sm-12">  
+                                                        <div class="content-body"> 
+                                                            
+                                                            <?php  
+                                                        	$request = $contract->request;
+                                                        	$user_request = 0;
+                                                        	if($request==1){
+                                                        	    $user_id = $contract->buyer_id;
+                                                        	}else{  
+                                                        	    $user_id = $contract->seller_id;
+                                                        	} 
+                                                        	
+                                                        	if($uid==$contract->seller_id){
+                                                        	    $user_request = 1;   
+                                                        	}  
+                                                        	//echo $user_request;  
+                                                        	?>
+                                                        	<input type="hidden" name="pay_price" id="pay_price" value="<?=!empty($contract->pay_price)?$contract->pay_price:'';?>" />
+                                                        	<input type="hidden" name="mangopay_id" id="mangopay_id" value="<?=!empty($userProfile->mangopay_id)?$userProfile->mangopay_id:'';?>" />
+                                                        	<input type="hidden" name="mangopay_wallet" id="mangopay_wallet" value="<?=!empty($userProfile->mangopay_wallet)?$userProfile->mangopay_wallet:'';?>" />
+                                                            <input type="hidden" name="user_request" id="user_request" value="<?=$user_request?>" /> 
+                                                            <input type="hidden" class="form-control" id="login-email" placeholder="<?=$this->translate('Email address');?>" value="<?=!empty($userProfile->email)?$userProfile->email:'-';?>" required>
+                                                        	
+                                                        	
+	                                                        <div class="row">
+	                                                            
+	                                                        	<div class="col-md-12">    
+	                                                        	
+                                                                    <h4 class="title color-sky mb-3"><strong><?=$this->translate("Project details"); ?></strong> <span class="badge badge-<?=$color_status[$contract->status];?> pull-right"><?=$this->translate($ar_status[$contract->status]);?></span></h4> 
+	                                                                <br>
+                                                                    <input type="hidden" id="contract_id" name="contract_id" value="<?=$contract->id;?>"/> 
+                                                                    <input type="hidden" id="buyer_id" name="buyer_id" value="<?=$contract->buyer_id;?>"/> 
+                                                                    <input type="hidden" id="seller_id" name="contract_id" value="<?=$contract->seller_id;?>"/>
+                                                                    
+                                                                    <table class="table table-bordered table-responsive">  
+                                                                      <thead> 
+                                                                        <tr>  
+                                                                          <th align="center"><?=$this->translate("Project name"); ?></th>  
+                                                                          <th align="center"><?=$this->translate("Start date"); ?></th> 
+                                                                          <th align="center"><?=$this->translate("End date"); ?></th>  
+                                                                          <th align="right" class="align-right"><?=$this->translate("Price"); ?></th>
+                                                                        </tr>
+                                                                      </thead>   
+                                                                       
+                                                                      <tbody> 
+                                                                        <tr>
+                                                                          <td id="detail-projectname"><?=!empty($contract->project_name)?$contract->project_name:'-';?></td>
+                                                                          <td id="detail-start-date"><?=!empty($contract->start_date)?date("m/d/Y", strtotime($contract->start_date)):'-';?></td>
+                                                                          <td id="detail-end-date"><?=!empty($contract->end_date)?date("m/d/Y", strtotime($contract->end_date)):'-';?></td>
+                                                                          <td id="detail-sub-price" class="align-right"><?=!empty($contract->total_price)?number_format($contract->total_price,2):'-';?></td> 
+                                                                        </tr>
+                                                                        
+                                                                        <?php 
+                                                                        //$contract->who_pay_fee = 2; 
+                                                                        $fee = $contract->pay_price-$contract->total_price; //buyer fee
+                                                                        $transfer_price = $contract->pay_price; //buyer pay
+                                                                        $total = $transfer_price;    
+                                                                        if($contract->who_pay_fee==2){ //50%
+                                                                            $fee = ($fee/2);  
+                                                                            $transfer_price = $transfer_price-$fee; 
+                                                                            $fee = ($fee*2);  
+                                                                        }else if($contract->who_pay_fee==1){ //seller
+                                                                            $fee = $contract->pay_price-$contract->transfer_price;
+                                                                            $transfer_price = $transfer_price;  
+                                                                            $total = $transfer_price+$fee; 
+                                                                        }     
+                                                                        //echo $contract->who_pay_fee; 
+                                                                        ?>
+                                                                        <tr>        
+                                                                          <td colspan="3" class="align-right"><b><?=$this->translate("Fee"); ?></b></td>        
+                                                                          <td id="detail-total-price" class="align-right"><?=number_format($fee,2);?></td>   
+                                                                        </tr>
+                                                                        <tr>     
+                                                                          <td colspan="3" class="align-right"><b><?=$this->translate("Transfer price"); ?></b></td>       
+                                                                          <td id="detail-total-price" class="align-right"><?=!empty($transfer_price)?number_format($transfer_price,2):'-';?></td>   
+                                                                        </tr> 
+                                                                        <tr>     
+                                                                          <td colspan="3" class="align-right"><b><?=$this->translate('Total'); ?></b></td>       
+                                                                          <td id="detail-total-price" class="align-right"><?=!empty($total)?number_format($total,2):'-';?></td>   
+                                                                        </tr>
+                                                                        <?php 
+                                                                        if(0){     
+                                                                        ?>
+                                                                        <tr>     
+                                                                          <td colspan="3" class="align-right"><b><?=$this->translate("Transfer price"); ?></b></td>       
+                                                                          <td id="detail-total-price" class="align-right"><?=!empty($contract->transfer_price)?number_format($contract->transfer_price,2):'-';?></td>   
+                                                                        </tr>
+                                                                        <tr>    
+                                                                          <td colspan="3" class="align-right"><b><?=$this->translate("Pay price"); ?></b></td>      
+                                                                          <td id="detail-total-price" class="align-right"><?=!empty($contract->pay_price)?number_format($contract->pay_price,2):'-';?></td>  
+                                                                        </tr>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                      </tbody>  
+                                                                    </table>  
+                                                                    <div class="row"> 
+                                                                        <div class="col-md-6">
+                                                                            <h4><strong><?=$this->translate("Buyer information"); ?></strong></h4> 
+                                                                            <br> 
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Name"); ?></label> 
+                                                                                <p><?=!empty($contract->buyer_name)?$contract->buyer_name:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("E-mail"); ?></label>  
+                                                                                <p><?=!empty($contract->buyer_email)?$contract->buyer_email:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Phone number"); ?></label>  
+                                                                                <p><?=!empty($contract->buyer_number)?$contract->buyer_number:'-';?></p>   
+                                                                            </div>
+                                                                            <?php 
+                                                                            if($contract->above_name==2 && $contract->request==1){
+                                                                            ?>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Position"); ?></label>  
+                                                                                <p><?=!empty($userProfile->above_position)?$userProfile->above_position:'-';?></p>   
+                                                                            </div>
+                                                                            
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company Name"); ?></label>  
+                                                                                <p><?=!empty($userProfile->above_company_name)?$userProfile->above_company_name:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company Address"); ?></label>  
+                                                                                <p><?=!empty($userProfile->above_company_address)?$userProfile->above_company_address:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company Website"); ?></label>  
+                                                                                <p><?=!empty($userProfile->above_company_website)?$userProfile->above_company_website:'-';?></p>   
+                                                                            </div>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                            <?php  
+                                                                            if($contract->company=='yes' && $contract->request==0){
+                                                                            ?>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company name"); ?></label>  
+                                                                                <p><?=!empty($userProfile2->company_name)?$userProfile2->company_name:'-';?></p>   
+                                                                            </div> 
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Country of incorporation"); ?></label>  
+                                                                                <p><?=!empty($userProfile2->company_country)?$userProfile2->company_country:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("ID number of the company"); ?></label>  
+                                                                                <p><?=!empty($userProfile2->company_id)?$userProfile2->company_id:'-';?></p>   
+                                                                            </div> 
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company Address"); ?></label>  
+                                                                                <p><?=!empty($userProfile2->company_address)?$userProfile2->company_address:'-';?></p>   
+                                                                            </div>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                        </div> 
+                                                                        <div class="col-md-6">
+                                                                            <h4><strong><?=$this->translate("Seller information"); ?></strong></h4>
+                                                                            <br>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Name"); ?></label> 
+                                                                                <p><?=!empty($contract->seller_name)?$contract->seller_name:'-';?></p>   
+                                                                            </div> 
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("E-mail"); ?></label>  
+                                                                                <p><?=!empty($contract->seller_email)?$contract->seller_email:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Phone number"); ?></label>  
+                                                                                <p><?=!empty($contract->seller_number)?$contract->seller_number:'-';?></p>   
+                                                                            </div>
+                                                                            <?php  
+                                                                            if($contract->above_name==2 && $contract->request==0){
+                                                                            ?>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Position"); ?></label>  
+                                                                                <p><?=!empty($userProfile->above_position)?$userProfile->above_position:'-';?></p>   
+                                                                            </div>
+                                                                            
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company Name"); ?></label>  
+                                                                                <p><?=!empty($userProfile->above_company_name)?$userProfile->above_company_name:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company Address"); ?></label>  
+                                                                                <p><?=!empty($userProfile->above_company_address)?$userProfile->above_company_address:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company Website"); ?></label>  
+                                                                                <p><?=!empty($userProfile->above_company_website)?$userProfile->above_company_website:'-';?></p>   
+                                                                            </div>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                            <?php 
+                                                                            if($contract->company=='yes' && $contract->request==1){
+                                                                            ?>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company name"); ?></label>  
+                                                                                <p><?=!empty($userProfile2->company_name)?$userProfile2->company_name:'-';?></p>   
+                                                                            </div> 
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Country of incorporation"); ?></label>  
+                                                                                <p><?=!empty($userProfile2->company_country)?$userProfile2->company_country:'-';?></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("ID number of the company"); ?></label>  
+                                                                                <p><?=!empty($userProfile2->company_id)?$userProfile2->company_id:'-';?></p>   
+                                                                            </div> 
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate("Company Address"); ?></label>  
+                                                                                <p><?=!empty($userProfile2->company_address)?$userProfile2->company_address:'-';?></p>   
+                                                                            </div>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <?php 
+                                                                    if(!empty($contract->img)){  
+                                                                    ?> 
+                                                                    <hr>  
+                                                                    <h4><strong><?=$this->translate('Contract file'); ?></strong></h4>     
+                                                                    <p>
+                                                                        <a href="<?=$contract->img;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 1</a>
+                                                                        
+                                                                        <?php
+                                                                        if(!empty($contract->img2)){  
+                                                                        ?>
+                                                                        <a href="<?=$contract->img2;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 2</a>
+                                                                        <?php
+                                                                        }
+                                                                        ?> 
+                                                                        
+                                                                        <?php
+                                                                        if(!empty($contract->img3)){ 
+                                                                        ?>
+                                                                        <a href="<?=$contract->img3;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 3</a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        
+                                                                        <?php
+                                                                        if(!empty($contract->img4)){ 
+                                                                        ?>
+                                                                        <a href="<?=$contract->img4;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 4</a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        
+                                                                        <?php
+                                                                        if(!empty($contract->img5)){ 
+                                                                        ?>
+                                                                        <a href="<?=$contract->img5;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 5</a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        
+                                                                        <?php
+                                                                        if(!empty($contract->img6)){ 
+                                                                        ?>
+                                                                        <a href="<?=$contract->img6;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 6</a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        
+                                                                        <?php
+                                                                        if(!empty($contract->img7)){ 
+                                                                        ?>
+                                                                        <a href="<?=$contract->img7;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 7</a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        
+                                                                        <?php
+                                                                        if(!empty($contract->img8)){ 
+                                                                        ?>
+                                                                        <a href="<?=$contract->img8;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 8</a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        
+                                                                        <?php
+                                                                        if(!empty($contract->img9)){  
+                                                                        ?>
+                                                                        <a href="<?=$contract->img9;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 9</a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                    </p>  
+                                                                    <?php
+                                                                    }  
+                                                                    ?>
+                                                                    <?php
+                                                                    if(!empty($contract->contract_number) && 0){ 
+                                                                    ?> 
+                                                                    <h4><strong><?=$this->translate("Contract No."); ?></strong></h4>     
+                                                                    <p><?=$contract->contract_number;?></p>
+                                                                    <?php
+                                                                    }
+                                                                    ?> 
+                                                                    <h4><strong><?=$this->translate("Who will pay the Wezenit fee ?"); ?></strong></h4>
+                                                                    <?php
+                                                                    $who_pay_fee = $this->translate('Buyer'); 
+                                                                    if($contract->who_pay_fee==1){
+                                                                        $who_pay_fee = $this->translate('Seller');    
+                                                                    }else if($contract->who_pay_fee==2){
+                                                                        $who_pay_fee = ' 50% 50%';      
+                                                                    }  
+                                                                    ?> 
+                                                                    <p><?=$who_pay_fee;?></p> 
+                                                                    <h4><strong><?=$this->translate("Details: Note"); ?></strong></h4>    
+                                                                    <p><?=!empty($contract->note)?$contract->note:'-';?></p>
+                                                                    <?php 
+                                                                    //echo $contract->buyer_id;
+                                                                    //echo $uid;
+                                                                	$chk_user = false;       
+                                                                	if($uid==$userProfile->id){   
+                                                                	    $chk_user = true;  
+                                                                	}  
+								                                	if($chk_user){             
+								                                	?> 
+                                                                    <div class="contact-result"></div> 
+                                                                    <hr /> 
+                                                                    <p><span class="remark">*</span> <?=$this->translate('Please scroll down through the terms & conditions in order to accept'); ?></p>
+                                                                    <div class="txt-policy">  
+                                                                        <?php
+                                                            		    include_once('text-termes.phtml');  
+                                                            		    ?>  
+                                                                    </div>    
+                                                                    
+                                                                    <div class="form-group new-form-group">  
+                                    									<div class="checkbox">  
+                                											 <label> 
+                                											     <input type="checkbox" id="check_policy" name="check_policy" class="check_policy"><?=$this->translate("I have read and understand the privacy policy."); ?>  
+                                											 </label>
+                                										</div> 
+                                										<div id="error-policy"></div> 
+                                    								</div>
+                                    								<?php
+								                                	} 
+                                    								?>
+                                                                </div>
+	                                                        </div> 
+                                                        </div>
+                                                        <hr/> 
+                                                        
+                                                        <?php  
+					                                	if($chk_user && $contract->status!=6){                   
+					                                	?>
+                                                        <div class="form-actions">   
+                                                            <div class="row"> 
+                                                                <div class="col-sm-12 col-md-10 col-lg-6 ml-md-auto mr-md-auto text-center">  
+                                                                    <button type="bottom" class="btn btn-primary btn-block btn-loader disabled"  id="btn-next-step1"><?=$this->translate("Next"); ?></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php 
+					                                	}  
+                                                        ?>
+                                                    </div>  
+                                                </div> 
+                                            </div> 
+                                        </div>  
+                                          
+                                        <div class="tab-pane <?=($contract->status==6)?'active':''?>" id="tab2">  
+                                            <div class="tab-content-body">
+                                            	<div class="content-body"> 
+                                                    <div class="row">    
+                                                    	<div class="col-md-12">      
+                                                            <h4 class="title color-sky mb-3"><strong><?=$this->translate("Project details"); ?></strong> <span class="badge badge-<?=$color_status[$contract->status];?> pull-right"><?=$this->translate($ar_status[$contract->status]);?></span></h4> 
+	                                                        <br>      
+                                                            <input type="hidden" id="contract_id" name="contract_id" value="<?=$contract->id;?>"/> 
+                                                            <input type="hidden" id="buyer_id" name="buyer_id" value="<?=$contract->buyer_id;?>"/> 
+                                                            <input type="hidden" id="seller_id" name="contract_id" value="<?=$contract->seller_id;?>"/>
+                                                            
+                                                            <table class="table table-bordered table-responsive">  
+                                                              <thead> 
+                                                                <tr>  
+                                                                  <th align="center"><?=$this->translate("Project name"); ?></th>  
+                                                                  <th align="center"><?=$this->translate("Start date"); ?></th> 
+                                                                  <th align="center"><?=$this->translate("End date"); ?></th>  
+                                                                  <th align="right" class="align-right"><?=$this->translate("Price"); ?></th>
+                                                                </tr>
+                                                              </thead>   
+                                                               
+                                                              <tbody> 
+                                                                <tr>
+                                                                  <td id="detail-projectname"><?=!empty($contract->project_name)?$contract->project_name:'-';?></td>
+                                                                  <td id="detail-start-date"><?=!empty($contract->start_date)?date("m/d/Y", strtotime($contract->start_date)):'-';?></td>
+                                                                  <td id="detail-end-date"><?=!empty($contract->end_date)?date("m/d/Y", strtotime($contract->end_date)):'-';?></td>
+                                                                  <td id="detail-sub-price" class="align-right"><?=!empty($contract->total_price)?number_format($contract->total_price,2):'-';?></td> 
+                                                                </tr>  
+                                                                <?php 
+                                                                //$contract->who_pay_fee = 2; 
+                                                                $fee = $contract->pay_price-$contract->total_price; //buyer fee
+                                                                $transfer_price = $contract->pay_price; //buyer pay
+                                                                $total = $transfer_price;    
+                                                                if($contract->who_pay_fee==2){ //50%
+                                                                    $fee = ($fee/2);  
+                                                                    $transfer_price = $transfer_price-$fee; 
+                                                                    $fee = ($fee*2);  
+                                                                }else if($contract->who_pay_fee==1){ //seller
+                                                                    $fee = $contract->pay_price-$contract->transfer_price;
+                                                                    $transfer_price = $transfer_price;  
+                                                                    $total = $transfer_price+$fee; 
+                                                                }    
+                                                                //echo $contract->who_pay_fee; 
+                                                                ?>
+                                                                <tr>        
+                                                                  <td colspan="3" class="align-right"><b><?=$this->translate("Fee"); ?></b></td>        
+                                                                  <td id="detail-total-price" class="align-right"><?=number_format($fee,2);?></td>   
+                                                                </tr>
+                                                                <tr>     
+                                                                  <td colspan="3" class="align-right"><b><?=$this->translate("Transfer price"); ?></b></td>       
+                                                                  <td id="detail-total-price" class="align-right"><?=!empty($transfer_price)?number_format($transfer_price,2):'-';?></td>   
+                                                                </tr> 
+                                                                <tr>     
+                                                                  <td colspan="3" class="align-right"><b><?=$this->translate('Total'); ?></b></td>       
+                                                                  <td id="detail-total-price" class="align-right"><?=!empty($total)?number_format($total,2):'-';?></td>   
+                                                                </tr>
+                                                                <?php 
+                                                                if(0){     
+                                                                ?>
+                                                                <tr>     
+                                                                  <td colspan="3" class="align-right"><b><?=$this->translate("Transfer price"); ?></b></td>       
+                                                                  <td id="detail-total-price" class="align-right"><?=!empty($contract->transfer_price)?number_format($contract->transfer_price,2):'-';?></td>   
+                                                                </tr>
+                                                                <tr>    
+                                                                  <td colspan="3" class="align-right"><b><?=$this->translate("Pay price"); ?></b></td>      
+                                                                  <td id="detail-total-price" class="align-right"><?=!empty($contract->pay_price)?number_format($contract->pay_price,2):'-';?></td>  
+                                                                </tr>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                              </tbody>  
+                                                            </table> 
+                                                            <div class="row"> 
+                                                                <div class="col-md-6">
+                                                                    <h4><strong><?=$this->translate("Buyer information"); ?></strong></h4> 
+                                                                    <br> 
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Name"); ?></label> 
+                                                                        <p><?=!empty($contract->buyer_name)?$contract->buyer_name:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("E-mail"); ?></label>  
+                                                                        <p><?=!empty($contract->buyer_email)?$contract->buyer_email:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Phone number"); ?></label>  
+                                                                        <p><?=!empty($contract->buyer_number)?$contract->buyer_number:'-';?></p>   
+                                                                    </div>
+                                                                    <?php 
+                                                                    if($contract->above_name==2 && $contract->request==1){
+                                                                    ?>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Position"); ?></label>  
+                                                                        <p><?=!empty($userProfile->above_position)?$userProfile->above_position:'-';?></p>   
+                                                                    </div>
+                                                                    
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company Name"); ?></label>  
+                                                                        <p><?=!empty($userProfile->above_company_name)?$userProfile->above_company_name:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company Address"); ?></label>  
+                                                                        <p><?=!empty($userProfile->above_company_address)?$userProfile->above_company_address:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company Website"); ?></label>  
+                                                                        <p><?=!empty($userProfile->above_company_website)?$userProfile->above_company_website:'-';?></p>   
+                                                                    </div>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                    <?php  
+                                                                    if($contract->company=='yes' && $contract->request==0){
+                                                                    ?>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company name"); ?></label>  
+                                                                        <p><?=!empty($userProfile2->company_name)?$userProfile2->company_name:'-';?></p>   
+                                                                    </div> 
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Country of incorporation"); ?></label>  
+                                                                        <p><?=!empty($userProfile2->company_country)?$userProfile2->company_country:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("ID number of the company"); ?></label>  
+                                                                        <p><?=!empty($userProfile2->company_id)?$userProfile2->company_id:'-';?></p>   
+                                                                    </div> 
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company Address"); ?></label>  
+                                                                        <p><?=!empty($userProfile2->company_address)?$userProfile2->company_address:'-';?></p>   
+                                                                    </div>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </div> 
+                                                                <div class="col-md-6">
+                                                                    <h4><strong><?=$this->translate("Seller information"); ?></strong></h4>
+                                                                    <br>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Name"); ?></label> 
+                                                                        <p><?=!empty($contract->seller_name)?$contract->seller_name:'-';?></p>   
+                                                                    </div> 
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("E-mail"); ?></label>  
+                                                                        <p><?=!empty($contract->seller_email)?$contract->seller_email:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Phone number"); ?></label>  
+                                                                        <p><?=!empty($contract->seller_number)?$contract->seller_number:'-';?></p>   
+                                                                    </div>
+                                                                    <?php  
+                                                                    if($contract->above_name==2 && $contract->request==0){
+                                                                    ?>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Position"); ?></label>  
+                                                                        <p><?=!empty($userProfile->above_position)?$userProfile->above_position:'-';?></p>   
+                                                                    </div>
+                                                                    
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company Name"); ?></label>  
+                                                                        <p><?=!empty($userProfile->above_company_name)?$userProfile->above_company_name:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company Address"); ?></label>  
+                                                                        <p><?=!empty($userProfile->above_company_address)?$userProfile->above_company_address:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company Website"); ?></label>  
+                                                                        <p><?=!empty($userProfile->above_company_website)?$userProfile->above_company_website:'-';?></p>   
+                                                                    </div>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                    <?php 
+                                                                    if($contract->company=='yes' && $contract->request==1){
+                                                                    ?>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company name"); ?></label>  
+                                                                        <p><?=!empty($userProfile2->company_name)?$userProfile2->company_name:'-';?></p>   
+                                                                    </div> 
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Country of incorporation"); ?></label>  
+                                                                        <p><?=!empty($userProfile2->company_country)?$userProfile2->company_country:'-';?></p>   
+                                                                    </div>
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("ID number of the company"); ?></label>  
+                                                                        <p><?=!empty($userProfile2->company_id)?$userProfile2->company_id:'-';?></p>   
+                                                                    </div> 
+                                                                    <div class="form-group">  
+                                                                        <label><?=$this->translate("Company Address"); ?></label>  
+                                                                        <p><?=!empty($userProfile2->company_address)?$userProfile2->company_address:'-';?></p>   
+                                                                    </div>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </div>
+                                                            </div> 
+                                                            <?php
+                                                            if(!empty($contract->img)){ 
+                                                            ?>
+                                                            <hr>  
+                                                            <h4><strong><?=$this->translate('Contract file'); ?></strong></h4>     
+                                                            <p>
+                                                                <a href="<?=$contract->img;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 1</a>
+                                                                
+                                                                <?php
+                                                                if(!empty($contract->img2)){  
+                                                                ?>
+                                                                <a href="<?=$contract->img2;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 2</a>
+                                                                <?php
+                                                                }
+                                                                ?> 
+                                                                
+                                                                <?php
+                                                                if(!empty($contract->img3)){ 
+                                                                ?>
+                                                                <a href="<?=$contract->img3;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 3</a>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                
+                                                                <?php
+                                                                if(!empty($contract->img4)){ 
+                                                                ?>
+                                                                <a href="<?=$contract->img4;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 4</a>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                
+                                                                <?php
+                                                                if(!empty($contract->img5)){ 
+                                                                ?>
+                                                                <a href="<?=$contract->img5;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 5</a>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                
+                                                                <?php
+                                                                if(!empty($contract->img6)){ 
+                                                                ?>
+                                                                <a href="<?=$contract->img6;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 6</a>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                
+                                                                <?php
+                                                                if(!empty($contract->img7)){ 
+                                                                ?>
+                                                                <a href="<?=$contract->img7;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 7</a>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                
+                                                                <?php
+                                                                if(!empty($contract->img8)){ 
+                                                                ?>
+                                                                <a href="<?=$contract->img8;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 8</a>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                
+                                                                <?php
+                                                                if(!empty($contract->img9)){  
+                                                                ?>
+                                                                <a href="<?=$contract->img9;?>" target="_blank" class="btn btn-success btn-sm" download><?=$this->translate('file'); ?> 9</a>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </p>  
+                                                            <?php
+                                                            }  
+                                                            ?>
+                                                            <?php
+                                                            if(!empty($contract->contract_number) && 0){ 
+                                                            ?>
+                                                            <hr>  
+                                                            <h4><strong><?=$this->translate("Contract No."); ?></strong></h4>     
+                                                            <p><?=$contract->contract_number;?></p>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <hr>  
+                                                            <h4><strong><?=$this->translate("Who will pay the Wezenit fee ?"); ?></strong></h4>
+                                                            <?php
+                                                            $who_pay_fee = $this->translate('Buyer'); 
+                                                            if($contract->who_pay_fee==1){
+                                                                $who_pay_fee = $this->translate('Seller');    
+                                                            }else if($contract->who_pay_fee==2){
+                                                                $who_pay_fee = ' 50% 50%';      
+                                                            }  
+                                                            ?> 
+                                                            <p><?=$who_pay_fee;?></p>  
+                                                            <hr>   
+                                                            <h4><strong><?=$this->translate("Details: Note"); ?></strong></h4>    
+                                                            <p><?=!empty($contract->note)?$contract->note:'-';?></p>
+                                                        </div>
+                                                    </div> 
+                                                    <?php 
+                                                    if($uid==$contract->buyer_id){// $uid==$contract->buyer_id
+                                                    ?>
+                                                    <hr />
+                                                    <h4><strong><?=$this->translate("Payment"); ?></strong></h4>
+                                                    <div class="form-actions">      
+                                                        <div class="row">     
+                                                            <div class="col-sm-12 col-md-6 col-lg-6 ml-md-auto mr-md-auto text-center">  
+                                                                <a class="btn btn-primary btn-block" href="<?=$host_url.$this->url('index');?><?=$lang;?>/contract/<?=$eid;?>/?act=goPayment&task=card&rd=<?=strtotime(date("YmdHis"));?>"><?=$this->translate("Credit Card"); ?></a> 
+												            </div> 
+												            <div class="col-sm-12 col-md-6 col-lg-6 ml-md-auto mr-md-auto text-center">  
+                                                                <a class="btn btn-primary btn-block" href="<?=$host_url.$this->url('index');?><?=$lang;?>/contract/<?=$eid;?>/?act=goPayment&task=directdebit&rd=<?=strtotime(date("YmdHis"));?>"><?=$this->translate("Direct Debit"); ?></a> 
+												            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <?php 
+                                                    }       
+                                                    ?>
+	                                            </div>
+                                        	</div> 
+                                        </div>       
+                                          
+                                        
+                                        <div class="tab-pane <?=($contract->status==5)?'active':''?>" id="tab3">     
+                                            <div class="tab-content-body">
+                                                <div class="content-body"> 
+	                                        		<div class="row">    
+	                                        			<div class="col-md-12 mb-5">   
+									            		     <div class="mission-block text-center contract-complete"> 
+									            		          <div class="icon-send-block step-complete"> 
+									            		              <i class="fa fa-check-circle-o" aria-hidden="true"></i> 
+									            		          </div>   
+									            		          <h1><?=$this->translate("Contract complete"); ?></h1>  
+									            		     </div>  
+									            		 </div>
+	                                                </div>
+	                                                 
+	                                                <div class="form-actions ">   
+                                                        <div class="row"> 
+                                                            <div class="col-sm-12 col-md-10 col-lg-6 ml-md-auto mr-md-auto text-center"> 
+                                                                <a href="<?=$this->url('index');?><?=$lang;?>/contractinfo/<?=$contract->id;?>/?rd=<?=strtotime(date("YmdHis"));?>" class="btn btn-primary btn-block"  class="btn btn-success btn-lg btn-block"><?=$this->translate("Go to Contract"); ?></a> 
+												            </div>
+                                                        </div>
+                                                    </div>
+	                                            </div>
+                                        	</div>
+                                        </div>
+                                        
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>	            
+    	
+    	</div>
+    </div>
+</section>   
+<div class="payment-loading" id="payment-loading" style="display:none;"> 
+    <div class="txt-loading">
+        <p>“ you will be redirected to a secure payment page MangoPay”</p>
+        <div class="block-loader"></div> 
+    </div>
+</div>
+
+<?php
+}
+?>
+<?php
+if(!empty($error)){ 
+?>
+<script> 
+$(window).on('load', function() {  
+     alert_error("<?=$error;?>");
+});
+</script>
+<?php
+}
+?>

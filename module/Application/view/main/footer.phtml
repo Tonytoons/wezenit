@@ -1,0 +1,62 @@
+
+<footer class="pb_footer">
+    <div class="container-full">  
+      <div class="row">   
+        <div class="col-sm-6 col-md-6 col-lg-3 mb-3"> 
+          <h5 class="title-footer color-purple">Leadership</h5> 
+          <ul>  
+            <li><a href="<?= $this->url('index').$lang.'/notre-equipe/';?>"><?=$this->translate("Our team"); ?></a></li>
+            <li><a href="<?= $this->url('index').$lang.'/faq/'; ?>"><?=$this->translate("FAQ"); ?></a></li> 
+          </ul>
+        </div> 
+        <div class="col-sm-6 col-md-6 col-lg-3 mb-3">
+          <h5 class="title-footer color-purple">Legal</h5>
+          <ul> 
+            <li><a href="<?= $this->url('index').$lang.'/termes-et-condition/'; ?>"><?=$this->translate("Terms & conditions"); ?> </a></li>
+            <li><a href="https://ec.europa.eu/" target="_blank">EU Licensed and registered</a></li> 
+            <li><img src="<?=$this->url('index');?>2018/assets/images/european.png" alt="WEZENIT" class="img-fluid"></li>
+          </ul>  
+        </div> 
+        <div class="col-sm-6 col-md-6 col-lg-3 mb-3">
+          <h5 class="title-footer color-purple">Contact</h5>
+          <ul>
+            <li><a href="<?= $this->url('index').$lang.'/contact-us/'; ?>"><?=$this->translate("Contact-us"); ?></a></li> 
+          </ul>   
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3 mb-3">
+          <h5 class="title-footer color-purple"><?=$this->translate("Follow-us"); ?></h5>
+          <ul>
+            <li><a href="https://www.facebook.com/wezenit" target="_blank">Facebook</a></li>
+            <li><a href="https://twitter.com/wezenit" target="_blank">Twitter</a></li>
+            <li><a href="https://www.linkedin.com/company/wezenit" target="_blank">LinkedIn</a></li>
+          </ul> 
+        </div>
+      </div> 
+      <div class="row">  
+        <div class="col-12 col-md-12 text-center">  
+          <a href="<?= $this->url('index').$lang.'/termes-et-condition/#mangopay'; ?>">
+            <img src="https://www.mangopay.com/terms/powered-by-mangopay.png" class="img-responsive" style="max-width: 300px;"></img><br>
+          </a>
+          <a href="<?= $this->url('index').$lang.'/'; ?>">
+            <img class="footer-logo" src="<?=$this->url('index');?>2018/assets/images/new-logo.png">   
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> 
+ 
+<input type="hidden" id="progress_width" value="0">
+<?php
+if(0){
+?>
+<!-- loader -->
+<div id="pb_loader" class="show fullscreen">
+  <svg class="circular" width="48px" height="48px">
+    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/> 
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#5d2a73"/> 
+  </svg>
+</div> 
+<?php
+}
+?>

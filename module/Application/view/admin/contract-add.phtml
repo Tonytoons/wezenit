@@ -1,0 +1,223 @@
+<div class="panel panel-default">
+    <div class="panel-heading">  
+        New Contract 
+        <a href="<?php echo $this->url('index').'admin/blog/';?>" class="btn btn-success btn-xs pull-right"><i class="fa fa-undo" aria-hidden="true"></i>Back</a>
+    </div>
+    <div class="panel-body">  
+        <form action="<?php echo $this->url('index').'admin/contract/'.$id.'?task=add';?>" enctype="multipart/form-data" name="contract" id="contract" method="post">
+        	<div class="box-body">
+        	    <div class="form-group">    
+          			<label for="project_name">Project Name</label>     
+          			<input type="text" class="form-control" id="project_name" name="contract[project_name]" placeholder="Project Name" value=""> 
+        		</div>
+        		<div class="form-group"> 
+          			<label for="pic">file</label>    
+          			<input type="file" id="pic" name="pic">
+        		</div>
+        		
+        		<div class="form-group">
+          			<label for="total_price">Price</label>   
+          			<input type="number" class="form-control" id="total_price" name="contract[total_price]" placeholder="Price" value="">  
+        		</div> 
+        		
+        		<div class="form-group">
+          			<label for="start_date">Start Date</label>   
+          			<input type="text" class="form-control" id="start_date" name="contract[start_date]" placeholder="Start Date" value="<?=date("Y-m-d");?>" readonly>  
+        		</div>
+        		
+        		<div class="form-group">
+          			<label for="end_date">End Date</label>   
+          			<input type="text" class="form-control" id="end_date" name="contract[end_date]" placeholder="End Date" value="<?=date("Y-m-d", strtotime("+1 day", strtotime(date("Y-m-d"))));?>" readonly> 
+        		</div>
+        		
+        		<div class="form-group"> 
+          			<label for="serial_number">Serial No.</label>    
+          			<input type="number" class="form-control" id="serial_number" name="contract[serial_number]" placeholder="Serial No." value=""> 
+        		</div> 
+        		
+        		<div class="form-group">  
+          			<label for="serial_number">Name</label>    
+          			<input type="text" class="form-control" id="contract_name" name="contract[contract_name]" placeholder="Name" value=""> 
+        		</div>
+        		
+        		<div class="form-group">  
+          			<label for="contract_company">Company</label>    
+          			<input type="text" class="form-control" id="contract_company" name="contract[contract_company]" placeholder="Company" value=""> 
+        		</div>
+        		
+        		<div class="form-group">  
+          			<label for="company_address">Address</label> 
+          			<textarea name="contract[company_address]" class="form-control summernote" id="company_address" rows="5"></textarea>
+          		</div>
+        		
+        		<div class="form-group">
+          			<label for="contract_phone">Mobile number</label>  
+          			<input type="number" class="form-control" id="price" name="contract[contract_phone]" placeholder="Mobile number" value=""> 
+        		</div> 
+        		
+        		<div class="form-group"> 
+          			<label for="contract_landline_phone">Land line phone</label>  
+          			<input type="number" class="form-control" id="contract_landline_phone" name="contract[contract_landline_phone]" placeholder="Land line phone" value=""> 
+        		</div> 
+        		 
+        		<div class="form-group">   
+          			<label for="contract_email">Email Supplier</label>     
+          			<input type="email" class="form-control" id="contract_email" name="contract[contract_email]" placeholder="Email Supplier" value=""> 
+        		</div> 
+        		<div class="form-group">    
+                    <label for="active">Status</label><br>
+                    <?php
+                    //0=pending, 1=accepted, 2=start, 3=done 
+                    //0=pending, 1=accepted(supplier accepted), 2=start, 3=done, 4=looking for supplier, 5=paid, 6=waiting for money
+                    ?>
+          			<select id="status" name="contract[status]" class="form-control" >
+          			    <?php
+          			    if(!empty($ar_status)){  
+          			        foreach($ar_status as $key=>$value){    
+          			    ?>
+          			    <option value="<?=$key?>"><?=$value;?></option> 
+          			    <?php
+          			        } 
+          			    }
+          			    ?>
+          			</select>      
+        		</div> 
+        		
+      		</div><!-- /.box-body --> 
+            <hr />  
+      		<div class="box-footer">
+        		<button type="submit" class="btn btn-primary">Submit</button>
+      		</div>
+    	</form>  
+    </div> 
+</div>
+<script type="text/javascript">   
+ 
+/************* datepicker rank *****************/
+var date;
+$(function() { 
+      $('#start_date').datepicker({ 
+            minDate: 0,  
+            changeMonth: true,
+            changeYear: true,
+            format: 'yyyy-mm-dd',
+            onSelect: function(dateStr) {     
+                  date = $(this).datepicker('getDate');
+                  if (date) {
+                        date.setDate(date.getDate() + 1);
+                  }     
+                  //console.log(date); 
+                  $('#end_date').datepicker('option', 'minDate', date);
+            }
+      }); 
+      $('#end_date').datepicker({ 
+            minDate: 0,  
+            changeMonth: true,
+            changeYear: true, 
+            format: 'yyyy-mm-dd',   
+            onSelect: function (selectedDate) { 
+                  date = $('#start_date').datepicker('getDate');  
+                  if (date) {     
+                        date.setDate(date.getDate());      
+                  }  
+                  //console.log(date); 
+                  $('#start_date').datepicker('option', 'minDate', date || 0);
+                  //$("#form-supplier").valid();  
+            }
+      });
+});
+
+
+/************* add method validate *****************/
+
+$.validator.addMethod("greaterThan", 
+function(value, element, params) {
+    if (!/Invalid|NaN/.test(new Date(value))) {
+        return new Date(value) > new Date($(params).val());
+    }   
+    return new Date(value) > new Date($(params).val());   
+},'Must be greater than {0}.');    
+ 
+$.validator.addMethod("sirealRegex", function(value, element) {
+    return this.optional(element) || /^[a-z0-9\-]+$/i.test(value);
+}, 'Sireal number format not valid');   
+ 
+$.validator.addMethod("phoneNumber", function (phone_number, element) {
+        phone_number = phone_number.replace(/\s+/g, ""); 
+        return true;//this.optional(element) || phone_number.length > 9 && phone_number.match(/^(\+?1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{5}$/);  
+}, "Please enter a valid phone number");       
+
+
+
+/************* validate form supplier*****************/
+
+$("#contract").validate({    
+    rules: {  
+        pic: {    
+           required: true,  
+           extension: "pdf|jpg|jpeg|png|gif"
+        }, 
+        'contract[total_price]':"required", 
+        'contract[start_date]':{
+            required:true
+        }, 
+        'contract[end_date]':{ 
+            required:true,
+            greaterThan: "#start_date"              
+        },
+        'contract[serial_number]':{
+            required: true, 
+            sirealRegex: true,
+        },
+        'contract[contract_email]': { 
+          required: true,
+          email: true  
+        },
+        'contract[contract_name]':"required", 
+        'contract[contract_company]':"required",
+        'contract[contract_phone]':{
+            required: true, 
+            phoneNumber: true, 
+        }, 
+    },
+    messages: { 
+        pic:"Please enter a value with a valid mimetype (pdf,jpg,jpeg,png,gif).",
+        'contract[contract_name]':'Please enter full name.',
+        'contract[total_price]':'Please enter price.',  
+        'contract[contract_company]':'Please enter company name.', 
+        'contract[start_date]':'Please enter work start date.', 
+        'contract[end_date]':  
+        { 
+            required:'Please enter work end date.', 
+            greaterThan:'Work start date and end date should be proper.'
+        },
+        'contract[contract_phone]': { 
+            required: 'You must enter a sireal number.',   
+            sirealRegex: 'Sireal number format not valid.'
+        }, 
+        'contract[contract_email]': {   
+          required: 'We need your email address to contact you.',
+          email: 'Your email address must be in the format of name@domain.com'
+        },    
+    }, 
+    onfocusout: false,
+    invalidHandler: function(form, validator) {
+        var errors = validator.numberOfInvalids();
+        if (errors) {                    
+            validator.errorList[0].element.focus(); 
+        }
+    }, 
+    submitHandler: function(form) {
+      form.submit();
+    }  
+});  
+
+$('#pic').change(function(){ 
+    $(this).valid();   
+});   
+
+$('#contract_phone').keyup(function(){ 
+    $(this).valid();    
+});
+
+</script> 

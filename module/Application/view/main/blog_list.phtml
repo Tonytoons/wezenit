@@ -1,0 +1,49 @@
+<?php
+if(!empty($recomment->items)){  
+?>
+<div class="widget categories  mb-5"> 
+  <h4 class="title-blog mb-5"><?=$this->translate('Hot'); ?></h4> 
+  <div class="row">
+    <div class="col-sm-12"> 
+      <?php 
+      
+      ///print_r($recomment);
+      if($recomment->total>=1){ 
+        shuffle($recomment->items);  
+			  foreach ($recomment->items as $key=>$items) {         
+			?> 
+      <div class="single_comments blog-list-right">    
+        <a href="<?=$this->url('index').$lang.'/blogdetail/'.$items->id.'-'.strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $items->name))).'/';?>" >     
+          <img src="<?=$urlFile.'/blog/'.$items->img;?>" class="img-fluid" alt="<?=$items->name;?>"> 
+          <div class="title-blog-list"><?=$items->name;?></div>     
+          <div class="entry-meta small muted"> 
+              <span><i class="fa fa-calendar" aria-hidden="true"></i> <a href="<?=$this->url('index').$lang.'/blogdetail/'.$items->id.'-'.strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $items->name))).'/';?>"><?=date("d F Y", strtotime($items->last_update));?></a></span>
+          </div>
+        </a> 
+      </div>
+      <?php   
+			  }    
+      }
+      ?>
+    </div>
+  </div>                     
+</div> 
+<?php 
+}
+
+if(0){
+?>
+ 
+<div class="widget categories">
+  <h4 class="title-blog"><?=$this->translate('Fan Page'); ?></h4>   
+  <div class="row">
+    <div class="col-sm-12">  
+    
+      <div class="fb-page" data-href="https://www.facebook.com/wezenit/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/heresclips/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/heresclips/">คลิปโดนๆ คลิปเฮียๆ</a></blockquote></div>
+    
+    </div>
+  </div>
+</div>
+<?php
+}
+?>

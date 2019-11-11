@@ -1,0 +1,100 @@
+
+<section class="pb_section" id="buyer">
+    <div class="container-full">  
+        <div class="row">  
+          <div class="col-sm-12 col-md-2 col-lg-2 mb-3"> 
+            <?php
+            include 'menu-profile.phtml';
+            ?>  
+          </div>
+          <div class="col-sm-12 col-md-10 col-lg-10">
+            <div class="row"> 
+	            <div class="col mb-5"> 
+	              	 
+	                <legend class="title color-sky mb-3">
+	  					<?=$this->translate('Buyer Contract'); ?>
+	  				</legend> 
+	  				<?php
+	  				if(0){
+	  				?>
+	                <ul class="nav nav-tabs nav-justified" role="tablist"> 
+	                    <?php 
+	                    $status_no = 0;
+	                    foreach($ar_status AS $item){  
+	                        //$status_no!=1 && $status_no!=2 && $status_no!=4 
+	                        if($status_no!=4){    
+	                    ?>
+	                    <li role="presentation" class="items<?=$status_no;?> <?php echo ($status_no==0)?'active':''?>"><a href="#items<?=$status_no;?>" onclick="getByStatus('<?=$status_no;?>');" aria-controls="home" role="tab" data-toggle="tab"><?=$item;?></a></li> 
+	                    <?php 
+	                        }
+	                        $status_no++;    
+	                        ?>
+  	                        <script type="text/javascript">   
+								ar_status.push('<?=$this->translate($item);?>');       
+						    </script>
+  	                        <?php
+	                    }
+	                    ?>
+	                </ul>
+	                <?php
+	  				}
+	                ?>
+	                <div class="row">
+	                	<div class="col-sm-3 col-md-1"> 
+              				<div class="form-group"> 
+	  							<label class="control-label" for="Gender"><?=$this->translate('Status'); ?>:</label>
+	  						</div>
+              			</div> 
+              			<div class="col-sm-6 col-md-3">  
+              				<div class="form-group"> 
+	  							<select id="seller-status" name="seller-status" onchange="getByStatus($(this).val());" class="form-control"> 
+	  								<option value="all"><?=$this->translate('All'); ?></option> 
+        	  						<?php 
+  				                    $status_no = 0;
+  				                    foreach($ar_status AS $item){   
+  				                        //$status_no!=1 && $status_no!=2 && $status_no!=4 
+  				                        if($status_no!=4){    
+  				                    		?>
+									          <option value="<?=$status_no;?>"><?=$this->translate($item);?></option>
+								        	<?php  
+  				                        }  
+  				                        $status_no++;  
+  				                        ?>
+			  	                        <script type="text/javascript">   
+											ar_status.push('<?=$this->translate($item);?>');       
+									    </script>
+			  	                        <?php
+  				                    } 
+  				                    ?>
+  								</select>
+	  						</div>
+              			</div>
+              		</div>	
+	                <div class="row">  
+	                    <div class="col-sm-12 col-md-12">
+		                    <table class="table table-responsive" id="dataTable">
+		                        <thead>  
+		                            <th>#</th>
+		                            <th><?=$this->translate('Project'); ?></th> 
+	                                <th><?=$this->translate('Price'); ?></th>
+	                                <th><?=$this->translate('Start date'); ?></th>
+	                                <th><?=$this->translate('End date'); ?></th>
+	                                <th><?=$this->translate('Status'); ?></th>
+	                                <th><?=$this->translate('Action'); ?></th> 
+		                        </thead>
+		                        <tbody id="contract-list">    
+		                            
+		                        </tbody>
+		                    </table>
+		                </div> 
+		            </div> 
+	                <div class="row"> 
+	                    <div class="col-sm-12 col-md-12 text-center">   
+	                        <ul id="pagination" class="pagination-sm"></ul>
+	                    </div>
+	                </div>
+                </div>
+            </div>
+        </div>  
+    </div>  
+</section>   

@@ -1,0 +1,130 @@
+
+<section class="pb_section" id="dashboard"> 
+    <div class="container-full">  
+        <div class="row">  
+            <div class="col-sm-12 col-md-2 col-lg-2 mb-3"> 
+            <?php
+            include 'menu-profile.phtml';
+            ?>  
+            </div>
+            <div class="col-sm-12 col-md-10 col-lg-10">
+                <div class="profile-content" id="dashboardContent">
+        					
+					<legend class="title color-sky mb-3"> 
+						<?=$this->translate('Dashboard'); ?>
+					</legend>
+					
+					<?php
+					if(1){ 
+					?>
+					<div class="row">
+					   
+					    <?php 
+					    if(1 || $userProfile->type=='supplier'){ 
+					    ?>
+						<div class="col-lg-6 col-md-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col">
+											<i class="fa fa-address-card-o fa-5x"></i>
+										</div>
+										<div class="col text-right">
+											<div class="huge">
+												<?=number_format($contract->total); ?>
+											</div>
+											<div> 
+												<?=$this->translate('Consumer Contract'); ?>
+											</div>
+										</div>
+									</div> 
+								</div> 
+								<a href="<?= $this->url('index').$lang.'/'; ?>consumer/">   
+								<div class="panel-footer">
+									<span class="pull-left"><?=$this->translate('View'); ?></span>
+									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+									<div class="clearfix"></div>
+								</div> </a>
+							</div>
+						</div> 
+						 
+						<div class="col-lg-6 col-md-12"> 
+							<div class="panel panel-success">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col">
+											<i class="fa fa-address-book-o fa-5x"></i>
+										</div>
+										<div class="col text-right">
+											<div class="huge">
+												<?=number_format($supplier->total); ?>
+											</div>
+											<div>
+												<?=$this->translate('Supplier Contract'); ?>
+											</div>
+										</div>
+									</div>
+								</div>
+								<a href="<?= $this->url('index').$lang.'/'; ?>supplier/"> 
+								<div class="panel-footer"> 
+									<span class="pull-left"><?=$this->translate('View'); ?></span> 
+									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+									<div class="clearfix"></div>
+								</div> </a>
+							</div>
+						</div>
+						
+						<?php 
+					    } 
+						?>
+					</div>
+					
+					<?php
+					}
+					?>
+					
+					<?php
+			  		if(1){  
+			  		?>
+					<div class="row">
+						<div class="col-lg-6 col-md-12">
+							<div class="panel panel-info">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col">
+											<i class="fa fa-money fa-5x" aria-hidden="true"></i> 
+										</div>
+										<div class="col text-right">
+											<div class="huge">
+												<?php
+												if(!empty($wallets)){
+													$Amount = $wallets;
+													echo number_format($Amount,2).' EUR';
+												}else{ 
+													echo '0.0 EUR'; 
+												}
+												?>
+											</div>
+											<div> 
+												<?php echo $this->translate('My Wallets'); ?>
+											</div>
+										</div> 
+									</div> 
+								</div> 
+								<a href="<?= $this->url('index').$lang.'/'; ?>mywallets/">   
+								<div class="panel-footer">
+									<span class="pull-left"><?=$this->translate('View'); ?></span>
+									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+									<div class="clearfix"></div>
+								</div> </a>
+							</div>
+						</div> 
+					</div> 
+					<?php
+			  		}  
+					?>
+				</div>  
+            </div>
+        </div>  
+    </div>  
+</section>    

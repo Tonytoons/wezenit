@@ -1,0 +1,47 @@
+<section class="pb_section text-center" id="forgotpass-form">
+    <div class="container-full">
+        <div class="row"> 
+            <div class="col-sm-12 col-md-6 col-lg-6 ml-md-auto mr-md-auto bg-wezenit-form">
+              <h4 class="heading mb-5 color-sky"><i class="fa fa-key" aria-hidden="true"></i> <?=$this->translate('Demandez un nouveau mot de passe');?></h4>
+            </div> 
+        </div> 
+        <div class="row"> 
+          <?php
+          if(!empty($token)){  
+            if(!empty($time_expire)){     
+          ?>
+            <div class="col-sm-12 col-md-6 col-lg-6 ml-md-auto mr-md-auto bg-wezenit-form"> 
+              <div class="form-group"> 
+                <input type="hidden" name="forgot-token" id="forgot-token" value="<?=$token;?>"/>  
+                 <input type="hidden" name="forgot-newemail" id="forgot-newemail" value="<?=$token_email;?>"/>         
+          			 <input id="forgot-newpass" name="forgot-newpass" type="password" placeholder="<?=$this->translate('New Password'); ?>" class="form-control" required=""> 
+          		</div>
+          		<hr> 
+          		<button type="button" onclick="forgotnewpassword();" class="btn btn-primary btn-lg btn-block btn-loader">	<i class="fa fa-floppy-o" aria-hidden="true"></i> <?=$this->translate('Save'); ?></button>
+  		      </div> 
+          <?php
+            }else{   
+          ?>
+              <div class="col-sm-12 col-md-6 col-lg-6 ml-md-auto mr-md-auto bg-wezenit-form">
+                <div class="alert alert-danger text-center">
+                    <h1><?=$this->translate('forgot password has expired.'); ?></h1>  
+                </div>
+                <a href="<?=$this->url('index'); ?>"  class="btn btn-primary btn-lg btn-block btn-loader"><i class="fa fa-home" aria-hidden="true"></i> <?=$this->translate('Home'); ?></a>
+              </div>
+          <?php
+            }
+          }else{  
+          ?>
+            <div class="col-sm-12 col-md-6 col-lg-6 ml-md-auto mr-md-auto bg-wezenit-form"> 
+              <div class="form-group">        
+          			 <input type="email" class="form-control" id="email" name="email" placeholder="<?=$this->translate('Email address');?>"> 
+          		</div>
+          		<hr> 
+          		<button type="button" onclick="forgotpassword();" class="btn btn-primary btn-lg btn-block btn-loader"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> <?=$this->translate('Send'); ?></button>
+  		      </div> 
+		      <?php
+          } 
+		      ?>
+       </div>  
+    </div>  
+</section>   

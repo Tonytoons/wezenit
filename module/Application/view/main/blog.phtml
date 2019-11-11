@@ -1,0 +1,62 @@
+   
+<section class="pb_section" id="register">
+    <div class="container"> 
+    	<div class="row">  
+    		<div class="col-md-9"> 
+    			<h4 class="title-blog mb-5"><?=$this->translate('Blog'); ?></h4>  
+    			<?php    
+    			foreach ($blog->items as $key=>$items) {    
+    			?>
+    			  <div class="row">
+              <div class="col-md-12">  
+                <div class="row"> 
+                  <div class="col-md-4">  
+                    <a href="<?=$this->url('index').$lang.'/blogdetail/'.$items->id.'-'.strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $items->name))).'/';?>" class="thumbnail">        
+                        <img src="<?=$urlFile.'/blog/'.$items->img;?>" alt="<?=$items->name;?>" class="img-fluid">     
+                    </a> 
+                  </div>
+                  <div class="col-md-8">  
+                    <div class="row">
+                      <div class="col-md-12">
+                        <a href="<?=$this->url('index').$lang.'/blogdetail/'.$items->id.'-'.strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $items->name))).'/';?>">
+                          <h4 class="heading color-sky"><?=$items->name;?></h4> 
+                        </a> 
+                      </div>
+                    </div> 
+                    <div class="row">
+                      <div class="col-md-12">
+                        <p></p>  
+                        <p> 
+                            <i class="fa fa-calendar" aria-hidden="true"></i> <?=date("d F Y", strtotime($items->last_update));?>    
+                          | <i class="fa fa-eye" aria-hidden="true"></i> <?=number_format($items->view);?> <?=($items->view<=1)?$this->translate('View'):$this->translate('Views');?> 
+                        </p>
+                      </div>   
+                    </div>        
+                    <p><?=$items->detail_short;?></p> 
+                    <p><a class="btn btn-primary" href="<?=$this->url('index').$lang.'/blogdetail/'.$items->id.'-'.strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $items->name))).'/';?>"><?=$this->translate('Read more'); ?></a></p>   
+                  </div>
+                </div>  
+              </div>
+            </div> 
+            <hr> 
+    			<?php 
+    			} 
+    			?>
+    			<div class="row">
+            <div class="col-sm-12 text-center"> 
+                <?php  
+                if(!empty($pagination)) print_r($pagination);     
+                ?>
+            </div>
+          </div>
+    			
+    		</div> 
+    		
+    		<div class="col-md-3">  
+    		  <?php
+    		  include_once('blog_list.phtml');    
+    		  ?>
+    		</div>
+    	</div>
+    </div> 
+</section> 

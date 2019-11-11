@@ -1,0 +1,28 @@
+<div id="wrapper">
+	<?php include_once('navigation.phtml');?>  
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12"> 
+                <h1 class="page-header">Blog</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>    
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12"> 
+               <?php
+               if($task=='add'){  
+                   include_once('blog-add.phtml'); 
+               }elseif($task=='edit'){
+                   include_once('blog-edit.phtml');  
+               }elseif($task=='image'){
+                   include_once('blog-image.phtml');   
+               }else{
+                   include_once('blog-list.phtml');
+               } 
+               ?>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+	</div>
+</div>

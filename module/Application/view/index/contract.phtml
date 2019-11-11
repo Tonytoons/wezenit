@@ -1,0 +1,431 @@
+<?php  
+if($contract->status>=6){   
+?>
+<div id="app">  
+  <?php  
+  include("header.phtml");   
+  ?> 
+  <div class="content">   
+    <div class="container">   
+    	<div class="row"> 
+    		
+    	    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">   
+                <div id="wid-id-0">
+                    <!-- widget div-->  
+                    <div role="content">
+                        <!-- widget content -->
+                        <div class="widget-body">
+        
+                            <div class="row">
+                            	
+                                <div id="bootstrap-wizard-1" class="col-md-12">    
+                                	
+                                    <div class="form-bootstrapWizard"> 
+                                        <ul class="bootstrapWizard form-wizard contract-info-page"> 
+                                            <li class="process-active active" id="tab-step1" data-target="#step1">  
+                                                <a href="#tab1"  data-toggle="tab" class="active"> <span class="step">1</span> <span class="wizard-title">Login and contact details</span> </a>
+                                            </li> 
+                                            <li data-target="#step2" id="tab-step2" class="">       
+                                                <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="wizard-title disabled">Payment Details</span> </a>  
+                                            </li> 
+                                            <li data-target="#step3" id="tab-step3" class="">    
+                                                <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="wizard-title disabled">Contract complete</span> </a>
+                                            </li>  
+                                        </ul>  
+                                        <div class="clearfix"></div>  
+                                    </div>
+                                    
+                                    
+                                    <div class="tab-content">  
+                                        
+                                        <div class="tab-pane active" id="tab1">  
+                                            
+                                            <div class="tab-content-body">   
+                                                <div class="row">
+                                                    <div class="col-sm-12"> 
+                                                    	
+                                                    	<hr>
+                                    					<br>
+                                                    	  
+                                                        <div class="content-body"> 
+                                                        	<?php     
+						                                	if($uid!=$contract->user_id){      
+						                                	?>
+					                                        <h3 class="text-center"><strong>Login to your zenovly.com account with "<?=!empty($userProfile->email)?$userProfile->email:'-';?>" and agree to this transaction</strong></h3>
+                                                        	<br>   
+                                                            <div class="row"> 
+	                                                        	<div class="col-md-4 col-md-offset-4">   
+	                                                        		
+		                                                        	<div id="login-error"></div>      
+									            					<form id="login-form">  
+									            						<fieldset>  
+									            							<input type="hidden" class="form-control" id="login-email" placeholder="<?=$this->translate('Email address');?>" value="<?=!empty($userProfile->email)?$userProfile->email:'-';?>" required>
+									            							<?php
+																			if($userProfile->status=='Active'){  
+																			?>
+																			<div class="form-group input-group">  
+									            								<span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>  
+									            								<input type="password" id="login-password" placeholder="<?=$this->translate('Password');?>" class="form-control input-md" required="">
+									            							</div> 
+									            							<button type="button" onclick="goLogin();" class="btn btn-lg btn-success btn-block btn-register btn-loader"> 
+									            								<i class="fa fa-sign-in" aria-hidden="true"></i> <?=$this->translate('Sign in');?>  
+									            							</button> 
+									            							<?php  
+																			}else{        
+									            							?> 
+									            							<div class="form-group input-group">   
+									            								<span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>    
+									            								<input id="login-password" name="login-password" type="password" placeholder="<?=$this->translate('Password'); ?>" class="form-control input-md" required="">
+									            							</div>  
+									            							<button type="button" onclick="customerNewpassword();" class="btn btn-lg btn-success btn-block btn-register btn-loader"> 
+									            								<i class="fa fa-sign-in" aria-hidden="true"></i> <?=$this->translate('Sign in');?>   
+									            							</button> 
+									            							<?php
+																			}
+									            							?>
+									            						</fieldset>  
+									            					</form>
+									            					
+	                                                        	</div>
+	                                                        </div> 
+	                                                        <hr> 
+						                                	<?php	
+						                                	}
+						                                    ?>
+	                                                        <div class="row">  
+	                                                        	<div class="col-md-12">
+	                                                        		
+	                                                        		<div class="contract-headerbar">    
+	                                                        			<h3><strong>Contract information</strong></h3> 
+	                                                        		</div>
+	                                                        		<div class="contract-detail">   
+	                                                        			   
+	                                                        			<div class="row">
+	                                                        				<div class="col-md-6"> 
+	                                                        					<h4><strong>Company information</strong></h4>
+	                                                        					<hr>
+	                                                        					
+	                                                        					<div class="form-group">  
+	                                                                                <label><?php echo $this->translate('SIREN'); ?></label>  
+	                                                                                <p id="detail-sireal_number"><?=!empty($contract->serial_number)?$contract->serial_number:'-';?></p>   
+	                                                                            </div>
+	                                                                            <div class="form-group"> 
+	                                                                                <label for="billing_company_name"><?php echo $this->translate('Company Name'); ?></label> 
+	                                                                                <p id="detail-company_name"><?=!empty($contract->contract_company)?$contract->contract_company:'-';?></p> 
+	                                                                            </div>
+	                                                                            <div class="form-group">    
+	                                                                                <label for="billing_full_name"><?php echo $this->translate('First & Last Name'); ?></label> 
+	                                                                                <p id="detail-name"><?=!empty($contract->contract_name)?$contract->contract_name:'-';?></p>  
+	                                                                            </div>  
+	                                                                            <div class="form-group"> 
+	                                                                                <label for="billing_company_email"><?php echo $this->translate('Email Supplier'); ?></label>   
+	                                                                                <p id="detail-company_email"><?=!empty($contract->contract_email)?$contract->contract_email:'-';?></p>  
+	                                                                            </div>
+	                                                                            <div class="form-group">  
+	                                                                                <label for="billing_mobile_number"><?php echo $this->translate('Mobile Phone Number'); ?></label> 
+	                                                                                <p id="detail-company_mobile_phone"><?=!empty($contract->contract_phone)?$contract->contract_phone:'-';?></p> 
+	                                            								</div>  
+	            									                            <div class="form-group">    
+	                                                                                <label for="billing_company_phone"><?php echo $this->translate('Landline Phone Number'); ?></label>  
+	                                                                                <p id="detail-company_phone"><?=!empty($contract->contract_landline_phone)?$contract->contract_landline_phone:'-';?></p> 
+	                                            								</div>    
+	                                            								<div class="form-group">  
+	                                                                                <label for="billing_company_address"><?php echo $this->translate('Company Address'); ?></label>
+	                                                                                <p id="detail-company_address"><?=!empty($contract->company_address)?$contract->company_address:'-';?></p>    
+	                                                                            </div>
+	                                                                            
+	                                                                            <div class="form-group">   
+									                                                <label for="status"><?php echo $this->translate('Status'); ?></label>
+									                                                <p id="detail-status"><?=$ar_status[$contract->status];?></p>      
+									                                            </div>
+	                                                        					
+	                                                        				</div>  
+	                                                        				<div class="col-md-6"> 
+	                                                        					<h4><strong>Customer information</strong></h4>  
+	                                                        					<hr>
+	                                                        					
+	                                                        					<div class="form-group">    
+	                                                                                <label for="customer_name"><?php echo $this->translate('Full Name'); ?></label> 
+	                                                                                <p id="customer_name"><?=!empty($userProfile->name)?$userProfile->name:'-';?></p> 
+	                                                                            </div>
+	                                                                            <div class="form-group">     
+	                                                                                <label for="customer_email"><?php echo $this->translate('Email'); ?></label>  
+	                                                                                <p id="customer_email"><?=!empty($userProfile->email)?$userProfile->email:'-';?></p>  
+	                                                                            </div>
+	                                                                            
+	                                                                            <div class="form-group">    
+	                                                                                <label for="customer_phone"><?php echo $this->translate('Phone number'); ?></label>  
+	                                                                                <p id="customer_phone"><?=!empty($userProfile->phone)?$userProfile->phone:'-';?></p>  
+	                                                                            </div>
+	                                                                            
+	                                                                            <div class="form-group">     
+	                                                                                <label for="customer_address"><?php echo $this->translate('Address'); ?></label>  
+	                                                                                <p id="customer_address"><?=!empty($userProfile->address)?$userProfile->address:'-';?></p>  
+	                                                                            </div> 
+	                                                                            <?php
+									                        					if(!empty($userProfile->company_name)){ 
+									                        					?>
+									                        					<div class="form-group">  
+									                                                <label for="customer_company_name"><?php echo $this->translate('Company Name'); ?></label> 
+									                                                <p id="customer_company_name"><?=!empty($userProfile->company_name)?$userProfile->company_name:'-';?></p> 
+									                                            </div>
+									                                            <?php
+									                        					}
+									                        					if(!empty($userProfile->company_email)){
+									                        					?>                                            <div class="form-group"> 
+									                                                <label for="customer_company_email"><?php echo $this->translate('Company Email'); ?></label>   
+									                                                <p id="customer_company_email"><?=!empty($userProfile->company_email)?$userProfile->company_email:'-';?></p> 
+									                                            </div>
+									                                            <?php
+									                        					}
+									                        					if(!empty($userProfile->company_mobile_phone)){
+									                        					?> 
+									                                            <div class="form-group">  
+									                                                <label for="customer_mobile_number"><?php echo $this->translate('Company Mobile Phone Number'); ?></label> 
+									                                                <p id="customer_company_mobile_phone"><?=!empty($userProfile->company_mobile_phone)?$userProfile->company_mobile_phone:'-';?></p> 
+									            								</div> 
+									            								<?php
+									                        					}
+									                        					if(!empty($userProfile->company_phone)){
+									                        					?> 
+													                            <div class="form-group">     
+									                                                <label for="customer_company_phone"><?php echo $this->translate('Company Landline Phone Number'); ?></label>  
+									                                                <p id="customer_company_phone"><?=!empty($userProfile->company_phone)?$userProfile->company_phone:'-';?></p> 
+									            								</div> 
+									            								<?php
+									                        					}
+									                        					if(!empty($userProfile->company_address)){
+									                        					?> 
+									            								<div class="form-group">    
+									                                                <label for="customer_company_address"><?php echo $this->translate('Company Address'); ?></label> 
+									                                                <p id="customer_company_address"><?=!empty($userProfile->company_address)?$userProfile->company_address:'-';?></p>   
+									                                            </div>
+									                                            <?php
+									                        					}    
+									                                            ?>
+	                                                        				</div> 
+	                                                        			</div>
+	                                                        		</div>
+	                                                        		<div class="contract-headerbar">  
+	                                                        			<h3><strong>Project details</strong></h3>
+	                                                        		</div> 
+	                                                        		<table class="table table-bordered table-responsive">  
+                                                                      <thead>  
+                                                                        <tr> 
+                                                                          <th align="center">Project name</th>  
+                                                                          <th align="center">Start date</th> 
+                                                                          <th align="center">End date</th>  
+                                                                          <th align="right">Price</th>
+                                                                        </tr>
+                                                                      </thead>   
+                                                                      
+                                                                      <tbody> 
+                                                                        <tr> 
+                                                                          <td id="detail-end-date"><?=$contract->project_name;?></td>  
+                                                                          <td id="detail-projectname"><?=date("m/d/Y", strtotime($contract->start_date));?></td> 
+                                                                          <td id="detail-start-date"><?=date("m/d/Y", strtotime($contract->end_date));?></td>
+                                                                          <td id="detail-sub-price"><?=number_format($contract->total_price,2);?></td> 
+                                                                        </tr> 
+                                                                        <tr>   
+                                                                          <td colspan="3"><b>Total</b></td>   
+                                                                          <td id="detail-total-price"><?=number_format($contract->total_price,2);?></td>  
+                                                                        </tr>
+                                                                      </tbody>
+                                                                    </table>
+                                                                    <br> 
+                                                                    <hr>
+                                                                    <div class="contact-result"></div> 
+                                                                    <div class="txt-policy"> 
+                                                                        <p><?php echo $this->translate('xxx xxx According to the total price, the duration of the contract different contracts can be issued automatically. 
+                                    The element will include customer information and supplier information dynamically  xxx'); ?>
+                                                                            <br><?php echo $this->translate('1. xxxx xxxx'); ?>
+                                                                            <br><?php echo $this->translate('2.xxxx xxxx'); ?>
+                                                                            <br><?php echo $this->translate('3.xxxx xxxx'); ?>
+                                                                            <br><?php echo $this->translate('4.xxxx xxxx'); ?>
+                                                                            <br><?php echo $this->translate('5.xxxx xxxx'); ?>
+                                                                            <br><?php echo $this->translate('6.xxxx xxxx'); ?>
+                                                                            <br><?php echo $this->translate('7.xxxx xxxx'); ?> 
+                                                                        </p>  
+                                                                    </div> 
+                                                                    <div class="form-group new-form-group">  
+                                    									<div class="checkbox">  
+                                											 <label> 
+                                											     <input type="checkbox" id="check_policy" name="check_policy" class="check_policy"><?php echo $this->translate('I have read and understand the privacy policy.'); ?>  
+                                											 </label>
+                                										</div> 
+                                										<div id="error-policy"></div> 
+                                    								</div>
+	                                                        	</div>
+	                                                        </div> 
+                                                        </div>
+                                                        <hr/> 
+                                                        <div class="form-actions">  
+                                                            <div class="row">  
+                                                                <div class="col-md-12">
+                                                                    <ul class="pager wizard no-margin">
+                                                                    	<?php  
+									                                	if($uid!=$contract->user_id){         
+									                                	?>   
+                                                                        <li class="next">  
+                                                                            <a href="javascript:void(0);" id="btn-next-step0" class="btn btn-lg txt-color-darken btn-boy"> Next </a>     
+                                                                        </li>
+                                                                        <?php
+									                                	}else{ 
+                                                                        ?>
+                                                                        <li class="next">  
+                                                                            <a href="javascript:void(0);" id="btn-next-step1" class="btn btn-lg txt-color-darken btn-boy"> Next </a>     
+                                                                        </li>
+                                                                        <?php
+									                                	}
+                                                                        ?>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> 
+                                                        </div>   
+                                                    </div>  
+                                                </div> 
+                                            </div> 
+                                        </div> 
+                                        
+                                        <div class="tab-pane" id="tab2">  
+                                            <div class="tab-content-body">
+                                            	<hr>
+                            					<br>
+                                            	  
+                                                <div class="content-body"> 
+	                                        		<div class="row">    
+	                                                	<div class="col-md-6 col-md-offset-3"> 
+												            <!-- CREDIT CARD FORM STARTS HERE -->
+												            <div class="panel panel-default credit-card-box">
+												                <div class="panel-heading display-table" >
+												                    <div class="row display-tr" >
+												                        <h3 class="panel-title display-td" >Payment Details</h3>
+												                        <div class="display-td" >                            
+												                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+												                        </div>
+												                    </div>                    
+												                </div>
+												                <div class="panel-body"> 
+												                    <form role="form" id="payment-form" method="POST" action="javascript:void(0);"> 
+												                        <div class="row">
+												                            <div class="col-xs-12">
+												                                <div class="form-group"> 
+												                                    <label for="namecard">Card Name</label>
+												                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?=strtoupper(!empty($userProfile->name)?$userProfile->name:'');?>" />
+												                                </div>
+												                            </div>                         
+												                        </div>
+												                        <div class="row">
+												                            <div class="col-xs-12">
+												                                <div class="form-group">
+												                                    <label for="cardNumber">CARD NUMBER</label>
+												                                    <div class="input-group">
+												                                        <input 
+												                                            type="tel"
+												                                            class="form-control"
+												                                            name="cardNumber"
+												                                            placeholder="Valid Card Number"
+												                                            autocomplete="cc-number"
+												                                            required autofocus 
+												                                        />
+												                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+												                                    </div>
+												                                </div>                            
+												                            </div>
+												                        </div>
+												                        <div class="row">
+												                            <div class="col-xs-7 col-md-7">
+												                                <div class="form-group">
+												                                    <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+												                                    <input 
+												                                        type="tel" 
+												                                        class="form-control" 
+												                                        name="cardExpiry"
+												                                        placeholder="MM / YY"
+												                                        autocomplete="cc-exp"
+												                                        required 
+												                                    />
+												                                </div>
+												                            </div>
+												                            <div class="col-xs-5 col-md-5 pull-right">
+												                                <div class="form-group">
+												                                    <label for="cardCVC">CV CODE</label> 
+												                                    <input 
+												                                        type="tel" 
+												                                        class="form-control"
+												                                        name="cardCVC"
+												                                        placeholder="CVC"
+												                                        autocomplete="cc-csc"
+												                                        required
+												                                    />
+												                                </div>
+												                            </div> 
+												                        </div>
+												                        
+												                        <div class="row"> 
+												                            <div class="col-xs-12">
+												                                <button class="subscribe btn btn-success btn-lg btn-block" id="btn-next-step2" type="button">Payment Confirm</button>
+												                            </div>
+												                        </div> 
+												                        <div class="row" style="display:none;">
+												                            <div class="col-xs-12">
+												                                <p class="payment-errors"></p>
+												                            </div>
+												                        </div>
+												                    </form>
+												                </div>
+												            </div>            
+												            <!-- CREDIT CARD FORM ENDS HERE -->
+												        </div>      
+	                                                </div>
+	                                            </div>
+	                                            
+                                        	</div>
+                                        </div> 
+                                        
+                                        
+                                        <div class="tab-pane" id="tab3">   
+                                            <div class="tab-content-body">
+                                            	<hr>
+                            					<br> 
+                                                <div class="content-body"> 
+	                                        		<div class="row">   
+	                                        			<div class="col-md-12">  
+									            		     <div class="mission-block text-center"> 
+									            		          <div class="icon-send-block step-complete"> 
+									            		              <i class="fa fa-check-circle-o" aria-hidden="true"></i> 
+									            		          </div>   
+									            		          <h1>Contract complete</h1>        
+									            		          <p>xxxxx xxxxx  xxxx xxxxx xxxxx</p>    
+									            		          <a href="<?=$this->url('index').$lang.'/'; ?>consumer/" class="btn btn-primary btn-manage-mission">Go to contract</a>
+									            		     </div> 
+									            		 </div>
+	                                                </div>
+	                                            </div>
+                                        	</div>
+                                        </div>
+                                         
+                                        
+                                        
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>	
+        </div>
+    </div>
+  </div> 
+  <?php 
+  include("footer.phtml");
+  ?> 
+</div>
+<?php     
+}else{     
+	include("contract_backup.phtml"); 
+} 
+?>

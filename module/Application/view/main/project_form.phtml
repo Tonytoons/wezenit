@@ -1,0 +1,638 @@
+<style>
+    
+    .form-bootstrapWizard {
+    display: none;
+}
+
+#shortcode-basic {
+    padding: 0px;
+}
+    
+</style>
+
+<?php
+//$uid;exit;
+if(empty($uid)){  
+  include('account_form.phtml');
+}else{
+  //include('header.phtml');   
+?> 
+<script type="text/javascript">  
+var service_feee = JSON.parse('<?=json_encode($service_feee);?>');       
+</script> 
+    
+<section class="pb_section" id="projectform">
+    <div class="container-full">
+        <div class="row">    
+    	    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+                <div id="wid-id-0"> 
+                                        <!-- widget div-->  
+                    <div role="content">
+                        <!-- widget content -->
+                        <div class="widget-body">
+        
+                            <div class="row">
+                                 
+                                <div id="bootstrap-wizard-1" class="col-md-12"> 
+                                
+                                    <div class="form-bootstrapWizard">
+                                        <ul class="bootstrapWizard form-wizard"> 
+                                            <li class="process-active active" id="tab-step1" data-target="#step1">  
+                                                <a href="#tab1" data-toggle="tab" class="active"> <span class="step">1</span> <span class="wizard-title">xxxxx</span> </a>
+                                            </li> 
+                                            <li data-target="#step2" id="tab-step2" class="">     
+                                                <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="wizard-title disabled">xxxxxx</span> </a>
+                                            </li>
+                                            <li data-target="#step3" id="tab-step3" class=""> 
+                                                <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="wizard-title disabled">xxxxx</span> </a>
+                                            </li> 
+                                            <li data-target="#step4" id="tab-step4" class="">  
+                                                <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="wizard-title disabled">xxxxx</span> </a> 
+                                            </li> 
+                                        </ul> 
+                                        <div class="clearfix"></div> 
+                                    </div>
+                                     
+                                    <div class="tab-content"> 
+                                        
+                                        <div class="tab-pane active" id="tab1"> 
+                                            <br> 
+                                            <h3 class="title color-sky mb-3">
+                                                <strong><i class="fa fa-address-book" aria-hidden="true"></i> <?=$userProfile->name;?> , <?=$this->translate('What are you selling'); ?>?</strong> 
+                                            </h3>
+                                               
+                                            <div class="tab-content-body">     
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="content-body"> 
+                                                             
+                                                            <div class="row">    
+                                                                <div class="col-md-12"> 
+                                                                    <div id="step1-rs"></div>
+                                                                    <form id="project_form" onsubmit="return false;" novalidate="novalidate">
+                                                                        <div class="row"> 
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">  
+                                                                                    <label for="project_name"><?=$this->translate('Project name'); ?> <span class="remark"><span class="remark">*</span></span></label>   
+                                                                                    <input id="project_name" name="project_name" type="text" value="<?=$pname;?>" placeholder="<?=$this->translate('Project name'); ?>" class="form-control input-lg" required="true"> 
+                                                                                </div> 
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="row"> 
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">  
+                                                                                    <label for="project_price"><?=$this->translate('The price of the transaction (in EUR)'); ?> <span class="remark">*</span></label>  
+                                                                                    <input id="project_price" name="project_price" type="number" value="<?=$pprice;?>" placeholder="<?=$this->translate("price in EUR."); ?>" class="form-control input-lg" min="1" required="true"> 
+                                                                                </div>
+                                                                            </div>
+                                                                            <?php 
+                                                                            $start_date_txt = $this->translate('Your transaction begins on:');
+                                                                            $end_date_txt = $this->translate('Your transaction ends on:'); 
+                                                                            if($zenovly_type==1){  
+                                                                                $start_date_txt = $this->translate('Date of shipment of the product');
+                                                                                $end_date_txt = $this->translate('Date of receipt of the product');
+                                                                            }
+                                                                            ?>
+                                                                            
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">  
+                                                                                    <label for="start_date"><?=$start_date_txt;?> <span class="remark">*</span></label>  
+                                                                                    <input id="start_date" name="project_start_date" type="text" placeholder="<?=$start_date_txt;?>" value="<?=date("m/d/Y");?>" class="form-control input-lg" readonly="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4"> 
+                                                                                <div class="form-group">     
+                                                                                    <label for="end_date"><?=$end_date_txt;?> <span class="remark">*</span></label>  
+                                                                                    <input id="end_date" name="project_end_date" type="text" placeholder="<?=$end_date_txt;?>" value="<?=date("m/d/Y", strtotime("+1 day", strtotime(date("Y-m-d"))));?>" class="form-control input-lg" readonly="">
+                                                                                </div>     
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        <div class="row"> 
+                                                                        
+                                                                            <div class="col-md-12">  
+                                                                                <label for="attachfile_project"><?=$this->translate('Contract file'); ?></label> 
+                                                                                <div class="row">
+                                                                                    <div class="form-group col-md-6"> 
+                                                                                        <input type="file" name="attachfile_project" class="filestyle input-file" id="attachfile_project1" accept="image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">   
+                                                                                    </div> 
+                                                                                    <?php
+                                                                                    for($i=2; $i<=9; $i++){     
+                                                                                    ?>
+                                                                                    <div class="form-group col-md-6" id="input-file<?=$i;?>" style="display:none;">
+                                                                                        <div class="input-group">   
+                                                                                            <input type="file" name="attachfile_project<?=$i;?>" class="filestyle input-file" id="attachfile_project<?=$i;?>" accept="image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                                                                            <div class="input-group-append">
+                                                                                                <button class="btn btn-primary remove-file" id="remove-file<?=$i;?>"><i class="fa fa-trash-o"></i></button>
+                                                                                            </div> 
+                                                                                        </div>  
+                                                                                    </div>
+                                                                                    <?php 
+                                                                                    }  
+                                                                                    ?> 
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <button class="btn btn-primary" id="btn-add-file"><i class="fa fa-plus"></i><?=$this->translate('Add file'); ?></button>
+                                                                                    </div>
+                                                                                </div> 
+                                                                            </div>    
+                                                                             
+                                                                        </div> 
+                                                                        
+                                                                        <div class="row"> 
+                                                                            <div class="col-md-12"> 
+                                                                                <div class="form-group">  
+                                                                                    <label for="project_detail"><?=$this->translate('Details: Note'); ?> <span class="remark">*</span></label>  
+                                                                                    <textarea id="project_detail" name="project_detail" class="form-control input-lg" rows="5" required="true"></textarea>   
+                                                                                </div>  
+                                                                            </div>
+                                                                        </div> 
+                                                                        
+                                                                        <div class="row" style="display:none;">  
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">    
+                                                                                    <label for="project_contract_no">Contract No.</label>    
+                                                                                    <input id="project_contract_no" name="project_contract_no" type="text" value="" placeholder="Contract No." class="form-control input-lg">
+                                                                                </div> 
+                                                                            </div>
+                                                                        </div>  
+                                                                         
+                                                                        <div class="row">   
+                                                                            <div class="col-md-12">  
+                                                                                <div class="form-group"> 
+                                                                                    <label for="company"><?=$this->translate('Are you doing this transaction with your company?'); ?> </label>  
+                                                                                    <select id="company" name="company" class="form-control input-md"> 
+                                                                                        <option value="yes"><?=$this->translate('Yes'); ?></option> 
+                                                                                        <option value="no" selected><?=$this->translate('No'); ?></option> 
+                                                                                    </select>
+                                                                                </div>      
+                                                                            </div>     
+                                                                            
+                                                                            <div id="company-block" style="display:none;">
+                                                                                <div class="col-md-12">
+                                                                                      
+                                                                                    <input type="hidden" name="user_id" id="user_id" value="<?=!empty($userProfile->id)?$userProfile->id:'';?>">
+                                                                                    <div class="form-group">     
+                                                                                        <label for="company_name"><?=$this->translate('Company name'); ?></label>     
+                                                                                        <input id="company_name" name="company_name" type="text" value="<?=!empty($userProfile->company_name)?$userProfile->company_name:'';?>" placeholder="<?=$this->translate('Company name'); ?>" class="form-control input-lg">
+                                                                                    </div>     
+                                                                                </div> 
+                                                                                <div class="col-md-12">   
+                                                                                    <div class="form-group">      
+                                                                                        <label for="company_country"><?=$this->translate('Country of incorporation'); ?></label>
+                                                                                        <?php
+                                                                                        include 'country.phtml'; 
+                                                                                        ?>
+                                                                                        <select class="col-xl-12 col-md-12 form-control" id="company_country" name="company_country">
+                                                                                  		<?php
+                                                                                  		  foreach($country as $key=>$val){   
+                                                                                  		    if($val=='FR' && $userProfile->company_country==''){ 
+                                                                                  		?>
+                                                                                          <option value="<?=$val;?>" selected><?=$val;?></option>
+                                                                                        <?php
+                                                                                  		    }else{ 
+                                                                                  		  ?>
+                                                                                  		    <option value="<?=$val;?>" <?=($userProfile->company_country==$val)?'selected':'';?>><?=$val;?></option>
+                                                                                  		  <?php
+                                                                                  		    }
+                                                                                  		  } 
+                                                                                        ?>
+                                                                                      </select>
+                                                                                    </div>     
+                                                                                </div>
+                                                                                <div class="col-md-12">   
+                                                                                    <div class="form-group">     
+                                                                                        <label for="company_id"><?=$this->translate('ID number of the company'); ?></label>        
+                                                                                        <input id="company_id" name="company_id" type="text" value="<?=!empty($userProfile->company_id)?$userProfile->company_id:'';?>" placeholder="<?=$this->translate('ID number of the company'); ?>" class="form-control input-lg">
+                                                                                    </div>        
+                                                                                </div>  
+                                                                                <div class="col-md-12">   
+                                                                                    <div class="form-group">      
+                                                                                        <label for="company_address"><?=$this->translate('Company Address'); ?></label>     
+                                                                                        <textarea id="company_address" name="company_address" class="form-control input-lg" rows="5" required="true"><?=!empty($userProfile->company_address)?$userProfile->company_address:'';?></textarea>  
+                                                                                    </div>    
+                                                                                    <div id="result-company"></div>
+                                                                                </div> 
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                    </form> 
+                                                                </div>
+                                                            </div>          
+                                                        </div>
+                                                        <hr> 
+                                                        <div class="form-actions">   
+                                                            <div class="row"> 
+                                                                <div class="col-sm-12 col-md-10 col-lg-6 ml-md-auto mr-md-auto text-center">   
+                                                                    <button type="bottom" class="btn btn-primary btn-block" id="btn-next-step1"><?=$this->translate('Next'); ?></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>   
+                                                    </div> 
+                                                </div> 
+                                            </div> 
+                                        </div>
+                                        
+                                         
+                                        <div class="tab-pane" id="tab2">  
+                                            <br>
+                                            <h3 class="title color-sky mb-3"><strong><i class="fa fa-address-book" aria-hidden="true"></i>  <?=($ptype==1)?$this->translate('Buyer information'):$this->translate('Seller information');?></strong></h3>
+                                            
+                                            <div class="tab-content-body"> 
+                                                <div class="row"> 
+                                                    <div class="col-sm-12">
+                                                        <div class="content-body">
+                                                             
+                                                            <div class="row">      
+                                                                <div class="col-md-12">  
+                                                                    <div id="step2-rs"></div>
+                                                                    <form id="project-form2" onsubmit="return false;" novalidate="novalidate">  
+                                                                        
+                                                                        <div class="row">  
+                                                                            <div class="col-md-12">  
+                                                                                <div class="form-group"> 
+                                                                                    <?php
+                                                                                    if($ptype==0){
+                                                                                    ?>
+                                                                                    <label for="above_name"><?=$this->translate('The seller is'); ?></label> 
+                                                                                    <?php
+                                                                                    }else{   
+                                                                                    ?>
+                                                                                    <label for="above_name"><?=$this->translate('The buyer is'); ?></label>
+                                                                                    <?php
+                                                                                    }
+                                                                                    ?>
+                                                                                    <select id="above_name" name="above_name" class="form-control input-md">
+                                                                                        <option value="1" selected><?=$this->translate('a An individual'); ?></option>
+                                                                                        <option value="2"><?=$this->translate('a Company'); ?></option> 
+                                                                                    </select> 
+                                                                                </div>     
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="row"> 
+                                                                            <div class="col-md-12"> 
+                                                                                <div class="form-group">
+                                                                                    <label for="customer"><?=($ptype==0)?$this->translate('Seller'):$this->translate('Buyer');?></label>   
+                                                                                     
+                                                                                    <input type="hidden" name="user_name" id="user_name" value="<?=$userProfile->name;?>"> 
+                                                                                    <input type="hidden" name="user_email" id="user_email" value="<?=$userProfile->email;?>">
+                                                                                    <input type="hidden" name="user_phone" id="user_phone" value="<?=$userProfile->phone;?>">
+                                                                                     
+                                                                                    <input type="hidden" name="customer_id" id="customer_id" value="0"> 
+                                                                                    <input type="hidden" name="customer_type" id="customer_type" value="<?=$ptype;?>"/>
+                                                                                    <input type="hidden" name="zenovly_type" id="zenovly_type" value="<?=$zenovly_type;?>"/>
+                                                                                    
+                                                                                    <select id="customer" name="customer" class="form-control input-md">
+                                                                                        <option value="0"><?=($ptype==0)?$this->translate('New Seller'):$this->translate('New Buyer');?></option>   
+                                                                                        <?php      
+                                                                                        if(!empty($userProfile->clients)){    
+                                                                                            foreach ($userProfile->clients as $key=>$value) {  
+                                                                                                if(!empty($value)){  
+                                                                                        ?>
+                                                                                                    <option value="<?=$value->id;?>" data-email="<?=$value->email;?>" data-phone="<?=$value->phone;?>"><?=$value->name;?></option>
+                                                                                        <?php
+                                                                                                }
+                                                                                            }
+                                                                                        } 
+                                                                                        ?>
+                                                                                    </select> 
+                                                                                </div> 
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="row"> 
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">    
+                                                                                    <label for="name"><?=($ptype==0)?$this->translate('Name of the seller'):$this->translate('Name of the buyer');?> <span class="remark">*</span></label>   
+                                                                                    <input id="name" name="name" type="text" value="" placeholder="<?=($ptype==0)?$this->translate('Name of the seller'):$this->translate('Name of the buyer');?>" class="form-control input-lg" required="true">
+                                                                                </div>     
+                                                                            </div>
+                                                                        </div> 
+                                                                        
+                                                                        <div class="row">  
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">    
+                                                                                    <label for="email"><?=$this->translate('E-mail'); ?> <span class="remark">*</span></label>   
+                                                                                    <input id="email" name="email" type="email" value="" placeholder="<?=$this->translate('E-mail'); ?>" class="form-control input-lg" required="true">
+                                                                                </div>     
+                                                                            </div> 
+                                                                        </div>   
+                                                                         
+                                                                        <div class="row">  
+                                                                            <div class="col-md-12">  
+                                                                                <div class="form-group">    
+                                                                                    <label for="phone_number"><?=$this->translate('Phone number'); ?></label>    
+                                                                                    <input id="phone_number" name="phone_number" type="tel" value="" placeholder="<?=$this->translate('Phone number'); ?>" class="form-control input-lg" required="true">
+                                                                                </div>     
+                                                                            </div>
+                                                                        </div>
+                                                                         
+                                                                        <div class="row" id="above-company"> 
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">     
+                                                                                    <label for="above_position"><?=$this->translate('Position'); ?> <span class="remark">*</span></label>     
+                                                                                    <input id="above_position" name="above_position" type="text" placeholder="<?=$this->translate('Position'); ?>" class="form-control input-lg" value="">
+                                                                                </div>     
+                                                                            </div>  
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">     
+                                                                                    <label for="above_company_name"><?=$this->translate('Company name'); ?> <span class="remark">*</span></label>     
+                                                                                    <input id="above_company_name" name="above_company_name" type="text"  placeholder="<?=$this->translate('Company name'); ?>" class="form-control input-lg" value="">
+                                                                                </div>     
+                                                                            </div>  
+                                                                            <div class="col-md-12">   
+                                                                                <div class="form-group">      
+                                                                                    <label for="above_company_address"><?=$this->translate('Company Address'); ?> <span class="remark">*</span></label>     
+                                                                                    <textarea id="above_company_address" name="above_company_address"  placeholder="<?=$this->translate('Company Address'); ?>" class="form-control input-lg" rows="5" required="true"></textarea>  
+                                                                                </div>   
+                                                                            </div> 
+                                                                            <div class="col-md-12">    
+                                                                                <div class="form-group">      
+                                                                                    <label for="above_company_website"><?=$this->translate('Company website'); ?></label>  
+                                                                                    <input id="above_company_website" name="above_company_website" type="text" placeholder="<?=$this->translate('Company website'); ?>" class="form-control input-lg" value="">
+                                                                                </div>   
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="row"> 
+                                                                            <div class="col-md-12">  
+                                                                                <div class="form-group">    
+                                                                                    <label for="service_free" class="control-label input-group"><?=$this->translate('Who will pay the Wezenit fee ?'); ?></label>
+                                                                                    <div class="btn-group">  
+                                                                                        <label class="btn btn-default radio-box">
+                                                                                            <input type="radio" name="service_free" value="0"> <?=$this->translate('Buyer'); ?>
+                                                                                        </label> 
+                                                                                        <label class="btn btn-default radio-box active"> 
+                                                                                            <input type="radio" name="service_free" value="2" checked> 50% 50%
+                                                                                        </label> 
+                                                                                        <label class="btn btn-default radio-box">  
+                                                                                            <input type="radio" name="service_free" value="1"> <?=$this->translate('Seller'); ?>
+                                                                                        </label>
+                                                                                        
+                                                                                    </div>
+                                                                                </div>     
+                                                                            </div> 
+                                                                        </div> 
+                                                                        
+                                                                    </form>  
+                                                                </div>  
+                                                            </div>         
+                                                        </div>
+                                                        <hr> 
+                                                        <div class="form-actions">  
+                                                            <div class="row justify-content-between">
+                                                                <div class="col-4 text-center"> 
+                                                                    <button type="bottom" class="btn btn-primary btn-block" id="btn-prev-step2"><?=$this->translate('Previous'); ?></button>
+                                                                </div>
+                                                                <div class="col-4 text-center">   
+                                                                    <button type="bottom" class="btn btn-primary btn-block" id="btn-next-step2"><?=$this->translate('Next'); ?></button> 
+                                                                </div>
+                                                            </div>  
+                                                        </div>   
+                                                    </div> 
+                                                </div> 
+                                            </div> 
+                                        </div>  
+                                        
+                                        
+                                        <div class="tab-pane" id="tab3">   
+                                            <br>
+                                            <h3 class="title color-sky mb-3"><strong><i class="fa fa-address-book" aria-hidden="true"></i>  <?=$this->translate('Project details'); ?></strong></h3> 
+                                            
+                                            <div class="tab-content-body"> 
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="content-body"> 
+                                                             
+                                                            <div class="row">     
+                                                                <div class="col-md-12">
+                                                                    <div id="step3-rs"></div>  
+                                                                    <h4><?=$this->translate('For'); ?> :<span id="for-customer-name"></span></h4>      
+                                                                    <h4><strong><?=$this->translate('Project details'); ?></strong></h4>      
+                                                                    <br>     
+                                                                    <table class="table table-bordered table-responsive">  
+                                                                      <thead>    
+                                                                        <tr>   
+                                                                          <th align="center"><?=$this->translate('Project name'); ?></th>   
+                                                                          <th align="center"><?=$start_date_txt;?></th> 
+                                                                          <th align="center"><?=$end_date_txt;?></th>  
+                                                                          <th align="right" class="align-right"><?=$this->translate('Price'); ?></th>
+                                                                        </tr>
+                                                                      </thead>   
+                                                                      
+                                                                      <tbody> 
+                                                                        <tr>
+                                                                          <td id="detail-projectname">project xxxx</td>
+                                                                          <td id="detail-start-date">05/25/2017</td>
+                                                                          <td id="detail-end-date">09/02/2017</td>
+                                                                          <td id="detail-sub-price" class="align-right">$xxx,xxx,xxx</td> 
+                                                                        </tr> 
+                                                                        <tr>    
+                                                                          <td colspan="3"><b><?=$this->translate('Fee'); ?></b></td>     
+                                                                          <td id="detail-total-fee" class="align-right">$xxx,xxx,xxx</td>  
+                                                                        </tr>
+                                                                        <tr>    
+                                                                          <td colspan="3"><b><?=$this->translate('Total'); ?></b></td>   
+                                                                          <td id="detail-total-price" class="align-right">$xxx,xxx,xxx</td>  
+                                                                        </tr>
+                                                                      </tbody>
+                                                                    </table>  
+                                                                    <div id="company-block-detail" style="display:none;">
+                                                                        <hr> 
+                                                                        <h4><strong><?=$this->translate('Company information'); ?></strong></h4>
+                                                                        <br>
+                                                                        <div class="row"> 
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">  
+                                                                                    <label><?=$this->translate('Company Name'); ?></label> 
+                                                                                    <p id="detail-company-name"></p>   
+                                                                                </div> 
+                                                                                <div class="form-group">  
+                                                                                    <label><?=$this->translate('Country of incorporation'); ?></label> 
+                                                                                    <p id="detail-company-country"></p>   
+                                                                                </div>
+                                                                            </div> 
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">  
+                                                                                    <label><?=$this->translate('ID number of the company'); ?></label>  
+                                                                                    <p id="detail-company-id"></p>   
+                                                                                </div>  
+                                                                                <div class="form-group">   
+                                                                                    <label><?=$this->translate('Company Address'); ?></label> 
+                                                                                    <p id="detail-company-address"></p>   
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>  
+                                                                    <h4><strong><?=$this->translate('Billing information'); ?></strong></h4>
+                                                                    <br>
+                                                                    <div class="row"> 
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate('Full Name'); ?></label> 
+                                                                                <p id="detail-fullname"></p>   
+                                                                            </div>
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate('E-mail'); ?></label> 
+                                                                                <p id="detail-email"></p>   
+                                                                            </div> 
+                                                                            <div class="form-group">  
+                                                                                <label><?=$this->translate('Phone number'); ?></label>  
+                                                                                <p id="detail-phone_number"></p>    
+                                                                            </div>
+                                                                            <div id="above_detail" style="display:none;">
+                                                                                <div class="form-group">  
+                                                                                    <label><?=$this->translate('Position'); ?></label>  
+                                                                                    <p id="detail-above_position"></p>   
+                                                                                </div>  
+                                                                                <div class="form-group">   
+                                                                                    <label><?=$this->translate('Company Name'); ?></label>  
+                                                                                    <p id="detail-above_company_name"></p>   
+                                                                                </div>
+                                                                                <div class="form-group">  
+                                                                                    <label><?=$this->translate('Company Address'); ?></label>  
+                                                                                    <p id="detail-above_company_address"></p>   
+                                                                                </div>
+                                                                                <div class="form-group">  
+                                                                                    <label><?=$this->translate('Company Website'); ?></label>  
+                                                                                    <p id="detail-above_company_website"></p>    
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                       
+                                                                    <hr>  
+                                                                    <h4><strong><?=$this->translate('Who will pay the Wezenit fee ?'); ?></strong></h4>   
+                                                                    <p id="service-free"></p> 
+                                                                    <hr>  
+                                                                    <h4><strong><?=$this->translate('Your note'); ?></strong></h4>   
+                                                                    <p id="your-note"></p>  
+                                                                    <div class="contact-result"></div> 
+                                                                    <hr />
+                                                                    <p><span class="remark">*</span> <?=$this->translate('Please scroll down through the terms & conditions in order to accept'); ?></p>
+                                                                    <div class="txt-policy"> 
+                                                                        <?php
+                                                            		    include_once('text-termes.phtml');  
+                                                            		    ?>   
+                                                                    </div>   
+                                                                    
+                                                                    <div class="form-group new-form-group">  
+                                    									<div class="checkbox">  
+                                											 <label> 
+                                											     <input type="checkbox" id="check_policy" name="check_policy" class="check_policy"><?=$this->translate('I have read and Understand the privacy policy'); ?> 
+                                											 </label>
+                                										</div>  
+                                										<div id="error-policy"></div> 
+                                    								</div>
+                                                                    
+                                                                </div>
+                                                            </div>         
+                                                        </div> 
+                                                        <hr>   
+                                                        <div class="form-actions">   
+                                                            <div class="row justify-content-between">
+                                                                <div class="col-4 text-center"> 
+                                                                    <button type="bottom" class="btn btn-primary btn-block" id="btn-prev-step3"><?=$this->translate('Previous');?></button>
+                                                                </div>
+                                                                <div class="col-4 text-center">   
+                                                                    <button type="bottom" class="btn btn-primary btn-block disabled" id="btn-next-step3"><?=$this->translate('Done');?></button> 
+                                                                </div>
+                                                            </div> 
+                                                        </div>   
+                                                    </div> 
+                                                    
+                                                    <!--<div class="col-sm-5">  -->
+                                                        <?php 
+                                                        // include("hopwork_protect.phtml");
+                                                        ?>
+                                                    <!--</div> -->
+                                                </div> 
+                                            </div>  
+                                        </div> 
+                                         
+                                         
+                                        <div class="tab-pane" id="tab4">     
+                                            <br>
+                                            <h3 class="title color-sky mb-3"><strong><i class="fa fa-address-book" aria-hidden="true"></i>  <?=$this->translate('Bravo ! Your request has been sent');?> </strong></h3>
+                                            
+                                            <div class="tab-content-body">   
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6 col-lg-6"> 
+                                                        <div class="content-body">   
+                                                             
+                                                            <div class="row">      
+                                                                <div class="col-md-12">   
+                                                                    <div class="mission-block text-center">
+                                                        		          <div class="icon-send-block">
+                                                        		              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>  
+                                                        		          </div>  
+                                                        		          <h1><?=$this->translate('Your request has been sent');?></h1>   
+                                                        		          <p><?=$this->translate('You will receive a notification when your buyer will validat and pay the agreed price');?></p>
+                                                        		          <a href="<?=$this->url('index');?><?=$lang;?>/dashboard/" class="btn btn-primary btn-manage-mission"><?=$this->translate('Manage my profile');?></a>
+                                                        		     </div>  
+                                                                </div>
+                                                            </div>         
+                                                        </div>
+                                                    </div>  
+                                                    
+                                                    <div class="col-sm-12 col-md-6 col-lg-6"> 
+                                                        <div class="row"> 
+                                        			      	<div class="col-12 col-md-10 ml-md-auto mr-md-auto">
+                                        			      		<div class="img-block-logo-regis">   
+                                        			      			<!--<img src="<?=$this->url('index');?>2018/assets/images/wezenit-hopwork-min.png" class="align-self-start" id="img-login"> -->
+                                        			      		</div>  
+                                        			      	</div> 
+                                        			     </div>
+                                                        <?php 
+                                                        //include("hopwork_protect.phtml"); 
+                                                        ?>    
+                                                    </div> 
+                                                </div> 
+                                            </div>  
+                                        </div> 
+                                        
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>	
+        </div>
+    </div>
+</section>  
+<!-- Modal -->
+<div id="sendEmail" class="modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header"> 
+        <h4 class="modal-title"><?=$this->translate('Send E-Mail');?></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>   
+      <div class="modal-body">  
+        <div id="contact-result"></div> 
+        <div class="form-group">      
+            <label for="send_email_subject"><?php echo $this->translate('Subject'); ?></label> 
+            <input id="send_email_subject" name="send_email_subject" type="text" value="xxx xxxx xxxx xxxxxx"  placeholder="<?php echo $this->translate('Subject'); ?>" class="form-control input-md">
+        </div> 
+        <div class="form-group">  
+            <label for="send_email_message"><?php echo $this->translate('Message'); ?></label> 
+            <textarea id="send_email_message" name="send_email_message" placeholder="<?php echo $this->translate('Message'); ?>" rows="5" class="form-control input-md">xxxxx xxxxx xxxxxx  xxxxxxx xxxxxx xxxx</textarea>
+        </div>  
+      </div> 
+      <div class="modal-footer">   
+        <button type="button" onclick="sendEmailtoCustomer();" class="btn btn-info btn-loader"><?=$this->translate('Send');?></button>     
+      </div>
+    </div>
+
+  </div>
+</div>
+<?php } ?> 

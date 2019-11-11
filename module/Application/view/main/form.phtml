@@ -1,0 +1,55 @@
+<section class="pb_section text-center" id="section-form">
+  <div class="container-full"> 
+    <div class="register-block"> 
+      <div class="row text-center"> 
+        <div class="col-sm-12 col-md-12 col-lg-12  mb-5"> 
+          <h2 class="heading text-title mb-3 color-sky"><?=$this->translate('Ready to stay Zen ?'); ?></h2> 
+        </div> 
+      </div> 
+      <div class="row">
+        <div class="col-sm-12 col-md-10 col-lg-6 ml-md-auto mr-md-auto bg-wezenit-form">
+          <div class="formexplantion"  style="margin-bottom:50px;">
+          <p class="lead text-muted mb-3"><?=$this->translate('No risk of not being paid or no risk of paying for a service that is not delivered properly.'); ?></p> 
+          <p class="lead text-muted mb-3">  
+            <?=$this->translate('I secure a transaction for'); ?>
+         </p>
+          </div>
+          <form action="<?=$this->url('index');?><?=$lang;?>/projectform/" role="form" method="get" id="">
+            <div class="row mb-2">
+              <div class="col-sm-12 col-md-5 col-lg-5"> 
+                <select id="customer-type" name="zenovly_type" class="form-control"> 
+                    <option value="2"><?=$this->translate("a service"); ?></option> 
+                    <option value="1"><?=$this->translate("a product"); ?></option> 
+                    <option value="3"><?=$this->translate("a service and product"); ?></option>
+                </select>
+              </div>  
+              <div class="col-sm-12 col-md-2 col-lg-2 text-center"> 
+                <p><?=$this->translate("that"); ?></p> 
+              </div> 
+              <div class="col-sm-12 col-md-5 col-lg-5">
+                <select id="customer-type" name="type" class="form-control"> 
+                    <option value="0" selected><?=$this->translate("I buy"); ?></option>  
+                    <option value="1"><?=$this->translate("I sell"); ?></option>   
+                    <!-- 
+                    <option value="0" selected>j'achète</option>  
+                    <option value="1">je vends</option>  
+                    --> 
+                </select> 
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-12 col-md-7 col-lg-8 text-right"> 
+                <p><?=$this->translate("for"); ?></p>
+              </div>   
+              <div class="col-sm-12 col-md-5 col-lg-4" style=""> 
+                <input type="number" min="10" class="form-control" name="price" placeholder="<?=$this->translate("price in EUR."); ?>" required>
+              </div>
+            </div>
+            <input type="hidden" name="rd" id="rd" value="<?=strtotime(date("YmdHis"));?>"> 
+            <button type="submit" class="btn btn-primary btn-lg btn-block"><?=$this->translate("Secure my transaction"); ?></button>
+          </form>
+        </div> 
+      </div>
+    </div>
+  </div> 
+</section> 

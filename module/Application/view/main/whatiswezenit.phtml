@@ -1,0 +1,121 @@
+<?php
+if(0){
+?>
+<!--<section class="pb_section"> -->
+<!--    <div class="container"> -->
+<!--    	<div class="row">  -->
+<!--    		<div class="col-md-12 mb-5">   -->
+<!--    		    <h1 class="mb-2 text-bold"><?=$this->translate("WeZenIt c'est quoi ?"); ?></h1>-->
+<!--    			<p class="fs-16 text-gray-soft"><?=$this->translate("With Wezenit, you can buy and sell anything anywhere, with confidence"); ?></p>-->
+<!--                <p class="fs-16 text-gray-soft"><?=$this->translate("Wezenit is at your side and provides the confidence necessary for all your transactions."); ?></p>-->
+<!--                <a href="#wezenitdetails" ><?=$this->translate("A Zen transaction in 4 steps"); ?></a>  -->
+<!--    		</div>-->
+<!--    	</div>-->
+<!--    </div> -->
+<!--</section>   -->
+<?php
+} 
+?> 
+
+<section class="pb_cover_v1 text-center" style="" id="section-home">
+
+  <div class="container-full">
+    <div class="row align-items-center justify-content-center"> 
+      <div class="col-12 col-md-9  order-md-1"> 
+        <h2 class="heading mb-3" style="  color: #5d2a73;"><?=$this->translate('With Wezenit, buy and sell with trust'); ?></h2>  
+        <!--<p class="mb-5">Soyez zen, on s’occupe de tout</p> -->
+        <div class="sub-heading" style="max-width: 100%; color: #494949; padding-bottom: 60px; font-size: 20px; padding-top: 20px;">
+          <p class="mb-0" style=""><?=$this->translate('We are a trust provider for all your transactions'); ?></p>
+          <!--<p class="mb-5">Grace à Wezenit, plus de soucis, plus d’ennuis</p>-->
+        </div>  
+      </div>  
+    </div>
+  </div>
+</section>
+
+
+<section class="pb_section" id="section-about">
+  <div class="container-full">
+    <div class="row"> 
+      <div class="col-sm-12 col-md-6 col-lg-5 mb-5 about-img-block"> 
+        <div class="row">
+          <div class="col"> 
+            <p><img src="<?=$this->url('index');?>2018/assets/images/wezenit_half.png" alt="WEZENIT" class="img-fluid"></p> 
+          </div> 
+        </div>
+      </div>   
+      <div class="col-sm-12 col-md-12 col-lg-7 about-text-block"> 
+        <div class="about-title"> 
+          <h2 class="mb-1  pb_letter-spacing-2 text-right"><?=$this->translate('With Wezenit,'); ?></h2>
+          <h2 class="mb-1  pb_letter-spacing-2 text-right"><?=$this->translate('you can buy and sell everywhere and be safe.'); ?></h2>
+          <?php
+          if($lang=='fr'){
+          ?>
+          <h2 class="mb-4  pb_letter-spacing-2 text-right"><?=$this->translate('Wezenit intro3'); ?></h2>
+          <?php
+          }
+          ?>
+        </div>
+      
+        <p class="lead text-muted about-detail"><?=$this->translate('Wezenit information'); ?></p>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END section -->
+
+
+
+<section class="pb_section text-center">
+  <div class="container-full"> 
+    
+    <div class="row align-items-center justify-content-center">  
+      <div class="col-12 col-md-12  mb-5"> 
+        <h2 class="heading text-title mb-3 color-sky"><?=$this->translate('A transaction in 4 simple steps.'); ?></h2> 
+      </div> 
+    </div>
+     
+    <div class="row mb-5">    
+      <div class="col-sm-12 col-md-12 col-lg-11 ml-md-auto mr-md-auto">
+        <ul class="wizard">
+          <li ui-sref="firstStep"> 
+            <div class="img-icon text-center">  
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/check.png" alt="Image caption here">
+            </div>  
+            <p class="lead text-muted text-step"><?=$this->translate('The buyer and the seller confirm the transaction detail and sign a contract online'); ?></p> 
+          </li>
+          <li ui-sref="secondStep"> 
+            <div class="img-icon text-center">  
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/credit.png" alt="Image caption here">
+            </div>  
+            <p class="lead text-muted text-step"><?=$this->translate('The buyer transfer the amount to be paid to wezenit'); ?></p>
+          </li>
+          <li ui-sref="thirdStep"> 
+            <div class="img-icon text-center">  
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/box.png" alt="Image caption here">
+            </div>  
+            <p class="lead text-muted text-step"><?=$this->translate('The buyer receive the product or the service'); ?>t</p>
+          </li>
+          <li ui-sref="fourthStep">  
+            <div class="img-icon text-center">   
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/calendar.png" alt="Image caption here">
+            </div>  
+            <p class="lead text-muted text-step"><?=$this->translate('Wezenit transfer the money to the seller'); ?></p>
+          </li>  
+        </ul>  
+      </div>
+    </div>  
+    
+    <div class="row">
+      <div class="col-12 col-md-12">     
+        <h4 class="heading mb-3 color-sky"><?=$this->translate('How do we secure all transactions ?'); ?></h4> 
+      </div> 
+      <div class="col-sm-12 col-md-12 col-lg-8 ml-md-auto mr-md-auto">
+        <p class="lead text-muted">
+          <?=$this->translate('With Wezenit, you can buy and sell any items or services worldwide and stay safe. We are a third party provide where we act as an escrow for all transaction types.'); ?>
+        </p> 
+      </div>
+    </div> 
+  </div>
+</section> 

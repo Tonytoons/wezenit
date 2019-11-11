@@ -1,0 +1,144 @@
+
+<section class="pb_section" id="newpassword"> 
+    <div class="container-full">   
+        <div class="row">  
+            <div class="col-sm-12 col-md-2 col-lg-2 mb-3"> 
+            <?php
+            include 'menu-profile.phtml'; 
+            ?>  
+            </div>
+            <div class="col-sm-12 col-md-10 col-lg-10">
+                <div class="row"> 
+                  <div class="col">
+                    <legend class="title color-sky mb-4"> 
+      					<?php echo $this->translate('My Wallets'); ?> 
+      				</legend>
+                  </div>
+                </div> 
+                
+                <div class="row">
+        			<div class="col-lg-6 col-md-12">
+        				<div class="panel panel-info">
+        					<div class="panel-heading">
+        						<div class="row">
+        							<div class="col">
+        								<i class="fa fa-money fa-5x" aria-hidden="true"></i> 
+        							</div>
+        							<div class="col text-right">
+        								<div class="huge">
+        									<?php 
+        									$Amount = 0.0;
+        									if(!empty($wallets)){ 
+        										$Amount = $wallets; 
+        										echo number_format($Amount,2).' EUR';
+        									}else{ 
+        										echo '0.0 EUR'; 
+        									}
+        									?>
+        								</div>
+        								<div> 
+        									<?php echo $this->translate('My Wallets'); ?>
+        								</div>
+        							</div> 
+        						</div> 
+        					</div> 
+        					<a href="<?= $this->url('index').$lang.'/'; ?>mywallets/">   
+        					<div class="panel-footer">
+        						<span class="pull-left"><?=$this->translate('View'); ?></span>
+        						<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+        						<div class="clearfix"></div>
+        					</div> </a>
+        				</div>
+        			</div> 
+        		</div>
+        		<?php 
+    				if($Amount>0){  
+    				?>
+        		<div class="row"> 
+        			<div class="col-lg-6 col-md-12">
+      			    <legend class="title color-sky mb-3"> 
+        					<?=$this->translate('The PayOut'); ?>
+        				</legend> 
+        				
+          			<form class="form-horizontal" id="form-mywallets" name="form-mywallets" action=""  method="post">
+          			  <input type="hidden" name="wallet" id="wallet" value="<?=$Amount;?>">
+          			  <div class="form-group row"> 
+                  	<label class="col-md-4 text-right"><?php echo $this->translate('Bank Account'); ?></label> 
+                  	<div class="col-md-8">
+                  	  <?php
+                  	  if(!empty($BankList->result)){ 
+                  	  ?>
+                  		<select id="bank"  name="bank"  class="form-control">
+                  		  <?php 
+                  		  foreach($BankList->result as $key=>$val){
+                  		    if($val->Type=='IBAN'){ 
+                  		      $bank_name = $val->Details->IBAN.'-'.$val->OwnerAddress->Country;
+                  		    }else{ 
+                  		      $bank_name = $val->Details->AccountNumber.'-'.$val->Details->Country;
+                  		    }  
+                  		    if($val->Active){
+                  		  ?>
+                  		  <option value="<?=$val->Id;?>" <?=($userProfile->mangopay_bank_id==$val->Id)?'selected':'';?>><?=$bank_name;?></option>
+                  		  <?php  
+                  		    } 
+                  		  }  
+                  		  ?>
+                  		</select>
+                  		<?php
+                  		}else{  
+                  		?>
+                  		<a href="<?= $this->url('index').$lang.'/profile/#form-bank'; ?>" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i> <?=$this->translate('Add Bank Account'); ?></a>
+                  		<?php
+                  		} 
+                  		?> 
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                  	<label class="col-md-4 text-right"><?php echo $this->translate('Amount'); ?></label> 
+                  	<div class="col-md-8">	
+                  		<input type="number" class="form-control" name="amount" id="amount" placeholder="<?=$this->translate('Amount'); ?>" value="<?=$Amount;?>" max="<?=$Amount;?>" min="1">
+                    </div>
+                  </div>
+                  <div class="form-group row text-right">
+                    <div class="col-md-12">
+                      <button type="button" onclick="payOut();" class="btn btn-primary btn-loader float-righ"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?php echo $this->translate('Save'); ?></button>
+                    </div>
+                  </div>
+        				</form>
+        				
+      			  </div>
+        		</div> 
+        		
+        		<?php 
+    				}
+    				?>
+    				
+    				<div class="row">
+    				  <div class="col-sm-12 col-md-12 col-lg-12 mb-5">
+                <legend class="title color-sky mb-4">  
+      						<?=$this->translate('Payout List'); ?> 
+      					</legend> 
+      					<table class="table table-responsive" id="dataTable">
+                    <thead>    
+                        <th><?=$this->translate('Id'); ?></th> 
+                        <th><?=$this->translate('Amount'); ?></th> 
+                        <th><?=$this->translate('Create Date'); ?></th>
+                        <th><?=$this->translate('Last Update'); ?></th>
+                        <th><?=$this->translate('Status'); ?></th>
+                        <th><?=$this->translate('Result'); ?></th>
+                    </thead>   
+                    <tbody id="payout-list">     
+                        
+                    </tbody>
+                </table>
+      				</div> 
+      				<div class="col-sm-12 col-md-12 text-center">   
+                  <ul id="pagination" class="pagination-sm"></ul>
+              </div>
+    				</div>
+    				
+    				
+          </div>
+        </div> 
+    </div>   
+</section>   

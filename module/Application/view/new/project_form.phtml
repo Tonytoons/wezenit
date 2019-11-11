@@ -1,0 +1,566 @@
+<style>
+    
+    .form-bootstrapWizard {
+    display: none;
+}
+
+#shortcode-basic {
+    padding: 0px;
+}
+    
+</style>
+
+<?php
+//$uid;exit;
+if(empty($uid)){  
+  include('account_form.phtml');
+}else{
+  include('header.phtml');   
+?> 
+<script type="text/javascript">  
+var service_feee = JSON.parse('<?=json_encode($service_feee);?>');       
+</script> 
+    <!-- /.parallax full screen background image --> 
+    <div class="home-img" style="background-image:url('<?=$this->url('index');?>backyard/images/bg_home.jpg');" data-img-width="2000" data-img-height="1333" data-diff="100">
+        <?php
+          include('menu.phtml');   
+        ?>
+        
+        
+        <div class="overlay">
+            <div class="container">
+                <div class="col-md-10 col-md-offset-1 text-center">
+                    <!-- /.main title -->
+                    <h2 class="wow fadeInUp" style="margin-top:30px;margin-bottom: 50px;color:white">
+                        Sécurisez votre transaction pour <?=($ptype==1)?"l'achat":'la vente';?> <br> <?=$pname;?> 
+                    </h2> 
+                </div> 
+            </div> 
+        </div> 
+    </div>
+     
+    <div id="shortcode-basic">
+        <div class="container">
+            <div class="row">    
+        	    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+                    <div id="wid-id-0"> 
+                                            <!-- widget div-->  
+                        <div role="content">
+                            <!-- widget content -->
+                            <div class="widget-body">
+            
+                                <div class="row">
+                                     
+                                    <div id="bootstrap-wizard-1" class="col-md-12"> 
+                                    
+                                        <div class="form-bootstrapWizard">
+                                            <ul class="bootstrapWizard form-wizard"> 
+                                                <li class="process-active active" id="tab-step1" data-target="#step1">  
+                                                    <a href="#tab1" data-toggle="tab" class="active"> <span class="step">1</span> <span class="wizard-title">xxxxx</span> </a>
+                                                </li> 
+                                                <li data-target="#step2" id="tab-step2" class="">     
+                                                    <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="wizard-title disabled">xxxxxx</span> </a>
+                                                </li>
+                                                <li data-target="#step3" id="tab-step3" class=""> 
+                                                    <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="wizard-title disabled">xxxxx</span> </a>
+                                                </li> 
+                                                <li data-target="#step4" id="tab-step4" class="">  
+                                                    <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="wizard-title disabled">xxxxx</span> </a> 
+                                                </li> 
+                                            </ul> 
+                                            <div class="clearfix"></div> 
+                                        </div>
+                                        
+                                        <div class="tab-content"> 
+                                            
+                                            <div class="tab-pane active" id="tab1"> 
+                                                <br>
+                                                <h3 class="tab-title"><strong><i class="fa fa-address-book" aria-hidden="true"></i>  Qu'est ce que vous <?=($ptype==1)?'achetez':'vendez';?> ?</strong></h3>
+                                                
+                                                <div class="tab-content-body">    
+                                                    <div class="row container">
+                                                        <div class="col-sm-12">
+                                                            <div class="content-body"> 
+                                                                 
+                                                                <div class="row">    
+                                                                    <div class="col-md-12"> 
+                                                                        <div id="step1-rs"></div>
+                                                                        <form id="project_form" onsubmit="return false;" novalidate="novalidate">
+                                                                            <div class="row"> 
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">  
+                                                                                        <label for="project_name">Nom du projet *</label>   
+                                                                                        <input id="project_name" name="project_name" type="text" value="<?=$pname;?>" placeholder="Project name" class="form-control input-lg" required="true"> 
+                                                                                    </div> 
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="row"> 
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">  
+                                                                                        <label for="project_price">Le prix *</label>  
+                                                                                        <input id="project_price" name="project_price" type="number" value="<?=$pprice;?>" placeholder="For Euro." class="form-control input-lg" min="1" required="true"> 
+                                                                                    </div>
+                                                                                </div>
+                                                                                <?php 
+                                                                                $start_date_txt = 'Start date';
+                                                                                $end_date_txt = 'End date'; 
+                                                                                if($zenovly_type==1){  
+                                                                                    $start_date_txt = "Date d'expédition du produit";
+                                                                                    $end_date_txt = "Date de réception du produit";
+                                                                                }
+                                                                                ?>
+                                                                                
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">  
+                                                                                        <label for="start_date"><?=$start_date_txt;?> *</label>  
+                                                                                        <input id="start_date" name="project_start_date" type="text" placeholder="<?=$start_date_txt;?>" value="<?=date("m/d/Y");?>" class="form-control input-lg" readonly="">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4"> 
+                                                                                    <div class="form-group">     
+                                                                                        <label for="end_date"><?=$end_date_txt;?> *</label>  
+                                                                                        <input id="end_date" name="project_end_date" type="text" placeholder="<?=$end_date_txt;?>" value="<?=date("m/d/Y", strtotime("+1 day", strtotime(date("Y-m-d"))));?>" class="form-control input-lg" readonly="">
+                                                                                    </div>     
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                            
+                                                                            <div class="row"> 
+                                                                                <div class="col-md-12"> 
+                                                                                    <div class="form-group">  
+                                                                                        <label for="attachfile_project">Contract file</label>  
+                                                                                        <input type="file" name="attachfile_project" class="filestyle" id="attachfile_project" multiple="multiple">   
+                                                                                    </div>
+                                                                                    <div id="rs-display"></div> 
+                                                                                </div>    
+                                                                                
+                                                                            </div> 
+                                                                            
+                                                                            <div class="row"> 
+                                                                                <div class="col-md-12"> 
+                                                                                    <div class="form-group">  
+                                                                                        <label for="project_detail">Detail : Note *</label>  
+                                                                                        <textarea id="project_detail" name="project_detail" class="form-control input-lg" rows="5" required="true"></textarea>   
+                                                                                    </div>  
+                                                                                </div>
+                                                                            </div> 
+                                                                            
+                                                                            <div class="row" style="display:none;">  
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">    
+                                                                                        <label for="project_contract_no">Contract No.</label>    
+                                                                                        <input id="project_contract_no" name="project_contract_no" type="text" value="" placeholder="Contract No." class="form-control input-lg">
+                                                                                    </div> 
+                                                                                </div>
+                                                                            </div>  
+                                                                             
+                                                                            <div class="row">   
+                                                                                <div class="col-md-12">  
+                                                                                    <div class="form-group"> 
+                                                                                        <label for="company">Company</label>  
+                                                                                        <select id="company" name="company" class="form-control input-md"> 
+                                                                                            <option value="yes">Yes</option> 
+                                                                                            <option value="no" selected>No</option> 
+                                                                                        </select>
+                                                                                    </div>      
+                                                                                </div>     
+                                                                                
+                                                                                <div id="company-block" style="display:none;">
+                                                                                    <div class="col-md-12">
+                                                                                          
+                                                                                        <input type="hidden" name="user_id" id="user_id" value="<?=!empty($userProfile->id)?$userProfile->id:'';?>">
+                                                                                        <div class="form-group">     
+                                                                                            <label for="company_name">Company name</label>     
+                                                                                            <input id="company_name" name="company_name" type="text" value="<?=!empty($userProfile->company_name)?$userProfile->company_name:'';?>" placeholder="Company Name" class="form-control input-lg">
+                                                                                        </div>     
+                                                                                    </div> 
+                                                                                    <div class="col-md-12">   
+                                                                                        <div class="form-group">      
+                                                                                            <label for="company_country">Country of incorporation</label>     
+                                                                                            <input id="company_country" name="company_country" type="text" value="<?=!empty($userProfile->company_country)?$userProfile->company_country:'';?>" placeholder="Company Country" class="form-control input-lg">
+                                                                                        </div>     
+                                                                                    </div>
+                                                                                    <div class="col-md-12">   
+                                                                                        <div class="form-group">     
+                                                                                            <label for="company_id">ID number of the company</label>        
+                                                                                            <input id="company_id" name="company_id" type="text" value="<?=!empty($userProfile->company_id)?$userProfile->company_id:'';?>" placeholder="ID number of the company" class="form-control input-lg">
+                                                                                        </div>        
+                                                                                    </div>  
+                                                                                    <div class="col-md-12">   
+                                                                                        <div class="form-group">      
+                                                                                            <label for="company_address">Company Address</label>     
+                                                                                            <textarea id="company_address" name="company_address" class="form-control input-lg" rows="5" required="true"><?=!empty($userProfile->company_address)?$userProfile->company_address:'';?></textarea>  
+                                                                                        </div>   
+                                                                                        <div id="result-company"></div>
+                                                                                    </div> 
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                        </form> 
+                                                                    </div>
+                                                                </div>          
+                                                            </div>
+                                                            <hr> 
+                                                            <div class="form-actions">  
+                                                                <div class="row"> 
+                                                                    <div class="col-md-12">
+                                                                        <ul class="pager wizard no-margin">   
+                                                                            <li class="next">  
+                                                                                <a href="javascript:void(0);" id="btn-next-step1" class="btn btn-lg txt-color-darken btn-boy btn-loader"> Next </a>     
+                                                                            </li>   
+                                                                        </ul>
+                                                                    </div>
+                                                                </div> 
+                                                            </div>   
+                                                        </div> 
+                                                        
+                                                        <!--<div class="col-sm-5">  -->
+                                                            <?php 
+                                                            // include("hopwork_protect.phtml");
+                                                            ?>    
+                                                        <!--</div> -->
+                                                    </div> 
+                                                </div> 
+                                            </div>
+                                            
+                                            
+                                            <div class="tab-pane" id="tab2">  
+                                                <br>
+                                                <h3 class="tab-title"><strong><i class="fa fa-address-book" aria-hidden="true"></i>  Xxxx xxx xxxxx xxx xxx ..... </strong></h3>
+                                                
+                                                <div class="tab-content-body"> 
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="content-body">
+                                                                 
+                                                                <div class="row">      
+                                                                    <div class="col-md-12">  
+                                                                        <div id="step2-rs"></div>
+                                                                        <form id="project-form2" onsubmit="return false;" novalidate="novalidate">  
+                                                                            
+                                                                            <div class="row"> 
+                                                                                <div class="col-md-12"> 
+                                                                                    <div class="form-group">
+                                                                                        <label for="customer"><?=($ptype==0)?'Seller':'Buyer';?></label>   
+                                                                                         
+                                                                                        <input type="hidden" name="user_name" id="user_name" value="<?=$userProfile->name;?>"> 
+                                                                                        <input type="hidden" name="user_email" id="user_email" value="<?=$userProfile->email;?>">
+                                                                                        <input type="hidden" name="user_phone" id="user_phone" value="<?=$userProfile->phone;?>">
+                                                                                         
+                                                                                        <input type="hidden" name="customer_id" id="customer_id" value="0"> 
+                                                                                        <input type="hidden" name="customer_type" id="customer_type" value="<?=$ptype;?>"/>
+                                                                                        <input type="hidden" name="zenovly_type" id="zenovly_type" value="<?=$zenovly_type;?>"/>
+                                                                                        
+                                                                                        <select id="customer" name="customer" class="form-control input-md">
+                                                                                            <option value="0">New <?=($ptype==0)?'Seller':'Buyer';?></option>   
+                                                                                            <?php   
+                                                                                            if(!empty($userProfile->clients)){  
+                                                                                                foreach ($userProfile->clients as $key=>$value) { 
+                                                                                                    if(!empty($value)){  
+                                                                                            ?>
+                                                                                            <option value="<?=$value->id;?>" data-email="<?=$value->email;?>" data-phone="<?=$value->phone;?>"><?=$value->name;?></option>
+                                                                                            <?php
+                                                                                                    }
+                                                                                                }
+                                                                                            } 
+                                                                                            ?>
+                                                                                        </select> 
+                                                                                    </div> 
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="row"> 
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">    
+                                                                                        <label for="name">Name *</label>   
+                                                                                        <input id="name" name="name" type="text" value="" placeholder="Name" class="form-control input-lg" required="true">
+                                                                                    </div>     
+                                                                                </div>
+                                                                            </div> 
+                                                                            
+                                                                            <div class="row">  
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">    
+                                                                                        <label for="email">Email *</label>   
+                                                                                        <input id="email" name="email" type="email" value="" placeholder="Email" class="form-control input-lg" required="true">
+                                                                                    </div>     
+                                                                                </div> 
+                                                                            </div>   
+                                                                             
+                                                                            <div class="row">  
+                                                                                <div class="col-md-12"> 
+                                                                                    <div class="form-group">    
+                                                                                        <label for="phone_number">Phone number *</label>    
+                                                                                        <input id="phone_number" name="phone_number" type="tel" value="" placeholder="Phone number" class="form-control input-lg" required="true">
+                                                                                    </div>     
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            
+                                                                            
+                                                                            <div class="row"> 
+                                                                                <div class="col-md-12">  
+                                                                                    <div class="form-group">    
+                                                                                        <label for="service_free" class="control-label input-group">Who will pay the Fee</label>
+                                                                                        <div class="btn-group">  
+                                                                                            <label class="btn btn-default radio-box">
+                                                                                                <input type="radio" name="service_free" value="0"> Buyer
+                                                                                            </label> 
+                                                                                            <label class="btn btn-default radio-box active"> 
+                                                                                                <input type="radio" name="service_free" value="2" checked> 50% 50%
+                                                                                            </label> 
+                                                                                            <label class="btn btn-default radio-box"> 
+                                                                                                <input type="radio" name="service_free" value="1"> Seller
+                                                                                            </label>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>     
+                                                                                </div>
+                                                                            </div> 
+                                                                            
+                                                                        </form>  
+                                                                    </div> 
+                                                                </div>         
+                                                            </div>
+                                                            <hr> 
+                                                            <div class="form-actions">  
+                                                                <div class="row"> 
+                                                                    <div class="col-md-12">
+                                                                        <ul class="pager wizard no-margin">  
+                                                                            <li class="prev pull-left">   
+                                                                                <a href="javascript:void(0);" id="btn-prev-step2" class="btn btn-lg txt-color-darken btn-boy"> Previous </a>      
+                                                                            </li>
+                                                                            <li class="next">    
+                                                                                <a href="javascript:void(0);" id="btn-next-step2" class="btn btn-lg txt-color-darken btn-boy btn-loader"> Next</a>      
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div> 
+                                                            </div>   
+                                                        </div> 
+                                                        
+                                                 
+                                                    </div> 
+                                                </div> 
+                                            </div>  
+                                            
+                                            
+                                            <div class="tab-pane" id="tab3">   
+                                                <br>
+                                                <h3 class="tab-title"><strong><i class="fa fa-address-book" aria-hidden="true"></i>  Project detail</strong></h3> 
+                                                
+                                                <div class="tab-content-body"> 
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="content-body"> 
+                                                                 
+                                                                <div class="row">     
+                                                                    <div class="col-md-12">
+                                                                        <div id="step3-rs"></div> 
+                                                                        <h4>For : <span id="for-customer-name"></span></h4>      
+                                                                        <h4><strong>Project details</strong></h4>      
+                                                                        <br>     
+                                                                        <table class="table table-bordered table-responsive">  
+                                                                          <thead>    
+                                                                            <tr>   
+                                                                              <th align="center">Project name</th>   
+                                                                              <th align="center"><?=$start_date_txt;?></th> 
+                                                                              <th align="center"><?=$end_date_txt;?></th>  
+                                                                              <th align="right" class="align-right">Price</th>
+                                                                            </tr>
+                                                                          </thead>   
+                                                                          
+                                                                          <tbody> 
+                                                                            <tr>
+                                                                              <td id="detail-projectname">project xxxx</td>
+                                                                              <td id="detail-start-date">05/25/2017</td>
+                                                                              <td id="detail-end-date">09/02/2017</td>
+                                                                              <td id="detail-sub-price" class="align-right">$xxx,xxx,xxx</td> 
+                                                                            </tr> 
+                                                                            <tr>    
+                                                                              <td colspan="3"><b>fee</b></td>     
+                                                                              <td id="detail-total-fee" class="align-right">$xxx,xxx,xxx</td>  
+                                                                            </tr>
+                                                                            <tr>    
+                                                                              <td colspan="3"><b>Total</b></td>   
+                                                                              <td id="detail-total-price" class="align-right">$xxx,xxx,xxx</td>  
+                                                                            </tr>
+                                                                          </tbody>
+                                                                        </table>  
+                                                                        <div id="company-block-detail" style="display:none;">
+                                                                            <hr> 
+                                                                            <h4><strong>Company information</strong></h4>
+                                                                            <br>
+                                                                            <div class="row"> 
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">  
+                                                                                        <label>Company Name</label> 
+                                                                                        <p id="detail-company-name"></p>   
+                                                                                    </div>
+                                                                                    <div class="form-group">  
+                                                                                        <label>Country of incorporation</label> 
+                                                                                        <p id="detail-company-country"></p>   
+                                                                                    </div>
+                                                                                </div> 
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">  
+                                                                                        <label> ID number of the company</label>  
+                                                                                        <p id="detail-company-id"></p>   
+                                                                                    </div>  
+                                                                                    <div class="form-group">   
+                                                                                        <label>Company address</label> 
+                                                                                        <p id="detail-company-address"></p>   
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>  
+                                                                        <h4><strong>Billing information</strong></h4>
+                                                                        <br>
+                                                                        <div class="row"> 
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">  
+                                                                                    <label>Full Name</label> 
+                                                                                    <p id="detail-fullname"></p>   
+                                                                                </div>
+                                                                                <div class="form-group">  
+                                                                                    <label>Email</label> 
+                                                                                    <p id="detail-email"></p>   
+                                                                                </div> 
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">  
+                                                                                    <label>Phone Number</label>  
+                                                                                    <p id="detail-phone_number"></p>   
+                                                                                </div> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr>  
+                                                                        <h4><strong>Who will pay the Fee</strong></h4>   
+                                                                        <p id="service-free"></p> 
+                                                                        <hr>  
+                                                                        <h4><strong>Your note</strong></h4>   
+                                                                        <p id="your-note"></p> 
+                                                                        <div class="contact-result"></div> 
+                                                                        <div class="txt-policy"> 
+                                                                            <p>xxx xxx According to the total price, the duration of the contract different contracts can be issued automatically. 
+                                        The element will include customer information and supplier information dynamically  xxx                                                                            <br>1. xxxx xxxx                                                                            <br>2.xxxx xxxx                                                                            <br>3.xxxx xxxx                                                                            <br>4.xxxx xxxx                                                                            <br>5.xxxx xxxx                                                                            <br>6.xxxx xxxx                                                                            <br>7.xxxx xxxx 
+                                                                            </p>  
+                                                                        </div>   
+                                                                        
+                                                                        <div class="form-group new-form-group">  
+                                        									<div class="checkbox">  
+                                    											 <label> 
+                                    											     <input type="checkbox" id="check_policy" name="check_policy" class="check_policy">I have read and understand the privacy policy.  
+                                    											 </label>
+                                    										</div> 
+                                    										<div id="error-policy"></div> 
+                                        								</div>
+                                                                        
+                                                                    </div>
+                                                                </div>         
+                                                            </div> 
+                                                            <hr>   
+                                                            <div class="form-actions">   
+                                                                <div class="row"> 
+                                                                    <div class="col-md-12">
+                                                                        <ul class="pager wizard no-margin">     
+                                                                            <li class="prev pull-left">    
+                                                                                <a href="javascript:void(0);" id="btn-prev-step3" class="btn btn-lg txt-color-darken btn-boy"> Previous </a>     
+                                                                            </li>    
+                                                                            <li class="next">         
+                                                                                <a href="javascript:void(0);" id="btn-next-step3"  class="btn btn-lg txt-color-darken btn-boy"> Next</a>        
+                                                                            </li>    
+                                                                            
+                                                                        </ul> 
+                                                                    </div>
+                                                                </div> 
+                                                            </div>   
+                                                        </div> 
+                                                        
+                                                        <!--<div class="col-sm-5">  -->
+                                                            <?php 
+                                                            // include("hopwork_protect.phtml");
+                                                            ?>
+                                                        <!--</div> -->
+                                                    </div> 
+                                                </div>  
+                                            </div> 
+                                             
+                                             
+                                            <div class="tab-pane" id="tab4">    
+                                                <br>
+                                                <h3 class="tab-title"><strong><i class="fa fa-address-book" aria-hidden="true"></i> project accomplished,you are paid within 48h</strong></h3>
+                                                
+                                                <div class="tab-content-body">   
+                                                    <div class="row">
+                                                        <div class="col-sm-7">
+                                                            <div class="content-body">  
+                                                                 
+                                                                <div class="row">      
+                                                                    <div class="col-md-12">   
+                                                                        <div class="mission-block text-center">
+                                                            		          <div class="icon-send-block">
+                                                            		              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>  
+                                                            		          </div>  
+                                                            		          <h1>The estimate was send</h1>   
+                                                            		          <p>You will be able to start the assingnment when the client has accepted and provisioned the amont. We'll keep you posted !</p>
+                                                            		          <a href="<?=$this->url('index');?><?=$lang;?>/dashboard/" class="btn btn-primary btn-manage-mission">Manage my profile</a>
+                                                            		     </div>  
+                                                                    </div>
+                                                                </div>         
+                                                            </div>
+                                                        </div>  
+                                                        
+                                                        <div class="col-sm-5">  
+                                                            <?php 
+                                                            include("hopwork_protect.phtml"); 
+                                                            ?>    
+                                                        </div> 
+                                                    </div> 
+                                                </div>  
+                                            </div> 
+                                            
+                                        </div>
+                                    </div> 
+                                </div> 
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                        <!-- end widget div -->
+                    </div>
+                    <!-- end widget -->
+                </article>	
+            </div>
+        </div>
+    </div> 
+    <hr />
+    <!-- Modal -->
+    <div id="sendEmail" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Send E-Mail</h4>
+          </div>  
+          <div class="modal-body">  
+            <div id="contact-result"></div> 
+            <div class="form-group">      
+                <label for="send_email_subject"><?php echo $this->translate('Subject'); ?></label> 
+                <input id="send_email_subject" name="send_email_subject" type="text" value="xxx xxxx xxxx xxxxxx"  placeholder="<?php echo $this->translate('Subject'); ?>" class="form-control input-md">
+            </div> 
+            <div class="form-group">  
+                <label for="send_email_message"><?php echo $this->translate('Message'); ?></label> 
+                <textarea id="send_email_message" name="send_email_message" placeholder="<?php echo $this->translate('Message'); ?>" rows="5" class="form-control input-md">xxxxx xxxxx xxxxxx  xxxxxxx xxxxxx xxxx</textarea>
+            </div>  
+          </div> 
+          <div class="modal-footer">   
+            <button type="button" onclick="sendEmailtoCustomer();" class="btn btn-info btn-loader">Send</button>     
+          </div>
+        </div>
+    
+      </div>
+    </div>
+<?php include('footer.phtml'); } ?>

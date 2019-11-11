@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+    <div class="panel-heading">  
+        Image Blog : <?=$detail['name']?> 
+        <a href="<?php echo $this->url('index').'admin/blog/';?>" class="btn btn-success btn-xs pull-right"><i class="fa fa-undo" aria-hidden="true"></i>Back</a>
+    </div>
+    <div class="panel-body">
+        <?php
+        if(0){
+        ?>
+        <form action="<?php echo $this->url('index').'admin/blog/'.$id.'?task=image';?>" class="dropzone" enctype="multipart/form-data" id="imgUpload" method="post">
+            <div class="fallback">
+                <input name="pic" type="file" multiple />
+                <input type="submit" value="Upload" />
+            </div>
+        </form> 
+        <?php
+        }
+        ?>
+        <form id="myForm" class="dropzone"></form>
+        <?php
+        if(!empty($imageList)){
+        ?>
+        <hr>
+        <div class="div-grid">
+            <?php
+            
+            foreach($imageList as $key=>$value){  
+            ?> 
+              <a class="a-grid" href="javascript:void(0);" id="img-<?=$value['id']?>">
+                <figure>
+                  <img class="img-grid" src="<?php echo $urlFile.'/blog/'.$value['image']?>" alt=""> 
+                </figure>
+                <figcaption> 
+                    <bottom type="bottom" onclick="delImg(<?=$value['id']?>);" class="btn btn-danger btn-xs btn-delete"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</bottom> 
+                </figcaption>
+              </a>   
+            <?php 
+            }
+            ?>
+        </div>
+        <?php
+        } 
+        ?>
+         
+        
+    </div>    
+</div>
+<script type="text/javascript">    
+Dropzone.autoDiscover = false;
+$('.dropzone').dropzone ({ 
+        url: "<?php echo $this->url('index').'admin/blog/'.$id.'?task=image';?>", 
+        init: function() {
+            this.on("sending", function(file, xhr, formData){
+                //formData.append("fpos", 777)
+            }), 
+            this.on("success", function(file, xhr){
+                //alert(file.xhr.response);  
+            }),
+            this.on("complete", function (file) {
+              if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                 //alert('complete'); 
+                 setTimeout(function(){ 
+                    window.location.reload();  
+                 },50);   
+              }
+            });
+        },
+}); 
+function delImg(id){
+    if(confirm('Are you sure you want to delete. !')){  
+        var url = "<?php echo $this->url('index').'admin/blog/'.$id.'?task=delimage&imgID=';?>"+id; 
+        $.get(url, function(){ 
+            $('#img-'+id).fadeOut(500, function(){ $(this).remove();}); 
+        });
+    } 
+}
+</script>

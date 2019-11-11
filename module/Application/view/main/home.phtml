@@ -1,0 +1,303 @@
+<!--<section class="pb_cover_v1 cover-bg-black cover-bg-opacity-4 text-center" style="background-image: linear-gradient(180deg, rgba(69, 22, 76, 0.58), rgba(69, 22, 76, 0.27)),url(<?=$this->url('index');?>2018/assets/images/bg-sea.jpg)" id="section-home">-->
+<style>
+  
+
+
+@media only screen and (max-width: 600px) {
+  section#section-home {
+    background-color: white;
+    /* background-image: url(https://image.flaticon.com/icons/svg/708/708761.svg); */
+    background-size: contain;
+    background-position: right;
+}
+  
+}
+
+@media only screen and (min-width: 600px) {
+  section#section-home {
+    background-color: white;
+    /*background-image: url(/public/2018/assets/images/wezenitillustration.svg); */
+    background-size: contain;
+    background-position: right;
+}
+   
+} 
+
+
+
+</style>
+
+<section class="pb_cover_v1 text-center" style="" id="section-home">
+
+  <div class="container-full">
+    <div class="row "> 
+      <div class="col-lg-6 col-md-12" style="text-align:left"> 
+      
+        <h2 class="heading mb-3" style="  color: #5d2a73;"><?=$this->translate('With Wezenit, buy and sell with trust'); ?></h2>  
+        <!--<p class="mb-5">Soyez zen, on s’occupe de tout</p> -->
+        <div class="sub-heading" style="max-width: 100%; color: #494949; padding-bottom: 10px; font-size: 20px; ">
+          <p class="mb-0" style=""><?=$this->translate('We are a trust provider for all your transactions'); ?></p>
+          <!--<p class="mb-5">Grace à Wezenit, plus de soucis, plus d’ennuis</p>-->
+        </div>
+      
+        <p>  
+          <a href="#section-form" role="button" class="btn pb_letter-spacing-2 btn1" style="padding: 15px;"><?=$this->translate('Secure my transaction'); ?></a>
+          <!--<a href="<?= $this->url('index').$lang.'/contact-us/'; ?>" role="button" class="btn smoothscroll pb_outline-light new-btn2 mb-3">Nous contacter</a> -->
+        </p>
+      </div>  
+      <div class="col-lg-6"> 
+          <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/WeZenit-Characters-Animation-010719.gif">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END section --> 
+
+
+<section class="pb_section" id="img-partner"> 
+  <div class="container-full">
+    <div class="row">
+      <div class="col-lg-12 mb-1">  
+        <div class="row">  
+          <div class="col-6 col-md-3 text-left"> 
+            <p><img src="<?=$this->url('index');?>2018/assets/images/mangopay.png" alt="WEZENIT" class="img-fluid"></p>
+          </div>
+          <div class="col-6 col-md-3 text-center">
+            <p><img src="<?=$this->url('index');?>2018/assets/images/bpifrance.png" alt="WEZENIT" class="img-fluid"></p>
+          </div>
+          <div class="col-6 col-md-3 text-center"> 
+            <p><img src="<?=$this->url('index');?>2018/assets/images/la_french.png" alt="WEZENIT" class="img-fluid"></p>
+          </div>
+          <div class="col-6 col-md-3 text-right">
+            <p><img src="<?=$this->url('index');?>2018/assets/images/european.png" alt="WEZENIT" class="img-fluid"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END section -->
+
+<section class="pb_section" id="section-about">
+  <div class="container-full">
+    <div class="row"> 
+      <div class="col-sm-12 col-md-6 col-lg-5 mb-5 about-img-block"> 
+        <div class="row">
+          <div class="col"> 
+            <p><img src="<?=$this->url('index');?>2018/assets/images/wezenit_half.png" alt="WEZENIT" class="img-fluid"></p> 
+          </div> 
+        </div>
+      </div>   
+      <div class="col-sm-12 col-md-12 col-lg-7 about-text-block"> 
+        <div class="about-title"> 
+          <h2 class="mb-1  pb_letter-spacing-2 text-right"><?=$this->translate('With Wezenit,'); ?></h2>
+          <h2 class="mb-1  pb_letter-spacing-2 text-right"><?=$this->translate('you can buy and sell everywhere and be safe.'); ?></h2>
+          <?php
+          if($lang=='fr'){
+          ?>
+          <h2 class="mb-4  pb_letter-spacing-2 text-right"><?=$this->translate('Wezenit intro3'); ?></h2>
+          <?php
+          }
+          ?>
+        </div>
+      
+        <p class="lead text-muted about-detail"><?=$this->translate('Wezenit information'); ?></p>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END section -->
+
+
+
+<section class="pb_section text-center">
+  <div class="container-full"> 
+    
+    <div class="row align-items-center justify-content-center">  
+      <div class="col-12 col-md-12  mb-5"> 
+        <h2 class="heading text-title mb-3 color-sky"><?=$this->translate('A transaction in 4 simple steps.'); ?></h2> 
+      </div> 
+    </div>
+     
+    <div class="row mb-5">    
+      <div class="col-sm-12 col-md-12 col-lg-11 ml-md-auto mr-md-auto">
+        <ul class="wizard">
+          <li ui-sref="firstStep"> 
+            <div class="img-icon text-center">  
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/check.png" alt="Image caption here">
+            </div>  
+            <p class="lead text-muted text-step"><?=$this->translate('The buyer and the seller confirm the transaction detail and sign a contract online'); ?></p> 
+          </li>
+          <li ui-sref="secondStep"> 
+            <div class="img-icon text-center">  
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/credit.png" alt="Image caption here">
+            </div>  
+            <p class="lead text-muted text-step"><?=$this->translate('The buyer transfer the amount to be paid to wezenit'); ?></p>
+          </li>
+          <li ui-sref="thirdStep"> 
+            <div class="img-icon text-center">  
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/box.png" alt="Image caption here">
+            </div>  
+            <p class="lead text-muted text-step"><?=$this->translate('The buyer receive the product or the service'); ?>t</p>
+          </li>
+          <li ui-sref="fourthStep">  
+            <div class="img-icon text-center">   
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/calendar.png" alt="Image caption here">
+            </div>  
+            <p class="lead text-muted text-step"><?=$this->translate('Wezenit transfer the money to the seller'); ?></p>
+          </li>  
+        </ul>  
+      </div>
+    </div>  
+    
+    <div class="row">
+      <div class="col-12 col-md-12">     
+        <h2 class="heading text-title mb-3 color-purpl"><?=$this->translate('How do we secure all transactions ?'); ?></h2> 
+      </div> 
+      <div class="col-sm-12 col-md-12 col-lg-8 ml-md-auto mr-md-auto">
+        <p class="lead text-muted">
+          <?=$this->translate('With Wezenit, you can buy and sell any items or services worldwide and stay safe. We are a third party provide where we act as an escrow for all transaction types.'); ?>
+        </p> 
+      </div>
+    </div> 
+  </div>
+</section> 
+
+<section class="pb_section text-center"> 
+  <div class="container-full"> 
+    <div class="row align-items-center justify-content-center">
+      <div class="col-12 col-md-12  mb-5">
+        <h2 class="heading text-title mb-3 color-purple"><?=$this->translate("What kind of transactions do we secure?"); ?></h2>
+      </div>  
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-3  mb-3">
+          <div class="card border-0 mb-4"> 
+            <div class="title-card mb-2"><?=$this->translate('Services'); ?></div>
+            <a href="#" class="pb_hover-zoom image-popup image-block">
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/type_services.jpg" alt="Image caption here">
+              <p class="lead text-muted text-hever"> 
+                <?=$this->translate("We secure your services."); ?>
+              </p>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+          <div class="card border-0 mb-4">
+            <div class="title-card  mb-2"><?=$this->translate('Your electronic devices.'); ?></div> 
+            <a href="#" class="pb_hover-zoom image-popup image-block"> 
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/type_electronics.jpg" alt="Image caption here">
+              <p class="lead text-muted text-hever"> 
+                 <?=$this->translate("We secure your purchases of electronic equipment."); ?>
+              </p>
+            </a>
+          </div>
+        </div>  
+        <div class="col-sm-12 col-md-6 col-lg-3 mb-3"> 
+          <div class="card border-0 mb-4">
+            <div class="title-card  mb-2"><?=$this->translate('You second hand furnitures.'); ?></div>
+            <a href="#" class="pb_hover-zoom image-popup image-block">
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/type_furniture.jpg" alt="Image caption here">
+              <p class="lead text-muted text-hever"> 
+                <?=$this->translate("We secure your purchases of furniture / sporting goods."); ?>
+              </p>
+            </a>
+          </div>
+        </div> 
+        <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+          <div class="card border-0 mb-4">
+            <div class="title-card  mb-2"><?=$this->translate('We secure all transactions.'); ?></div>
+            <a href="#" class="pb_hover-zoom image-popup image-block">
+              <img class="img-fluid" src="<?=$this->url('index');?>2018/assets/images/type_all.jpg" alt="Image caption here">
+              <p class="lead text-muted text-hever"> 
+                <?=$this->translate("Wezenit your trusted provider for all your transactions."); ?>
+              </p>
+            </a>
+          </div>
+        </div>
+    </div>
+  </div>
+</section> 
+<?php
+if(0){   
+?>
+<section class="pb_section text-center" > 
+  <div class="container-full">
+    <div class="row"> 
+      <div class="col-12 col-md-8 ml-md-auto mr-md-auto"> 
+        <form action="<?=$this->url('index');?><?=$lang;?>/search/" method="get" onsubmit="return search();" id="form-search" name="form-search">
+          <div class="form-group">
+            <div class="search"> 
+              <span class="fa fa-search"></span>  
+              <input type="text" class="form-control" name="q" id="search-transaction" value="" placeholder="trouver votre transaction">  
+              <input type="hidden" class="form-control" name="rd" id="rd" value="<?=strtotime(date("YmdHis"));?>">  
+            </div>     
+          </div>  
+          
+        </form>    
+      </div>
+    </div> 
+  </div> 
+</section>  
+<?php 
+}
+// project form 
+include('form.phtml');  
+
+if($lang=='fr'){    
+?>
+<section class="pb_section text-center">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-12 col-md-12  mb-5"> 
+      <h2 class="heading text-title mb-3 color-purple"><?=$this->translate("They are talking about it"); ?></h2>
+    </div>  
+  </div>  
+  <div class="row">   
+    <div class="col-sm-12 col-md-6 col-lg-4 ml-md-auto mr-md-auto">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sM3lNGwXthc?autoplay=1&showinfo=0&controls=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div> 
+    </div>
+  </div>
+</section>
+<?php
+}
+?>
+<section class="pb_section text-center"> 
+  <div class="container-full">  
+    <div class="row align-items-center justify-content-center">
+      <div class="col-12 col-md-12  mb-5">
+        <h2 class="heading text-title mb-3 color-purple"><?=$this->translate("Wezenit works with"); ?></h2>
+      </div>   
+    </div> 
+    <div class="row"> 
+      <div class="col-12 col-md-6 mb-5 text-center">  
+        <p><img src="<?=$this->url('index');?>2018/assets/images/leboncoin.png" alt="WEZENIT" class="img-fluid"></p>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-10 ml-md-auto mr-md-auto">
+            <p class="lead text-muted"><?=$this->translate("No need to meet the individual in person, you can secure your transaction online."); ?></p> 
+          </div>
+        </div> 
+      </div>
+      <div class="col-12 col-md-6 text-center"> 
+        <p><img src="<?=$this->url('index');?>2018/assets/images/paruvendu.png" alt="WEZENIT" class="img-fluid"></p>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-10 ml-md-auto mr-md-auto">
+            <p class="lead text-muted"><?=$this->translate("Secure all transactions online with Wezenit."); ?></p> 
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section> 
+
+<section class="pb_section text-center">
+  <div class="container-full"> 
+    <div class="row text-center">  
+      <div class="col-12 col-md-12 mb-5">      
+        <h5 class="heading color-purple"><?=$this->translate("And many more."); ?></h5>
+      </div>
+    </div>
+  </div> 
+</section>    

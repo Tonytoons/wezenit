@@ -1,0 +1,78 @@
+<!-- NAVIGATION -->
+
+<style>
+    
+    .navbar-default {
+   
+        background-color: #45164c !important;
+}
+
+
+ * {
+ /*CSS transitions*/
+ -o-transition-property: none !important;
+ -moz-transition-property: none !important;
+ -ms-transition-property: none !important;
+ -webkit-transition-property: none !important;
+ transition-property: none !important;
+ /*CSS transforms*/
+ -o-transform: none !important;
+ -moz-transform: none !important;
+ -ms-transform: none !important;
+ -webkit-transform: none !important;
+ transform: none !important;
+ /*CSS animations*/
+ -webkit-animation: none !important;
+ -moz-animation: none !important;
+ -o-animation: none !important;
+ -ms-animation: none !important;
+ animation: none !important;
+ }
+.home-img .navbar-default, .home-img #menu {
+    /* background: none !important; */
+    padding: 20px 50px;
+    font-size: 16px;
+    font-family: Lato;
+    background-color: #45164c;
+}
+
+nav.navbar-wrapper.navbar-default.navbar-fixed-top.container {
+    padding-top: 20px;
+}
+
+</style>
+<div id="menu" class="container">   
+    <nav class="navbar-wrapper navbar-default navbar-fixed-top"> 
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-backyard">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand site-name" href="<?=$this->url('index');?><?=$lang;?>/">
+                <img src="http://wezenit.com/images/WEZENIT-flat.png"> 
+            </a> 
+        </div>
+        <div id="navbar-scroll" class="collapse navbar-collapse navbar-backyard pull-left">
+            <ul class="nav navbar-nav">
+                <li><a href="<?=$this->url('main');?><?=$lang;?>/what-is-wezenit/"><?=$this->translate("Qu'est ce que Wezenit ?"); ?></a></li>   
+            </ul> 
+        </div>
+        <div id="navbar-scroll" class="collapse navbar-collapse navbar-backyard navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a href="<?=$this->url('index');?><?=$lang;?>/blog/"><?=$this->translate('Blog'); ?></a></li>                 
+                <li id="menu-account"><a href="<?=$this->url('main');?><?=$lang;?>/account/"><?=$this->translate('Créez un compte'); ?></a></li> 
+                <!-- 
+                <li class="dropdown">  
+                  <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?php //echo $this -> url('index'); ?>img/flags/<?=$lang;?>.png" /> <span> <?//=strtoupper($lang);?></span> <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);" onclick="switchLang('fr');"><img src="<?php //echo $this -> url('index'); ?>img/flags/fr.png" /> <span> FR</span></a></li> 
+                    <li><a href="javascript:void(0);" onclick="switchLang('en');"><img src="<?php //echo $this -> url('index'); ?>img/flags/en.png" /> <span> EN</span></a></li>
+                  </ul> 
+                </li>
+                -->
+            </ul>
+        </div>
+    </nav> 
+</div>

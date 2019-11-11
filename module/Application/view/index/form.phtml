@@ -1,0 +1,243 @@
+<div id="app">  
+  <?php  
+  include("header.phtml"); 
+  ?> 
+  
+  <div class="content">   
+    <div class="container"> 
+    	<div class="row">
+    		<section class=""> 
+                <div class="wizard customer-form"> 
+                    <div class="wizard-inner">
+                        <div class="connecting-line"></div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                    <span class="round-tab">
+                                        <i class="fa fa-circle" aria-hidden="true"></i>    
+                                    </span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="disabled">
+                                <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                    <span class="round-tab">
+                                        <i class="fa fa-circle" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </li> 
+                            <li role="presentation" class="disabled">
+                                <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                    <span class="round-tab"> 
+                                        <i class="fa fa-circle" aria-hidden="true"></i> 
+                                    </span>
+                                </a>  
+                            </li>
+                            <li role="presentation" class="disabled">    
+                                <a href="#step4" data-toggle="tab" aria-controls="step3" role="tab" title="Step 4">
+                                    <span class="round-tab">
+                                        <i class="fa fa-circle" aria-hidden="true"></i> 
+                                    </span> 
+                                </a> 
+                            </li>
+                            <li role="presentation" class="disabled">
+                                <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                    <span class="round-tab">
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <form role="form" id="form-supplier" name="form-supplier"> 
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane active" role="tabpanel" id="step1">
+                                <h3><?php echo $this->translate('Step 1 : Do you have a renovation project ?'); ?></h3>
+                                <div class="step-form">
+                                    <div class="col-md-6"> 
+                                        <div class="step-1 select-box"> 
+                                            <i class="fa fa-circle-o" aria-hidden="true"></i>
+                                            <h3><?php echo $this->translate('I do have a renovation project'); ?></h3> 
+                                        </div>    
+                                    </div>   
+                                    <div class="col-md-6">  
+                                        <div class="step-1 select-box disabled"> 
+                                            <i class="fa fa-circle-o" aria-hidden="true"></i>
+                                            <h3><?php echo $this->translate('I do not have a renovation project'); ?></h3>   
+                                        </div> 
+                                    </div>
+                                </div>
+                                <ul class="list-inline pull-right">  
+                                    <li><button type="button" class="btn btn-primary next-step next-step-1 disabled"><?php echo $this->translate('Save and continue'); ?> <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button></li>
+                                </ul>
+                            </div> 
+                            <div class="tab-pane" role="tabpanel" id="step2">
+                                <h3><?php echo $this->translate('Step 2 : Do you have a signed contract already ?'); ?></h3> 
+                                <div class="step-form">
+                                    <div class="col-md-6"> 
+                                        <div class="step-2 select-box"> 
+                                            <i class="fa fa-circle-o" aria-hidden="true"></i>
+                                            <h3><?php echo $this->translate('I have have a signed contract already'); ?></h3>
+                                        </div>    
+                                    </div>
+                                    <div class="col-md-6">    
+                                        <div class="step-2 select-box disabled">    
+                                            <i class="fa fa-circle-o" aria-hidden="true"></i>
+                                            <h3><?php echo $this->translate('I don’t have a signed contract yet'); ?></h3>      
+                                        </div> 
+                                    </div> 
+                                </div> 
+                                <ul class="list-inline pull-right">
+                                    <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> <?php echo $this->translate('Previous'); ?></button></li>
+                                    <li><button type="button" class="btn btn-primary next-step next-step-2 disabled"><?php echo $this->translate('Save and continue'); ?> <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button></li> 
+                                </ul>
+                            </div>
+                            <div class="tab-pane" role="tabpanel" id="step3">
+                                <h3><?php echo $this->translate('Step 3 : Give us more details about the contract.'); ?></h3>
+                                <div class="step-form">
+                                    <div class="row"> 
+                                        <div class="form-group new-form-group">
+        									<label class="col-md-6 control-label" for="attachfile"><?php echo $this->translate('1. Upload a picture of the contract (can be an image file or a PDF file)'); ?> 
+</label>
+        									<div class="col-md-6"> 
+        										<input type="file" name="attachfile" id="attachfile"/> 
+        									</div>
+        								</div>
+        								<div class="form-group new-form-group">
+        									<label class="col-md-6 control-label" for="price"><?php echo $this->translate('2. Tell us what is the total price (tax included)'); ?></label>
+        									<div class="col-md-6"> 
+        										 <input id="price" name="price" type="number" placeholder="Price (tax included)" class="form-control input-md" min="1">  
+        									</div>
+        								</div>  
+        								<div class="form-group new-form-group">  
+        									<label class="col-md-6 control-label" for="start_date"><?php echo $this->translate('3. Give us the start date of the renovation work'); ?>
+</label>  
+        									<div class="col-md-6"> 
+        										<input id="start_date" name="start_date" type="text" placeholder="Start date" value="<?=date("m/d/Y");?>" class="form-control input-md" readonly>
+        									</div>
+        								</div>   
+        								<div class="form-group new-form-group"> 
+        									<label class="col-md-6 control-label" for="end_date"><?php echo $this->translate('4. Give us the end date of the renovation work'); ?>   
+</label> 
+        									<div class="col-md-6"> 
+        										<input id="end_date" name="end_date" type="text" placeholder="End date" value="<?=date("m/d/Y", strtotime("+1 day", strtotime(date("Y-m-d"))));?>" class="form-control input-md" readonly>
+        									</div> 
+        								</div>
+                                    </div>  
+                                    <hr>
+                                    <div class="row">
+                                        <h3><?php echo $this->translate('Information about the supplier'); ?></h3>       
+                                          
+                                        <div class="form-group new-form-group">     
+        									<label class="col-md-6 control-label" for="project_name"><?php echo $this->translate('Project name'); ?> *</label>    
+        									<div class="col-md-6"> 
+        										<input name="project_name" class="form-control" id="project_name" placeholder="project name" type="text" class="form-control input-md">
+        									</div>
+        								</div> 
+        								 
+                                        <div class="form-group new-form-group"> 
+        									<label class="col-md-6 control-label" for="sireal_number"><?php echo $this->translate('SIREN'); ?></label>  
+        									<div class="col-md-6"> 
+        										<input id="sireal_number" name="sireal_number" type="text" placeholder="<?php echo $this->translate('Sireal Number'); ?>" class="form-control input-md">
+        									</div>
+        								</div> 
+        								 
+                                        <div class="form-group new-form-group">
+        									<label class="col-md-6 control-label" for="full_name"><?php echo $this->translate('First & Last Name'); ?></label> 
+        									<div class="col-md-6"> 
+        										<input id="full_name" name="full_name" type="text" value="" placeholder="<?php echo $this->translate('First & Last Name'); ?>" class="form-control input-md">
+        									</div>
+        								</div>
+        								
+        								<div class="form-group new-form-group">
+        									<label class="col-md-6 control-label" for="company_name"><?php echo $this->translate('Company Name'); ?></label>   
+        									<div class="col-md-6"> 
+        										<input id="company_name" name="company_name" type="text" value="<?=$userProfile->company_name;?>" placeholder="<?php echo $this->translate('Company Name'); ?>" class="form-control input-md">
+        									</div>
+        								</div>
+        								<div class="form-group new-form-group">
+        									<label class="col-md-6 control-label" for="company_address"><?php echo $this->translate('Company Address'); ?></label> 
+        									<div class="col-md-6"> 
+        									    <textarea id="company_address" name="company_address" placeholder="<?php echo $this->translate('Company Address'); ?>" rows="3" class="form-control input-md"><?=$userProfile->company_address;?></textarea>
+        									</div>
+        								</div>
+        								<div class="form-group new-form-group">
+        									<label class="col-md-6 control-label" for="mobile_number"><?php echo $this->translate('Mobile Phone Number'); ?></label>
+        									<div class="col-md-6"> 
+        										<input id="mobile_number" name="mobile_number" type="text" value="<?=$userProfile->company_mobile_phone;?>" placeholder="<?php echo $this->translate('Mobile Phone Number'); ?>" class="form-control input-md">
+        									</div> 
+        								</div>
+        								<div class="form-group new-form-group"> 
+        									<label class="col-md-6 control-label" for="landline_number"><?php echo $this->translate('Landline Phone Number'); ?></label>
+        									<div class="col-md-6"> 
+        										<input id="landline_number" name="landline_number" type="text" value="<?=$userProfile->company_phone;?>" placeholder="<?php echo $this->translate('Landline Phone Number'); ?>" class="form-control input-md">
+        									</div>
+        								</div>
+        								<div class="form-group new-form-group">  
+        									<label class="col-md-6 control-label" for="email"><?php echo $this->translate('Email Supplier'); ?></label>    
+        									<div class="col-md-6"> 
+        										<input id="email" name="email" type="email" value="<?=$userProfile->company_email;?>"  placeholder="<?php echo $this->translate('Email Supplier'); ?>" class="form-control input-md">
+        									</div>
+        								</div>
+                                    </div>  
+                                </div>   
+                                <ul class="list-inline pull-right"> 
+                                    <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> <?php echo $this->translate('Previous'); ?></button></li>
+                                    <li><button type="button" class="btn btn-primary btn-info-full next-step next-step-3"><?php echo $this->translate('Save and continue'); ?> <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button></li>
+                                </ul>
+                            </div> 
+                            <div class="tab-pane" role="tabpanel" id="step4"> 
+                                <h3><?php echo $this->translate('Stap 4 : This is your contract.'); ?></h3> 
+                                
+                                <div class="step-form">
+                                    <div class="contact-result"></div> 
+                                    <div class="txt-policy"> 
+                                        <p><?php echo $this->translate('xxx xxx According to the total price, the duration of the contract different contracts can be issued automatically. 
+    The element will include customer information and supplier information dynamically  xxx'); ?>
+                                            <br><?php echo $this->translate('1. xxxx xxxx'); ?>
+                                            <br><?php echo $this->translate('2.xxxx xxxx'); ?>
+                                            <br><?php echo $this->translate('3.xxxx xxxx'); ?>
+                                            <br><?php echo $this->translate('4.xxxx xxxx'); ?>
+                                            <br><?php echo $this->translate('5.xxxx xxxx'); ?>
+                                            <br><?php echo $this->translate('6.xxxx xxxx'); ?>
+                                            <br><?php echo $this->translate('7.xxxx xxxx'); ?>
+                                        </p> 
+                                    </div> 
+                                    <div class="form-group new-form-group">
+    									<div class="checkbox">  
+											 <label> 
+											     <input type="checkbox" id="check_policy" name="check_policy" class="check_policy"><?php echo $this->translate('I have read and understand the privacy policy.'); ?>  
+											 </label>
+										</div> 
+										<div id="error-policy"></div> 
+    								</div>
+                                </div>  
+                                <ul class="list-inline pull-right">   
+                                    <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> <?php echo $this->translate('Previous'); ?></button></li> 
+                                    <li><button type="button" class="btn btn-primary btn-info-full next-step next-step-4 btn-loader disabled"><i class="fa fa-floppy-o" aria-hidden="true"></i> <?php echo $this->translate('Accept'); ?></button></li>
+                                </ul> 
+                            </div> 
+                            
+                            <div class="tab-pane" role="tabpanel" id="complete">  
+                                <h3><?php echo $this->translate('Stap 5 : Complete'); ?></h3> 
+                                   
+                                <div class="alert alert-success">
+                                  <strong><?php echo $this->translate('Success!'); ?></strong> <br><?php echo $this->translate('You have successfully completed.'); ?>
+                                </div>
+                                
+                            </div> 
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+  </div> 
+  <?php 
+  include("footer.phtml");
+  ?> 
+</div>
+
+
+ 

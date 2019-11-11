@@ -1,0 +1,25 @@
+#RewriteEngine on 
+#RewriteRule ^playlist/([0-9]+)-(.*)$ /genres.php?id=$1&name=$2
+RewriteEngine On
+
+
+#RewriteRule ^playlist/0-all/page/([0-9]+)/limit/([0-9]+)/sortby/([0-9]+)/year/(.*)/aid/(.*)/$ index.php?genre=all&name=$2&page=$3&limit=$4&sortby=$5&year=$6&aid=$7
+#RewriteRule ^playlist/0-all/$ index.php?genre=all&name=$2
+
+ 
+RewriteRule ^playlist/(.*)-(.*)/page/([0-9]+)/limit/([0-9]+)/sortby/([0-9]+)/year/(.*)/aid/(.*)/$ index.php?genre=$1&name=$2&page=$3&limit=$4&sortby=$5&year=$6&aid=$7
+RewriteRule ^playlist/(.*)-(.*)/$ index.php?genre=$1&name=$2 
+
+RewriteRule ^genre/(.*)-(.*)/page/([0-9]+)/limit/([0-9]+)/sortby/([0-9]+)/year/(.*)/aid/(.*)/$ index.php?genre=$1&name=$2&page=$3&limit=$4&sortby=$5&year=$6&aid=$7
+RewriteRule ^genre/(.*)-(.*)/$ index.php?genre=$1&name=$2
+ 
+
+#RewriteRule ^genre/all-all/page/([0-9]+)/limit/([0-9]+)/sortby/([0-9]+)/year/(.*)/aid/(.*)/$ index.php?genre=all&name=$2&page=$3&limit=$4&sortby=$5&year=$6&aid=$7
+#RewriteRule ^genre/all-all/$ index.php?genre=all&name=$2 
+
+#RewriteRule ^genre/([0-9,]+)-(.*)/page/([0-9]+)/limit/([0-9]+)/sortby/([0-9]+)/year/(.*)/aid/(.*)/$ index.php?genre=$1&name=$2&page=$3&limit=$4&sortby=$5&year=$6&aid=$7
+#RewriteRule ^genre/([0-9,]+)-(.*)/$ index.php?genre=$1&name=$2
+  
+ 
+#RewriteRule ^view/([0-9]+)$ /view/$1/ [R]      
+  

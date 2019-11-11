@@ -1,0 +1,75 @@
+<div class="panel panel-default">
+    <div class="panel-heading">    
+        Company
+        <a href="<?php echo $this->url('index').'admin/users/';?>" class="btn btn-success btn-xs pull-right"><i class="fa fa-undo" aria-hidden="true"></i>Back</a>
+        
+    </div>
+    <div class="panel-body">  
+        
+        <form action="<?php echo $this->url('index').'admin/users/'.$id.'?task=company';?>" enctype="multipart/form-data" name="registration" id="registration" method="post">
+        	<div class="box-body"> 
+        		
+        		<div class="form-group">
+          			<label for="company_name">Company Name</label>
+          			<input type="text" class="form-control" id="company_name" name="user[company_name]" placeholder="Company Name" value="<?=(!empty($detail['company_name']))?$detail['company_name']:'';?>">
+        		</div>
+        		
+        		<div class="form-group">
+          			<label for="company_address">Company Address</label> 
+          			<textarea rows="4" class="form-control" id="company_address" name="user[company_address]" placeholder="Company Address"><?=(!empty($detail['company_address']))?$detail['company_address']:'';?></textarea>
+        		</div>
+        		 
+        		<div class="form-group">
+          			<label for="company_mobile_phone">Company Mobile Phone</label> 
+          			<input type="tel" class="form-control" id="company_mobile_phone" name="user[company_mobile_phone]" placeholder="Mobile Phone" value="<?=(!empty($detail['company_mobile_phone']))?$detail['company_mobile_phone']:'';?>"> 
+        		</div> 
+        		
+        		<div class="form-group">   
+          			<label for="company_phone">Company Landline Phone Number</label>  
+          			<input type="tel" class="form-control" id="company_phone" name="user[company_phone]" placeholder="Company Landline Phone Number" value="<?=(!empty($detail['company_phone']))?$detail['company_phone']:'';?>"> 
+        		</div> 
+        		
+                <div class="form-group">
+          			<label for="company_email">Company Email</label>
+          			<input type="email" class="form-control" id="company_email" name="user[company_email]" placeholder="Company Email" value="<?=(!empty($detail['company_email']))?$detail['company_email']:'';?>">
+        		</div>     
+      		</div><!-- /.box-body --> 
+            <hr /> 
+      		<div class="box-footer">
+        		<button type="submit" class="btn btn-primary">Submit</button>
+      		</div>
+    	</form> 
+    </div>  
+</div> 
+<script type="text/javascript">   
+$(function() { 
+  $("form[name='registration']").validate({ 
+    rules: {
+     'user[company_name]': "required",
+     'user[company_address]': "required",
+     'user[company_mobile_phone]': {
+        required: true, 
+        maxlength:12, 
+        minlength:7   
+     },  
+     'user[company_phone]': {
+        required: true, 
+        maxlength:12,
+        minlength:7  
+     },
+     'user[company_email]': { 
+        required: true,
+        email: true
+      } 
+    },  
+    messages: { 
+      'admin[name]': "Please enter your name",
+      'admin[email]': "Please enter a valid email address" 
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  }); 
+});
+
+</script>

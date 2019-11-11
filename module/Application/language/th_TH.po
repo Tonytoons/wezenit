@@ -1,0 +1,26 @@
+msgid  "Nakhon Ratchasima Rajabhat University"
+msgstr "มหาวิทยาลัยราชภัฏนครราชสีมา"
+
+msgid "Menu University"  
+msgstr "มหาวิทยาลัย"
+
+msgid "Menu Executives"  
+msgstr "ทำเนียบผู้บริหาร"
+
+msgid "Menu Faculty"  
+msgstr "คณะและหน่วยงาน"
+
+msgid "Menu Calendar"  
+msgstr "ปฏิทินการศึกษา"
+
+msgid "Menu Students"  
+msgstr "นักศึกษา"
+
+msgid "Menu Personnel"  
+msgstr "บุคลากร"
+
+msgid "Menu Discussions"  
+msgstr "กระดานสนทนา"
+
+msgid "Menu Contact Us"  
+msgstr "ติดต่อเรา"

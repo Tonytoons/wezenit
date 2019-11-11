@@ -1,0 +1,114 @@
+<div class="panel panel-default">
+    <div class="panel-heading">  
+        Pay the supplier    
+    </div>    
+    <!-- /.panel-heading --> 
+    <div class="panel-body">
+        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTable"> 
+            <thead> 
+                <tr> 
+                    <th>#</th>  
+                    <th>Start Date</th> 
+                    <th>End Date</th> 
+                    <th>Serial No.</th> 
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Phone</th> 
+                    <th>Email</th>
+                    <th>Price</th> 
+                    <th>Service Price</th>
+                    <th>Total Price</th> 
+                    <th>Create Date</th>
+                    <th>Status</th>
+                    <th>Action</th> 
+                </tr>
+            </thead>
+            <tbody> 
+            </tbody>
+        </table>
+    </div>  
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel --> 
+<script type="text/javascript">
+var table;  
+$(function(){    
+    table = $('#dataTable').DataTable( {    
+        ajax: basePath+'admin/payrefund/?task=list',  
+        iDisplayLength: 50, 
+        "bSort": false, 
+        "serverSide": true,
+        "processing": true, 
+        aLengthMenu: [ 
+            [50, 100, 300, 500], 
+            [50, 100, 300, 500]  
+        ],  
+        columns: [ 
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                   var pageNo = table.page.info(); 
+                   //console.log(((iRow+1)+pageNo.start)); 
+                   $(nTd).html(((iRow+1)+pageNo.start));    
+                },  
+            }, 
+            { "data": "start_date" },
+            { "data": "end_date" },
+            { "data": "serial_number" },
+            { "data": "contract_name" },
+            { "data": "contract_company" },
+            { "data": "contract_phone" },
+            { "data": "contract_email" },
+            { "data": "price" },  
+            { "data": "service_price" },
+            { "data": "total_price" }, 
+            { "data": "added_date" }, 
+            { "data": "text_status" }, 
+            /*
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) { 
+                    //0=pending, 1=accepted(supplier accepted), 2=start, 3=done, 4=looking for supplier, 5=paid, 6=waiting for money, 7=refund
+                    var status = 'Pending';
+                    if(sData.status==1){
+                        status = 'Accepted'; 
+                    }else if(sData.status==2){ 
+                        status = 'Start'; 
+                    }else if(sData.status==3){
+                        status = 'Done'; 
+                    }else if(sData.status==4){
+                        status = 'Looking for supplier'; 
+                    }else if(sData.status==5){
+                        status = 'Paid';  
+                    }else if(sData.status==6){
+                        status = 'Waiting for money'; 
+                    }else if(sData.status==7){
+                        status = 'Refund'; 
+                    } 
+                    $(nTd).html(status); 
+                }
+            }, */
+            { "data": null, 
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {        
+                    var html = '-';   
+                    if(oData.status!=7)html = ' <a class="btn btn-info btn-xs" href="javascript:payment_refund('+oData.id+');"><i class="fa fa-money"></i>  Refund</a> <br/><br/>';
+                    $(nTd).html(html);      
+                },
+            }, 
+        ], 
+        createdRow : function( row, data, index ) { 
+            //$(row).attr('data-id', data.pkbook);
+        }
+    }); 
+});
+
+function payment_refund(id){  
+    if(confirm("Are you sure you want to refund.")){ 
+        var url = basePath+'admin/payrefund/'+id+'?task=refund';  
+        $.get(url,function(){ 
+            table.ajax.reload( null, false ); 
+        }); 
+    } 
+}
+
+
+
+</script>

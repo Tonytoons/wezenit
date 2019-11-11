@@ -1,0 +1,13 @@
+# robots.txt for https://www.wezenit.com/
+User-agent: *
+Disallow: /public/
+Disallow: /vendor/
+Disallow: /deploy/
+Disallow: /module/
+Disallow: /data/
+Disallow: /config/
+Sitemap: https://www.wezenit.com/en/sitemap
+
+# Allow crawling of all content
+User-agent: Googlebot
+Disallow: /nogooglebot/
